@@ -40,8 +40,8 @@ eleventyComputed:
     </div>
 
     <div class="hero__media">
-      {% set slotSrc = "/assets/img/programs/blocks-hero.webp" %}
-      {% set slotAlt = t.imageAlt.blocksHero %}
+      {% set slotSrc = "/assets/img/programs/shape-sorter.webp" %}
+      {% set slotAlt = t.imageAlt.shapeSorter %}
       {% set slotRatio = "portrait" %}
       {% set slotLabel = t.home.heroImageSlot %}
       {% include "partials/media-slot.njk" %}
@@ -97,8 +97,8 @@ eleventyComputed:
         <p><a href="{{ 'about' | localizedUrl(lang.code) }}#our-teachers">{{ t.home.teamLink }}</a></p>
       </div>
       <div class="feature__media">
-        {% set slotSrc = "/assets/img/programs/shape-sorter.webp" %}
-        {% set slotAlt = t.imageAlt.shapeSorter %}
+        {% set slotSrc = "/assets/img/programs/blocks.webp" %}
+        {% set slotAlt = t.imageAlt.blocks %}
         {% set slotRatio = "landscape" %}
         {% set slotLabel = t.home.teamImageSlot %}
         {% include "partials/media-slot.njk" %}
