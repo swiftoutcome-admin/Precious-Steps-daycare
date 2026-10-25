@@ -5,8 +5,6 @@ pagination:
   data: languages
   size: 1
   alias: lang
-  # Without this Eleventy puts only the FIRST paginated output into
-  # collections, so the Spanish pages would be missing from the sitemap.
   addAllPagesToCollections: true
 permalink: "{{ pageKey | localizedUrl(lang.code) }}"
 eleventyComputed:
@@ -27,19 +25,42 @@ eleventyComputed:
 <section class="section">
   <div class="wrap">
     <div class="todo">
-      <strong>Awaiting photography</strong>
-      New photographs are being taken for the center. Until they arrive this
-      page stays unlinked from the main navigation or is left out of the
-      launch entirely, whichever the client prefers.
+      <strong>Temporary stock photography</strong>
+      {{ g.stockNotice }}
       <br /><br />
-      Before any photograph showing a child's face is published, a signed
-      publicity release must be on file for that child, and the client must
-      confirm in writing that every supplied image is cleared for public web
-      use. Record each clearance in docs/photo-release-log.md.
-      <br /><br />
-      Drop final images in src/assets/img/gallery/ and add their alt text to
-      BOTH i18n bundles, never inline in this template.
+      Replace every file in src/assets/img/gallery/ with the center's own
+      photographs before launch, and update the matching alt text under
+      imageAlt in BOTH i18n bundles. No photograph showing an identifiable
+      child may be published without a signed publicity release on file;
+      record each clearance in docs/photo-release-log.md.
     </div>
+
+    {% set shots = [
+      { file: "blocks.webp",        alt: t.imageAlt.blocksHero },
+      { file: "shape-sorter.webp",  alt: t.imageAlt.shapeSorter },
+      { file: "play-kitchen.webp",  alt: t.imageAlt.playKitchen },
+      { file: "toy-bus.webp",       alt: t.imageAlt.toyBus },
+      { file: "sandbox.webp",       alt: t.imageAlt.sandbox },
+      { file: "water-table.webp",   alt: t.imageAlt.waterTable }
+    ] %}
+
+    <ul class="grid grid--3 grid--list">
+      {% for shot in shots %}
+        <li>
+          <figure class="media media--portrait">
+            <img
+              class="media__img"
+              src="/assets/img/gallery/{{ shot.file }}"
+              alt="{{ shot.alt }}"
+              width="760"
+              height="950"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </li>
+      {% endfor %}
+    </ul>
   </div>
 </section>
 

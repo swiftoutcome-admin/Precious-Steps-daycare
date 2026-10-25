@@ -32,3 +32,6 @@ npm-debug.log*
 # Client source material that must NOT be published.
 # Enrollment packets contain health histories and family PII.
 /client-private/
+
+# Unprocessed source images. Derivatives live in src/assets/img/.
+/images/

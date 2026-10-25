@@ -40,7 +40,8 @@ eleventyComputed:
     </div>
 
     <div class="hero__media">
-      {% set slotSrc = null %}
+      {% set slotSrc = "/assets/img/programs/blocks-hero.webp" %}
+      {% set slotAlt = t.imageAlt.blocksHero %}
       {% set slotRatio = "portrait" %}
       {% set slotLabel = t.home.heroImageSlot %}
       {% include "partials/media-slot.njk" %}
@@ -74,7 +75,8 @@ eleventyComputed:
         <p><a href="{{ 'about' | localizedUrl(lang.code) }}">{{ t.home.storyLink }}</a></p>
       </div>
       <div class="feature__media">
-        {% set slotSrc = null %}
+        {% set slotSrc = "/assets/img/programs/toy-bus.webp" %}
+        {% set slotAlt = t.imageAlt.toyBus %}
         {% set slotRatio = "landscape" %}
         {% set slotLabel = t.home.storyImageSlot %}
         {% include "partials/media-slot.njk" %}
@@ -95,7 +97,8 @@ eleventyComputed:
         <p><a href="{{ 'about' | localizedUrl(lang.code) }}#our-teachers">{{ t.home.teamLink }}</a></p>
       </div>
       <div class="feature__media">
-        {% set slotSrc = null %}
+        {% set slotSrc = "/assets/img/programs/shape-sorter.webp" %}
+        {% set slotAlt = t.imageAlt.shapeSorter %}
         {% set slotRatio = "landscape" %}
         {% set slotLabel = t.home.teamImageSlot %}
         {% include "partials/media-slot.njk" %}
@@ -151,7 +154,8 @@ eleventyComputed:
         <p>{{ t.home.mealsP2 }}</p>
       </div>
       <div class="feature__media">
-        {% set slotSrc = null %}
+        {% set slotSrc = "/assets/img/programs/play-kitchen.webp" %}
+        {% set slotAlt = t.imageAlt.playKitchen %}
         {% set slotRatio = "landscape" %}
         {% set slotLabel = t.home.mealsImageSlot %}
         {% include "partials/media-slot.njk" %}
@@ -162,7 +166,8 @@ eleventyComputed:
 
 {# -------------------------------------------------------- Photo divider #}
 <section class="divider">
-  {% set slotSrc = null %}
+  {% set slotSrc = "/assets/img/programs/sandbox-wide.webp" %}
+  {% set slotAlt = t.imageAlt.sandbox %}
   {% set slotRatio = "wide" %}
   {% set slotLabel = t.home.dividerImageSlot %}
   {% include "partials/media-slot.njk" %}
