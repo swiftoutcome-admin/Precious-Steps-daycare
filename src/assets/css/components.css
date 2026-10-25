@@ -1042,12 +1042,19 @@ textarea.field__control {
    either globally in tokens.css or per section.
    ----------------------------------------------------------------------- */
 
-.pattern-bg {
+/* The utility, plus the sections that always carry the pattern. Applying
+   it here rather than in markup keeps it consistent across all 19 pages
+   without touching nine templates. */
+.pattern-bg,
+.hero,
+.trust {
   position: relative;
   isolation: isolate;
 }
 
-.pattern-bg::before {
+.pattern-bg::before,
+.hero::before,
+.trust::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -1065,6 +1072,24 @@ textarea.field__control {
   .pattern-bg::before {
     opacity: 0.25;
   }
+}
+
+/* Page heroes: the lightest setting on the site. A headline sits on top
+   of it, so this is texture at the threshold of noticeable, not decoration.
+   It also fades out downward so the lead paragraph sits on clean paper. */
+.hero {
+  --pattern-opacity: 0.3;
+}
+
+.hero::before {
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
+  mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
+}
+
+/* Accreditation strip: three short labels, no running copy, so it can
+   take more. */
+.trust {
+  --pattern-opacity: 0.45;
 }
 
 /* The CTA band carries the pattern, but body copy sits on top of it, so
