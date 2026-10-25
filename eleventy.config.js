@@ -44,6 +44,28 @@ export default function (eleventyConfig) {
     return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
   });
 
+  /**
+   * Google Maps embed URL for a location.
+   *
+   * Uses the keyless `output=embed` endpoint, so there is no API key to
+   * manage or leak and no billing account attached. The address string is
+   * URL-encoded, so a change in site.json flows straight through.
+   *
+   * This is the one third-party frame on the site and it is why
+   * netlify.toml carries a frame-src exception for google.com. Google sets
+   * cookies inside that frame. If the client would rather not ship any
+   * third-party tracking, swap this filter's body for the OpenStreetMap
+   * equivalent and narrow frame-src to openstreetmap.org:
+   *
+   *   https://www.openstreetmap.org/export/embed.html?bbox=<bbox>&marker=<lat>,<lng>
+   */
+  eleventyConfig.addFilter("mapEmbedUrl", (location) => {
+    const query = [location.street, location.city, location.state, location.zip]
+      .filter(Boolean)
+      .join(", ");
+    return `https://www.google.com/maps?q=${encodeURIComponent(query)}&z=15&output=embed`;
+  });
+
   eleventyConfig.addFilter("isoDate", (value) =>
     new Date(value).toISOString().slice(0, 10)
   );

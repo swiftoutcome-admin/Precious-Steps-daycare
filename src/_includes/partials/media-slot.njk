@@ -1,0 +1,31 @@
+{#
+  An image slot that stays presentable before the photography arrives.
+
+  Pass:
+    slotSrc    path under /assets/img/, or omit for a placeholder
+    slotAlt    real alt text, required whenever slotSrc is set
+    slotRatio  "landscape" (3:2), "portrait" (4:5) or "wide" (16:9)
+    slotLabel  what belongs here, shown only while the slot is empty
+
+  When the real photo lands, set slotSrc and slotAlt and nothing else
+  about the layout changes.
+#}
+<figure class="media media--{{ slotRatio | default('landscape') }}">
+  {% if slotSrc %}
+    <img
+      class="media__img"
+      src="{{ slotSrc }}"
+      alt="{{ slotAlt }}"
+      loading="lazy"
+      decoding="async"
+    />
+  {% else %}
+    <div class="media__placeholder" role="img" aria-label="Photograph pending: {{ slotLabel }}">
+      <span class="media__placeholder-label">{{ slotLabel }}</span>
+      <span class="media__placeholder-note">Photograph pending</span>
+    </div>
+  {% endif %}
+  {% if slotCaption %}
+    <figcaption class="media__caption">{{ slotCaption }}</figcaption>
+  {% endif %}
+</figure>

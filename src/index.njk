@@ -2,8 +2,6 @@
 layout: layouts/base.njk
 title: ""
 description: "NAEYC accredited child care and early learning in Plainfield, New Jersey. Infants through school age, two locations, serving families since 1998."
-eleventyNavigation:
-  key: Home
 ---
 
 {% set active = announcements | activeAnnouncements %}
@@ -18,43 +16,118 @@ eleventyNavigation:
   </div>
 {% endif %}
 
-<section class="hero">
-  <div class="wrap">
-    <p class="eyebrow">Plainfield, New Jersey</p>
-    <h1 class="hero__title">{{ site.tagline }}</h1>
-    <p class="hero__lead">
-      Precious Steps has cared for Plainfield's children since {{ site.foundedYear }}.
-      We are accredited by the National Association for the Education of Young
-      Children and rated by Grow NJ Kids, with programs for infants through
-      school age across two neighborhood locations.
-    </p>
-    <div class="hero__actions">
-      <a class="button button--primary button--lg" href="{{ site.primaryCta.href }}">{{ site.primaryCta.label }}</a>
-      <a class="button button--secondary button--lg" href="/programs/">See our programs</a>
+{# ---------------------------------------------------------------- Hero #}
+<section class="hero hero--split">
+  <div class="wrap hero__grid">
+    <div class="hero__content">
+      <p class="eyebrow">Plainfield, New Jersey</p>
+      <h1 class="hero__title">{{ site.tagline }}</h1>
+      <p class="hero__lead">
+        Precious Steps has cared for Plainfield's children since
+        {{ site.foundedYear }}. Accredited, state rated, and small enough that
+        we know every child by name.
+      </p>
+      <div class="hero__actions">
+        <a class="button button--primary button--lg" href="{{ site.primaryCta.href }}">{{ site.primaryCta.label }}</a>
+        <a class="button button--secondary button--lg" href="/programs/">See our programs</a>
+      </div>
+    </div>
+
+    <div class="hero__media">
+      {% set slotSrc = null %}
+      {% set slotRatio = "portrait" %}
+      {% set slotLabel = "Children at play in a classroom" %}
+      {% include "partials/media-slot.njk" %}
     </div>
   </div>
 </section>
 
-<section class="section">
+{# ------------------------------------------------------------ Trust strip #}
+<section class="trust">
   <div class="wrap">
-    <h2>Our mission</h2>
-    <p class="section__lead">
-      To offer early learning opportunities reflective of developmentally
-      appropriate practices while embracing the eclectic urban culture and
-      community in which we are located. Understanding that all families have
-      differing needs, we pride ourselves on our ability to meet our children
-      and families at their levels of development within an intimate, family
-      oriented environment that promotes and supports lifelong learning.
-    </p>
+    <ul class="trust__list">
+      {% for item in site.accreditations %}
+        <li class="trust__item">
+          <span class="trust__name">{{ item.name }}</span>
+          <span class="trust__detail">{{ item.detail }}</span>
+        </li>
+      {% endfor %}
+    </ul>
   </div>
 </section>
 
+{# ------------------------------------------------------- Feature: our story #}
+<section class="section">
+  <div class="wrap">
+    <div class="feature">
+      <div class="feature__text">
+        <p class="eyebrow">Since {{ site.foundedYear }}</p>
+        <h2>Nearly thirty years of Plainfield families</h2>
+        <p>
+          We began on the first floor of a two-family home, licensed for
+          fifteen children. An early childhood contract with Plainfield Public
+          Schools in 2000 let us serve more of our neighbors, and our waiting
+          list for infants and toddlers grew past what one building could hold.
+        </p>
+        <p>
+          Today we run two centers, accredited by the National Association for
+          the Education of Young Children since 2006 and rated by Grow NJ Kids.
+        </p>
+        <p><a href="/about/">Read our full story</a></p>
+      </div>
+      <div class="feature__media">
+        {% set slotSrc = null %}
+        {% set slotRatio = "landscape" %}
+        {% set slotLabel = "The center exterior or a classroom" %}
+        {% include "partials/media-slot.njk" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ------------------------------------------------------- Feature: our team #}
 <section class="section section--subtle">
   <div class="wrap">
-    <h2>Programs</h2>
-    <p class="section__lead">
-      Five classrooms, each with its own curriculum and teacher to child ratio.
-    </p>
+    <div class="feature feature--reverse">
+      <div class="feature__text">
+        <p class="eyebrow">Our teachers</p>
+        <h2>Credentialed, bilingual, and here for the long run</h2>
+        <p>
+          Our lead teachers hold BA, BS and MA degrees with standard Preschool
+          through Third Grade certification, and several hold Special Education
+          certification. Our associate teachers hold degrees and Child
+          Development Associate credentials.
+        </p>
+        <p>
+          Every staff member clears a Child Abuse Record Inquiry and a Criminal
+          History Record Inquiry, is trained in CPR and First Aid, and takes
+          part in continuous professional development. We have bilingual staff
+          at the center.
+        </p>
+        <p><a href="/about/#our-teachers">Meet the team</a></p>
+      </div>
+      <div class="feature__media">
+        {% set slotSrc = null %}
+        {% set slotRatio = "landscape" %}
+        {% set slotLabel = "A teacher working with children" %}
+        {% include "partials/media-slot.njk" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{# -------------------------------------------------------------- Programs #}
+<section class="section">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow">Programs</p>
+      <h2>A classroom for every stage</h2>
+      <p class="section__lead">
+        Five classrooms, each with its own curriculum and teacher to child
+        ratio. High Scope for our youngest children, Connect 4 Learning in
+        district Pre-K.
+      </p>
+    </div>
 
     <ul class="grid grid--3 grid--list">
       {% for program in programs %}
@@ -80,15 +153,62 @@ eleventyNavigation:
   </div>
 </section>
 
+{# --------------------------------------------------------- Feature: meals #}
+<section class="section section--subtle">
+  <div class="wrap">
+    <div class="feature">
+      <div class="feature__text">
+        <p class="eyebrow">Meals</p>
+        <h2>Breakfast, lunch and snacks, every day</h2>
+        <p>
+          Meals are provided under the New Jersey Child and Adult Care Food
+          Program and meet USDA nutritional standards, with menus posted
+          monthly. We practice family style dining, where children and staff
+          eat together and children serve themselves.
+        </p>
+        <p>
+          We accommodate food allergies as directed by your child's physician.
+          Precious Steps is a nut free center.
+        </p>
+      </div>
+      <div class="feature__media">
+        {% set slotSrc = null %}
+        {% set slotRatio = "landscape" %}
+        {% set slotLabel = "Children at the lunch table" %}
+        {% include "partials/media-slot.njk" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{# -------------------------------------------------------- Photo divider #}
+<section class="divider">
+  {% set slotSrc = null %}
+  {% set slotRatio = "wide" %}
+  {% set slotLabel = "Wide photograph of the playground or a full classroom" %}
+  {% include "partials/media-slot.njk" %}
+</section>
+
+{# ------------------------------------------------------ Locations + maps #}
 <section class="section">
   <div class="wrap">
-    <h2>Our locations</h2>
+    <div class="section__head">
+      <p class="eyebrow">Visit us</p>
+      <h2>Two centers in Plainfield</h2>
+      <p class="section__lead">
+        Each location runs a different mix of programs and keeps different
+        hours. Call either number and we will point you to the right one.
+      </p>
+    </div>
+
     <div class="grid grid--2">
       {% for location in site.locations %}
-        <article class="card">
-          <h3 class="card__title">{{ location.name }}</h3>
-          <div class="card__body">
-            <address>
+        <article class="location">
+          {% include "partials/location-map.njk" %}
+
+          <div class="location__body">
+            <h3 class="location__name">{{ location.name }}</h3>
+            <address class="location__address">
               {{ location.street }}<br />
               {{ location.city }}, {{ location.state }} {{ location.zip }}
             </address>
@@ -100,31 +220,34 @@ eleventyNavigation:
               <dt>Calendar</dt>
               <dd>{{ location.calendar }}</dd>
             </dl>
-            {% if not location.addressConfirmed or not location.calendarConfirmed %}
+            {% if not location.addressConfirmed or not location.programsConfirmed %}
               <div class="todo">
                 <strong>Unconfirmed</strong>
-                Address, hours or calendar for this location is still pending client confirmation. See CONTENT-STATUS.md.
+                Address, hours, calendar or program mix for this location is
+                pending client confirmation. See CONTENT-STATUS.md.
               </div>
             {% endif %}
+            <p><a href="/locations/#{{ location.id }}">More about {{ location.name }}</a></p>
           </div>
-          <p class="card__link"><a href="{{ location | mapUrl }}">Open in Google Maps</a></p>
         </article>
       {% endfor %}
     </div>
   </div>
 </section>
 
-<section class="section section--ruled">
+{# ------------------------------------------------------------ Testimonials #}
+<section class="section section--subtle">
   <div class="wrap">
-    <h2>Recognition</h2>
-    <ul class="accred">
-      {% for item in site.accreditations %}
-        <li>
-          <span class="accred__name">{{ item.name }}</span>
-          <span class="accred__detail">{{ item.detail }}</span>
-        </li>
-      {% endfor %}
-    </ul>
+    <div class="section__head">
+      <p class="eyebrow">Families</p>
+      <h2>What parents say</h2>
+    </div>
+    <div class="todo">
+      <strong>Content needed</strong>
+      The client is approaching parents for testimonials. Each one needs the
+      parent's written permission to publish, along with a first name or
+      initials. Until then this section stays out of the launch build.
+    </div>
   </div>
 </section>
 

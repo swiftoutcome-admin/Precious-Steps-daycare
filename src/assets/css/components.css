@@ -639,3 +639,261 @@ textarea.field__control {
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
 }
+
+/* ===========================================================================
+   HOMEPAGE: split hero, trust strip, alternating feature bands,
+   media slots, photo dividers, location cards with maps
+   =========================================================================== */
+
+/* --- Section heading block --------------------------------------------------- */
+
+.section__head {
+  max-width: var(--measure);
+  margin-bottom: var(--space-lg);
+}
+
+.section__head h2 {
+  margin-bottom: var(--space-2xs);
+}
+
+/* --- Split hero ---------------------------------------------------------------- */
+
+.hero--split {
+  padding-block: var(--space-xl) var(--space-2xl);
+  border-bottom: 0;
+}
+
+.hero__grid {
+  display: grid;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+@media (min-width: 58rem) {
+  .hero__grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--space-2xl);
+  }
+}
+
+.hero--split .hero__title {
+  margin-bottom: var(--space-md);
+}
+
+/* --- Trust strip ------------------------------------------------------------------ */
+
+.trust {
+  padding-block: var(--space-lg);
+  border-block: var(--rule-faint);
+  background-color: var(--color-bg-subtle);
+}
+
+.trust__list {
+  display: grid;
+  gap: var(--space-md) var(--space-xl);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 46rem) {
+  .trust__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.trust__item {
+  margin: 0;
+  padding-left: var(--space-sm);
+  border-left: 2px solid var(--brand-rose-500);
+}
+
+.trust__name {
+  display: block;
+  margin-bottom: var(--space-3xs);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.trust__detail {
+  display: block;
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  color: var(--color-text-muted);
+}
+
+/* --- Alternating feature bands -------------------------------------------------------- */
+
+.feature {
+  display: grid;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+@media (min-width: 58rem) {
+  .feature {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+  }
+
+  /* Reversed band: media first on screen, text first in the DOM, so the
+     reading order stays correct for screen readers and keyboard users. */
+  .feature--reverse .feature__text {
+    order: 2;
+  }
+
+  .feature--reverse .feature__media {
+    order: 1;
+  }
+}
+
+.feature__text h2 {
+  margin-bottom: var(--space-sm);
+}
+
+.feature__text > p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Media slots ------------------------------------------------------------------------ */
+
+.media {
+  margin: 0;
+}
+
+.media__img,
+.media__placeholder {
+  width: 100%;
+  border-radius: var(--radius-md);
+}
+
+.media__img {
+  object-fit: cover;
+  aspect-ratio: var(--media-ratio, 3 / 2);
+}
+
+.media--landscape {
+  --media-ratio: 3 / 2;
+}
+
+.media--portrait {
+  --media-ratio: 4 / 5;
+}
+
+.media--wide {
+  --media-ratio: 16 / 7;
+}
+
+/* Placeholder reads as an intentional empty slot, not a broken image. */
+.media__placeholder {
+  display: grid;
+  place-content: center;
+  gap: var(--space-3xs);
+  aspect-ratio: var(--media-ratio, 3 / 2);
+  padding: var(--space-md);
+  text-align: center;
+  background-color: var(--brand-blue-50);
+  border: 1px dashed var(--brand-blue-100);
+}
+
+.media__placeholder-label {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+}
+
+.media__placeholder-note {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--ink-400);
+}
+
+.media__caption {
+  margin-top: var(--space-2xs);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* --- Full-width photo divider -------------------------------------------------------------- */
+
+.divider {
+  margin-block: var(--space-2xl);
+}
+
+.divider .media__img,
+.divider .media__placeholder {
+  border-radius: 0;
+}
+
+.divider .media__placeholder {
+  border-inline: 0;
+}
+
+/* --- Location card with map ------------------------------------------------------------------ */
+
+.location {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--color-bg);
+  border: var(--rule);
+  border-radius: var(--radius-md);
+}
+
+.location__body {
+  flex-grow: 1;
+  padding: var(--space-md);
+}
+
+.location__name {
+  margin-bottom: var(--space-3xs);
+  font-size: var(--text-lg);
+}
+
+.location__address {
+  margin-bottom: var(--space-sm);
+  color: var(--color-text-muted);
+}
+
+.location__body > p:last-child {
+  margin-bottom: 0;
+}
+
+.map {
+  margin: 0;
+}
+
+.map__frame {
+  display: block;
+  width: 100%;
+  height: 260px;
+  border: 0;
+  border-bottom: var(--rule-faint);
+  /* Keeps the embed from tinting the page; Google's own chrome is bright. */
+  background-color: var(--ink-100);
+}
+
+.map__caption {
+  margin: 0;
+  padding: var(--space-2xs) var(--space-md);
+  border-bottom: var(--rule-faint);
+  font-size: var(--text-xs);
+}
+
+/* The maps page shows standalone maps outside a location card. */
+.map--standalone .map__frame {
+  height: 320px;
+  border: var(--rule);
+  border-radius: var(--radius-md);
+}
+
+.map--standalone .map__caption {
+  padding-inline: 0;
+  border-bottom: 0;
+}
