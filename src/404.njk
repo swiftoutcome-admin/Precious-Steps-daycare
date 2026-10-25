@@ -1,19 +1,37 @@
 ---
 layout: layouts/base.njk
-title: Page Not Found
 permalink: /404.html
 eleventyExcludeFromCollections: true
+lang:
+  code: en
+  htmlLang: en
+  label: English
+  shortLabel: EN
+title: Page Not Found
 ---
+{#
+  Single 404 for the whole site. Netlify serves one 404.html regardless of
+  path, so it cannot be language-aware without client-side redirection.
+  Both languages are offered in the body instead.
+#}
+{% set t = i18n.en %}
 
 <section class="hero">
   <div class="wrap wrap--narrow">
-    <h1 class="hero__title">We could not find that page</h1>
-    <p class="hero__lead">
-      The page you were looking for has moved or no longer exists.
-    </p>
+    <h1 class="hero__title">{{ i18n.en.notFound.heroTitle }}</h1>
+    <p class="hero__lead">{{ i18n.en.notFound.heroLead }}</p>
     <div class="hero__actions">
-      <a class="button button--primary" href="/">Back to the homepage</a>
-      <a class="button button--secondary" href="/contact/">Contact us</a>
+      <a class="button button--primary" href="/">{{ i18n.en.cta.backHome }}</a>
+      <a class="button button--secondary" href="/contact/">{{ i18n.en.notFound.contactUs }}</a>
+    </div>
+
+    <hr />
+
+    <h2 lang="es">{{ i18n.es.notFound.heroTitle }}</h2>
+    <p lang="es">{{ i18n.es.notFound.heroLead }}</p>
+    <div class="hero__actions">
+      <a class="button button--primary" href="/es/" lang="es">{{ i18n.es.cta.backHome }}</a>
+      <a class="button button--secondary" href="/es/contact/" lang="es">{{ i18n.es.notFound.contactUs }}</a>
     </div>
   </div>
 </section>

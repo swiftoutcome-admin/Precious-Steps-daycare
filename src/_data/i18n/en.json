@@ -1,0 +1,331 @@
+{
+  "_comment": "All English prose. Language-neutral facts (addresses, phones, ages, ratios) stay in site.json and programs.json so a number is never translated by accident.",
+
+  "htmlLang": "en",
+  "siteDescription": "NAEYC accredited child care and early learning in Plainfield, New Jersey. Infants through school age, two locations, serving families since 1998.",
+  "tagline": "Where children learn and grow by taking their first Precious Steps!",
+
+  "nav": {
+    "skip": "Skip to main content",
+    "menu": "Menu",
+    "primaryLabel": "Primary",
+    "footerLabel": "Footer",
+    "languageLabel": "Language",
+    "home": "Home",
+    "about": "About",
+    "programs": "Programs",
+    "locations": "Locations",
+    "enrollment": "Enrollment",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "privacy": "Privacy"
+  },
+
+  "cta": {
+    "requestTour": "Request a Tour",
+    "seePrograms": "See our programs",
+    "bandTitle": "Come see us",
+    "bandText": "Tell us your child's name and age and when you would like to visit. We respond",
+    "backHome": "Back to the homepage",
+    "directions": "Get directions to",
+    "openInMaps": "Open in Google Maps"
+  },
+
+  "common": {
+    "phone": "Phone",
+    "fax": "Fax",
+    "hours": "Hours",
+    "calendar": "Calendar",
+    "email": "Email",
+    "ages": "Ages",
+    "ratio": "Teacher to child ratio",
+    "curriculum": "Curriculum",
+    "programsHere": "Programs",
+    "contactHeading": "Contact",
+    "licensedBy": "Licensed by the New Jersey Office of Licensing.",
+    "allRights": "All rights reserved.",
+    "servingSince": "Serving Plainfield families since",
+    "photographPending": "Photograph pending",
+    "contentNeeded": "Content needed",
+    "unconfirmed": "Unconfirmed"
+  },
+
+  "home": {
+    "eyebrow": "Plainfield, New Jersey",
+    "lead": "Precious Steps has cared for Plainfield's children since 1998. Accredited, state rated, and small enough that we know every child by name.",
+    "heroImageSlot": "Children at play in a classroom",
+
+    "storyEyebrow": "Since 1998",
+    "storyTitle": "Nearly thirty years of Plainfield families",
+    "storyP1": "We began on the first floor of a two-family home, licensed for fifteen children. An early childhood contract with Plainfield Public Schools in 2000 let us serve more of our neighbors, and our waiting list for infants and toddlers grew past what one building could hold.",
+    "storyP2": "Today we run two centers, accredited by the National Association for the Education of Young Children since 2006 and rated by Grow NJ Kids.",
+    "storyLink": "Read our full story",
+    "storyImageSlot": "The center exterior or a classroom",
+
+    "teamEyebrow": "Our teachers",
+    "teamTitle": "Credentialed, bilingual, and here for the long run",
+    "teamP1": "Our lead teachers hold BA, BS and MA degrees with standard Preschool through Third Grade certification, and several hold Special Education certification. Our associate teachers hold degrees and Child Development Associate credentials.",
+    "teamP2": "Every staff member clears a Child Abuse Record Inquiry and a Criminal History Record Inquiry, is trained in CPR and First Aid, and takes part in continuous professional development. We have bilingual staff at the center.",
+    "teamLink": "Meet the team",
+    "teamImageSlot": "A teacher working with children",
+
+    "programsEyebrow": "Programs",
+    "programsTitle": "A classroom for every stage",
+    "programsLead": "Five classrooms, each with its own curriculum and teacher to child ratio. High Scope for our youngest children, Connect 4 Learning in district Pre-K.",
+    "programsCardLink": "About",
+
+    "mealsEyebrow": "Meals",
+    "mealsTitle": "Breakfast, lunch and snacks, every day",
+    "mealsP1": "Meals are provided under the New Jersey Child and Adult Care Food Program and meet USDA nutritional standards, with menus posted monthly. We practice family style dining, where children and staff eat together and children serve themselves.",
+    "mealsP2": "We accommodate food allergies as directed by your child's physician. Precious Steps is a nut free center.",
+    "mealsImageSlot": "Children at the lunch table",
+
+    "dividerImageSlot": "Wide photograph of the playground or a full classroom",
+
+    "visitEyebrow": "Visit us",
+    "visitTitle": "Two centers in Plainfield",
+    "visitLead": "Each location runs a different mix of programs and keeps different hours. Call either number and we will point you to the right one.",
+    "visitMoreAbout": "More about",
+
+    "familiesEyebrow": "Families",
+    "familiesTitle": "What parents say"
+  },
+
+  "about": {
+    "title": "About Us",
+    "description": "Precious Steps Child Care Center has served Plainfield families since 1998. Our story, our philosophy, and the team caring for your child.",
+    "eyebrow": "About",
+    "heroTitle": "Serving Plainfield families since 1998",
+    "heroLead": "What began on the first floor of a two-family home, licensed for fifteen children, is today two accredited centers serving infants through school age.",
+
+    "storyTitle": "Our story",
+    "storyP1": "Precious Steps was established in 1998, licensed for fifteen children. In 2000 we were awarded an early childhood contract through Plainfield Public Schools, which allowed us to offer early childhood education to resident children and families, and we moved to a larger facility licensed for forty-five children.",
+    "storyP2": "Our reputation for caring for infants and toddlers grew our waiting list beyond what one building could hold, so we opened a second location dedicated to infants and toddlers. At the same time we began pursuing accreditation through the National Association for the Education of Young Children. It was an arduous process, and we have been accredited since 2006.",
+    "storyP3": "In 2007 we acquired the facility and contracted classrooms of a child care program that was closing, increasing our Pre-K enrollment to 120. In 2013 we accepted an invitation to participate in Grow NJ Kids, the state quality rating initiative, which put every policy and procedure under review. That work earned us 4 of 5 stars at Arlington Avenue and 3 of 5 stars at Washington Avenue.",
+
+    "philosophyTitle": "Our educational philosophy",
+    "philosophyQuote": "From birth, a baby's brain cells multiply wildly, making connections that may shape a lifetime of experience. The first five years are critical.",
+    "philosophyP1": "That idea is the cornerstone of our philosophy. Growth and development do not happen by chance. They are achieved through planned and spontaneous interactive learning experiences that stimulate the senses and foster development physically, cognitively, socially, emotionally, and creatively.",
+    "philosophyP2": "In partnership with our parents, we provide a warm and nurturing setting reminiscent of a child's most natural environment, home. There are opportunities for solitary play as well as group activities, and our staff serve as positive role models offering care that is supportive and responsive to each child's individual needs.",
+
+    "antibiasTitle": "An anti-bias community",
+    "antibiasP1": "We work to promote and create an inclusive environment that encourages conversations among children and adults about difference, without judgement. It is our goal that all of our children and their families feel respected, included, and reflected in our early childhood classrooms.",
+
+    "directorTitle": "Our director",
+    "directorTodo": "Director biography is drafted from the questionnaire. Confirm the preferred name, title and level of personal detail with the client before publishing, and obtain a headshot.",
+    "directorP1": "Our director began her career in early childhood education in 1984 at a Head Start program in Jersey City, having just earned a BA in Psychology with a concentration in Child Development and a minor in Business Management.",
+    "directorP2": "Her work with children facing developmental challenges carried her through early intervention programs in New York and New Jersey, a rehabilitative program in Atlanta serving medically fragile children, and finally the role of New Jersey Central Regional Special Needs Coordinator, before she became the owner and operator of Precious Steps.",
+    "directorP3": "That experience shapes the center to this day. Precious Steps consistently welcomes children with special challenges and ensures that they and their families feel supported. Families are frequently referred to us by the district for exactly that reason.",
+
+    "teachersTitle": "Our teachers",
+    "teachersIntro": "Our teaching team holds degrees and credentials across early childhood education and special education.",
+    "teachersLeadLabel": "Pre-K Lead Teachers",
+    "teachersLeadDetail": "BA, BS and MA degrees, standard Preschool through Third Grade certifications, Certificates of Eligibility with Advanced Standing, and Special Education certification.",
+    "teachersAssocLabel": "Associate Teachers",
+    "teachersAssocDetail": "BA, BS, AA degrees and Child Development Associate credentials.",
+    "teachersInfantLabel": "Infant and Toddler Associate Teachers",
+    "teachersInfantDetail": "AA degrees and Child Development Associate credentials.",
+    "teachersOutro": "All staff clear a Child Abuse Record Inquiry and a Criminal History Record Inquiry, are trained in CPR and First Aid, and participate in continuous professional development. We have bilingual staff at the center.",
+    "teachersTodo": "Client will forward individual staff biographies and photographs. Decide with the client whether to publish individual bios or keep the team described in general terms."
+  },
+
+  "programs": {
+    "title": "Programs",
+    "description": "Infant, toddler, preschool and school age programs at Precious Steps in Plainfield, NJ, with age ranges, teacher to child ratios and curricula.",
+    "eyebrow": "Programs",
+    "heroTitle": "A classroom for every stage",
+    "heroLead": "We use the High Scope curriculum with our infants, toddlers and Room to Bloom children, and Connect 4 Learning in our district Pre-K classrooms. Both are built around active, hands-on learning.",
+    "typicalDay": "A typical day",
+    "whatToBring": "What to bring",
+    "unconfirmedAges": "Unconfirmed age range",
+
+    "mealsTitle": "Meals",
+    "mealsP1": "Meals and snacks are provided under the New Jersey Child and Adult Care Food Program and meet USDA nutritional standards. Menus are posted monthly. We practice family style dining, where children and staff eat together at the table and children serve themselves from appropriately sized bowls and pitchers.",
+    "mealsP2": "We accommodate food allergies as directed by your child's physician. Precious Steps is a nut free center.",
+    "tripsTitle": "Field trips",
+    "tripsP1": "We provide transportation for field trips. Parents sign a blanket permission slip at registration for walks and visits in the community, and a trip-specific permission slip for any outing requiring transportation away from the center.",
+    "touchTitle": "Staying in touch",
+    "touchP1": "We use Brightwheel as our primary communication platform, with ClassDojo also in use. Meals, diaper changes and daily activities are posted by teachers each day, and parent teacher conferences are held three times a year."
+  },
+
+  "locations": {
+    "title": "Locations",
+    "description": "Precious Steps has two locations in Plainfield, New Jersey. Addresses, hours, phone numbers and which programs run at each site.",
+    "eyebrow": "Locations",
+    "heroTitle": "Two centers in Plainfield",
+    "heroLead": "Each location runs a different mix of programs and keeps different hours. If you are not sure which fits your family, call either number and we will point you to the right one.",
+    "closingsTitle": "Closings",
+    "unconfirmedPrograms": "Which programs run at this address is pending client confirmation. The parent handbooks and the questionnaire describe this differently. Do not publish without a written answer.",
+    "unconfirmedAddress": "Unconfirmed address",
+    "contactPersonNeeded": "Name of the onsite contact a parent should ask for at this location.",
+    "mapTitlePrefix": "Map showing"
+  },
+
+  "enrollment": {
+    "title": "Enrollment",
+    "description": "How to enroll at Precious Steps in Plainfield, NJ. Tour, application, documents, subsidies and what to expect, step by step.",
+    "eyebrow": "Enrollment",
+    "heroTitle": "How to join us",
+    "heroLead": "Enrollment starts with a conversation and a visit. Here is what the process looks like from your first call to your child's first day.",
+    "stepByStep": "Step by step",
+    "documentsTitle": "What we will need",
+    "documentsNote": "An updated copy of your child's immunization record must be given to the center after each doctor visit.",
+    "tuitionTitle": "Tuition",
+    "subsidiesTitle": "Subsidies and assistance",
+    "subsidiesExtra": "We will help you request or transfer yours during enrollment.",
+    "availabilityTitle": "Availability",
+    "toursTitle": "Tours and open house",
+    "safetyTitle": "Health and safety",
+    "safetyP1": "Both centers have secure entrances, cameras throughout, and burglar and fire alarms, and we run regular fire and intruder drills. All staff clear a Child Abuse Record Inquiry and a Criminal History Record Inquiry and are trained in CPR and First Aid.",
+    "safetyP2": "Our full health policies, including when to keep a child home, medication procedures and our discipline philosophy, are set out in the Parent Handbook.",
+    "faqTitle": "Questions parents ask",
+
+    "steps": [
+      { "title": "Reach out", "detail": "Call the center or send us a message through this website. Tell us your child's name and age and when you would like to visit." },
+      { "title": "Schedule a visit", "detail": "We will set an appointment at a time that works for your family." },
+      { "title": "Tour and talk", "detail": "You will see the classrooms, meet the team, review our philosophy, and ask anything you like. We will discuss your child's needs, habits, and development." },
+      { "title": "Complete the application", "detail": "We will walk you through the enrollment paperwork and the documents we need on file." },
+      { "title": "Arrange assistance if needed", "detail": "If you are using a childcare subsidy or an assistance program, we will help you request or transfer it." },
+      { "title": "Confirm your start date", "detail": "Submit the deposit with your start date and the initial tuition, and your child's first day is set." }
+    ],
+
+    "documents": [
+      "Completed and signed registration form",
+      "Registration fee",
+      "Birth certificate",
+      "Universal Health form and immunization record",
+      "Authorized pick-up form",
+      "Publicity and communication release form",
+      "Brightwheel sign-up once registration is complete"
+    ],
+
+    "pricingMessage": "Please contact us about current tuition rates.",
+    "subsidiesMessage": "We accept childcare subsidies and assistance programs.",
+    "openingsStatus": "Please contact us about current availability.",
+    "openHouse": "August through September. Tours are scheduled year round by contacting the center."
+  },
+
+  "gallery": {
+    "title": "Gallery",
+    "description": "Photographs of our classrooms, playground and daily life at Precious Steps Child Care Center in Plainfield, NJ.",
+    "eyebrow": "Gallery",
+    "heroTitle": "Inside our centers",
+    "heroLead": "A look at our classrooms, our playground and an ordinary day at Precious Steps."
+  },
+
+  "contact": {
+    "title": "Contact",
+    "description": "Request a tour of Precious Steps Child Care Center in Plainfield, NJ. Tell us your child's name and age and when you would like to visit.",
+    "eyebrow": "Contact",
+    "heroTitle": "Request a tour",
+    "heroLead": "Tell us a little about your child and when you would like to come in, and we will call you back to confirm. We respond",
+    "formTitle": "Send us a message",
+    "callTitle": "Call us directly",
+    "parentName": "Your name",
+    "phone": "Phone",
+    "email": "Email",
+    "childFirstName": "Child's first name",
+    "childAge": "Child's age",
+    "childAgeHint": "For example: 8 months, or 3 years",
+    "program": "Program of interest",
+    "programNotSure": "Not sure yet",
+    "visitDate": "Preferred date to visit",
+    "message": "Anything else we should know",
+    "submit": "Send request",
+    "sending": "Sending...",
+    "required": "(required)",
+    "honeypot": "Do not fill this in",
+    "bilingualTitle": "Se habla español",
+    "bilingualBody": "Tenemos personal bilingüe. Llámenos y con gusto le atenderemos en español."
+  },
+
+  "thankYou": {
+    "title": "Thank You",
+    "description": "Your request has been received. We will be in touch shortly.",
+    "heroTitle": "Thank you",
+    "heroLead": "We have your request and we will get back to you",
+    "callSooner": "If you need us sooner, call"
+  },
+
+  "notFound": {
+    "title": "Page Not Found",
+    "heroTitle": "We could not find that page",
+    "heroLead": "The page you were looking for has moved or no longer exists.",
+    "contactUs": "Contact us"
+  },
+
+  "privacy": {
+    "title": "Privacy",
+    "description": "How Precious Steps Child Care Center handles the information you send through this website.",
+    "heroTitle": "Privacy",
+    "heroLead": "How we handle the information you send us through this website.",
+    "reviewTodo": "This is a plain-language starting point written to match how the site actually behaves. Have the client read it and confirm it is accurate for their operation before launch.",
+    "scopeTitle": "What this page covers",
+    "scopeBody": "This notice applies to this website. It does not cover the information we collect on paper during enrollment, or information handled inside Brightwheel or ClassDojo, which have their own terms.",
+    "collectTitle": "What we collect",
+    "collectP1": "If you fill in the tour request form, we receive what you type into it: your name, phone number, email address, your child's first name and age if you choose to give them, the program you are interested in, a preferred visit date, and your message.",
+    "collectP2": "Please do not send medical details, diagnoses, or any government identification numbers through this form. Those belong on the enrollment paperwork we complete with you in person.",
+    "useTitle": "How we use it",
+    "useBody": "We use it to answer your enquiry and arrange a visit. We do not sell it, rent it, or share it with anyone outside the center for marketing.",
+    "whereTitle": "Where it goes",
+    "whereBody": "Form submissions are delivered by our website host to the center's email inbox and are retained in the host's submission records. The site is served over an encrypted connection.",
+    "cookiesTitle": "Cookies and tracking",
+    "cookiesP1": "This website sets no advertising or analytics cookies of its own and loads no analytics trackers.",
+    "cookiesP2Before": "Our Locations and Home pages embed maps from Google Maps so you can see where each center is. Google may set cookies and record your IP address when one of those maps loads, under",
+    "cookiesP2Link": "Google's privacy policy",
+    "cookiesP2After": ". Everything the maps show is also written out as plain text on the page, so you never need to interact with them.",
+    "childrenTitle": "Children",
+    "childrenBody": "This website is written for parents and guardians. It is not directed at children, and we do not knowingly collect information submitted by a child.",
+    "photosTitle": "Photographs",
+    "photosBody": "Photographs of enrolled children appear on this site only where a signed publicity release is on file. If you would like your child's image removed, contact us and we will take it down.",
+    "contactTitle": "Contacting us",
+    "contactBefore": "Write to",
+    "contactAfter": "or call either location with any question about this notice, or to ask us to delete an enquiry you have sent."
+  },
+
+  "programContent": {
+    "infant": {
+      "name": "Infants",
+      "summary": "A calm, home-like room with cribs, age appropriate toys, and comfortable rocking chairs, where every baby gets individualized attention and plenty of cuddle time.",
+      "schedule": "Each infant follows their own schedule. The day includes napping, eating, diapering, quiet play, and outside time.",
+      "bring": ["Diapers", "Baby wipes", "Blanket", "Crib sheet", "Pacifier, if needed", "Bottles", "Sippy cup", "Multiple changes of clothing"]
+    },
+    "toddler": {
+      "name": "Toddlers",
+      "summary": "A nurturing room where children are encouraged to use their words, and where learning happens through play, projects, and hands-on activities.",
+      "schedule": "A daily routine built around exploration, play, and early language. A daily sheet goes home with changes, meals, and nap times.",
+      "bring": ["Diapers", "Crib sheet", "Baby wipes", "Pull ups", "Blanket", "Sippy cup", "Multiple changes of clothing"]
+    },
+    "room-to-bloom": {
+      "name": "Room to Bloom",
+      "summary": "",
+      "schedule": "",
+      "bring": []
+    },
+    "district-prek": {
+      "name": "District Pre-K",
+      "summary": "A state approved preschool program aligned with the New Jersey Preschool Teaching and Learning Standards, delivered in partnership with Plainfield Public Schools.",
+      "schedule": "Arrival, breakfast, circle time, morning message, read aloud, learning centers, small group, outdoor play, lunch, nap, snack, read aloud, learning centers, dismissal.",
+      "bring": ["Top and bottom crib sheet for the nap mat", "Emergency change of clothes", "Pull-ups and wipes, if not potty trained"]
+    },
+    "after-3": {
+      "name": "After 3 Program",
+      "summary": "",
+      "schedule": "",
+      "bring": []
+    }
+  },
+
+  "faq": [
+    { "q": "What ages do you serve?", "a": "Infants through school age. See the Programs page for each classroom's age range and teacher to child ratio." },
+    { "q": "Are you licensed and accredited?", "a": "Yes. We are licensed by the New Jersey Office of Licensing, accredited by the National Association for the Education of Young Children, and rated by Grow NJ Kids." },
+    { "q": "Do you provide meals?", "a": "Yes. Meals and snacks are provided under the New Jersey Child and Adult Care Food Program and meet USDA nutritional standards. We accommodate food allergies as directed by your child's physician. We are a nut free center." },
+    { "q": "Do you accept childcare subsidies?", "a": "Yes. We accept childcare subsidies and assistance programs, and we will help you request or transfer yours during enrollment." },
+    { "q": "How do parents hear about their child's day?", "a": "We use Brightwheel as our primary communication platform, with ClassDojo also in use. Meals, diaper changes, and daily activities are posted by teachers each day." },
+    { "q": "Does my child need to be potty trained?", "a": "No. Children who are not potty trained receive support with diapering and potty training skills. The absence of potty training does not exclude a child from our program." },
+    { "q": "Do you welcome children with special needs?", "a": "Yes. Precious Steps has a long history of welcoming children with special challenges and supporting their families." },
+    { "q": "What happens in bad weather?", "a": "We follow Plainfield Public Schools closings. For specific information, call the center between 6:00 AM and 7:00 AM for a recorded message." },
+    { "q": "When should I keep my child home?", "a": "" },
+    { "q": "How quickly will you respond to my inquiry?", "a": "Within 24 hours Monday through Friday. Weekend inquiries are answered the next business day." }
+  ]
+}

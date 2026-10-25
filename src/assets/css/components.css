@@ -894,3 +894,59 @@ textarea.field__control {
   padding-inline: 0;
   border-bottom: 0;
 }
+
+/* --- Language switch --------------------------------------------------------
+   Plain links rather than a scripted toggle, so it works with JavaScript
+   off and each language has a real crawlable URL. */
+
+.lang-switch {
+  margin-left: auto;
+}
+
+.lang-switch__list {
+  display: flex;
+  gap: 0;
+  margin: 0;
+  padding: 2px;
+  list-style: none;
+  background-color: var(--ink-100);
+  border-radius: var(--radius-pill);
+}
+
+.lang-switch__list li {
+  margin: 0;
+}
+
+.lang-switch__link {
+  display: block;
+  padding: var(--space-3xs) var(--space-xs);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.lang-switch__link:hover {
+  color: var(--color-text);
+}
+
+.lang-switch__link[aria-current="true"] {
+  background-color: var(--color-surface);
+  color: var(--color-accent);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (min-width: 58rem) {
+  .lang-switch {
+    order: 3;
+    margin-left: 0;
+  }
+
+  .primary-nav {
+    order: 2;
+  }
+}

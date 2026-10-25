@@ -1,8 +1,18 @@
 ---
 layout: layouts/base.njk
-title: ""
-description: "NAEYC accredited child care and early learning in Plainfield, New Jersey. Infants through school age, two locations, serving families since 1998."
+pageKey: home
+pagination:
+  data: languages
+  size: 1
+  alias: lang
+  # Without this Eleventy puts only the FIRST paginated output into
+  # collections, so the Spanish pages would be missing from the sitemap.
+  addAllPagesToCollections: true
+permalink: "{{ pageKey | localizedUrl(lang.code) }}"
+eleventyComputed:
+  description: "{{ i18n[lang.code].siteDescription }}"
 ---
+{% set t = i18n[lang.code] %}
 
 {% set active = announcements | activeAnnouncements %}
 {% if active.length %}
@@ -20,23 +30,19 @@ description: "NAEYC accredited child care and early learning in Plainfield, New 
 <section class="hero hero--split">
   <div class="wrap hero__grid">
     <div class="hero__content">
-      <p class="eyebrow">Plainfield, New Jersey</p>
-      <h1 class="hero__title">{{ site.tagline }}</h1>
-      <p class="hero__lead">
-        Precious Steps has cared for Plainfield's children since
-        {{ site.foundedYear }}. Accredited, state rated, and small enough that
-        we know every child by name.
-      </p>
+      <p class="eyebrow">{{ t.home.eyebrow }}</p>
+      <h1 class="hero__title">{{ t.tagline }}</h1>
+      <p class="hero__lead">{{ t.home.lead }}</p>
       <div class="hero__actions">
-        <a class="button button--primary button--lg" href="{{ site.primaryCta.href }}">{{ site.primaryCta.label }}</a>
-        <a class="button button--secondary button--lg" href="/programs/">See our programs</a>
+        <a class="button button--primary button--lg" href="{{ 'contact' | localizedUrl(lang.code) }}">{{ t.cta.requestTour }}</a>
+        <a class="button button--secondary button--lg" href="{{ 'programs' | localizedUrl(lang.code) }}">{{ t.cta.seePrograms }}</a>
       </div>
     </div>
 
     <div class="hero__media">
       {% set slotSrc = null %}
       {% set slotRatio = "portrait" %}
-      {% set slotLabel = "Children at play in a classroom" %}
+      {% set slotLabel = t.home.heroImageSlot %}
       {% include "partials/media-slot.njk" %}
     </div>
   </div>
@@ -61,24 +67,16 @@ description: "NAEYC accredited child care and early learning in Plainfield, New 
   <div class="wrap">
     <div class="feature">
       <div class="feature__text">
-        <p class="eyebrow">Since {{ site.foundedYear }}</p>
-        <h2>Nearly thirty years of Plainfield families</h2>
-        <p>
-          We began on the first floor of a two-family home, licensed for
-          fifteen children. An early childhood contract with Plainfield Public
-          Schools in 2000 let us serve more of our neighbors, and our waiting
-          list for infants and toddlers grew past what one building could hold.
-        </p>
-        <p>
-          Today we run two centers, accredited by the National Association for
-          the Education of Young Children since 2006 and rated by Grow NJ Kids.
-        </p>
-        <p><a href="/about/">Read our full story</a></p>
+        <p class="eyebrow">{{ t.home.storyEyebrow }}</p>
+        <h2>{{ t.home.storyTitle }}</h2>
+        <p>{{ t.home.storyP1 }}</p>
+        <p>{{ t.home.storyP2 }}</p>
+        <p><a href="{{ 'about' | localizedUrl(lang.code) }}">{{ t.home.storyLink }}</a></p>
       </div>
       <div class="feature__media">
         {% set slotSrc = null %}
         {% set slotRatio = "landscape" %}
-        {% set slotLabel = "The center exterior or a classroom" %}
+        {% set slotLabel = t.home.storyImageSlot %}
         {% include "partials/media-slot.njk" %}
       </div>
     </div>
@@ -90,26 +88,16 @@ description: "NAEYC accredited child care and early learning in Plainfield, New 
   <div class="wrap">
     <div class="feature feature--reverse">
       <div class="feature__text">
-        <p class="eyebrow">Our teachers</p>
-        <h2>Credentialed, bilingual, and here for the long run</h2>
-        <p>
-          Our lead teachers hold BA, BS and MA degrees with standard Preschool
-          through Third Grade certification, and several hold Special Education
-          certification. Our associate teachers hold degrees and Child
-          Development Associate credentials.
-        </p>
-        <p>
-          Every staff member clears a Child Abuse Record Inquiry and a Criminal
-          History Record Inquiry, is trained in CPR and First Aid, and takes
-          part in continuous professional development. We have bilingual staff
-          at the center.
-        </p>
-        <p><a href="/about/#our-teachers">Meet the team</a></p>
+        <p class="eyebrow">{{ t.home.teamEyebrow }}</p>
+        <h2>{{ t.home.teamTitle }}</h2>
+        <p>{{ t.home.teamP1 }}</p>
+        <p>{{ t.home.teamP2 }}</p>
+        <p><a href="{{ 'about' | localizedUrl(lang.code) }}#our-teachers">{{ t.home.teamLink }}</a></p>
       </div>
       <div class="feature__media">
         {% set slotSrc = null %}
         {% set slotRatio = "landscape" %}
-        {% set slotLabel = "A teacher working with children" %}
+        {% set slotLabel = t.home.teamImageSlot %}
         {% include "partials/media-slot.njk" %}
       </div>
     </div>
@@ -120,32 +108,31 @@ description: "NAEYC accredited child care and early learning in Plainfield, New 
 <section class="section">
   <div class="wrap">
     <div class="section__head">
-      <p class="eyebrow">Programs</p>
-      <h2>A classroom for every stage</h2>
-      <p class="section__lead">
-        Five classrooms, each with its own curriculum and teacher to child
-        ratio. High Scope for our youngest children, Connect 4 Learning in
-        district Pre-K.
-      </p>
+      <p class="eyebrow">{{ t.home.programsEyebrow }}</p>
+      <h2>{{ t.home.programsTitle }}</h2>
+      <p class="section__lead">{{ t.home.programsLead }}</p>
     </div>
 
     <ul class="grid grid--3 grid--list">
       {% for program in programs %}
+        {% set pc = t.programContent[program.id] %}
         <li>
           <article class="card">
-            <h3 class="card__title">{{ program.name }}</h3>
-            <p class="card__meta">{{ program.ages }} &middot; Ratio {{ program.ratio }}</p>
+            <h3 class="card__title">{{ pc.name }}</h3>
+            <p class="card__meta">{{ program.ages }} &middot; {{ program.ratio }}</p>
             <div class="card__body">
-              {% if program.summary %}
-                <p>{{ program.summary }}</p>
+              {% if pc.summary %}
+                <p>{{ pc.summary }}</p>
               {% else %}
                 <div class="todo">
-                  <strong>Content needed</strong>
+                  <strong>{{ t.common.contentNeeded }}</strong>
                   {{ program.sourceNote }}
                 </div>
               {% endif %}
             </div>
-            <p class="card__link"><a href="/programs/#{{ program.id }}">About {{ program.name }}</a></p>
+            <p class="card__link">
+              <a href="{{ 'programs' | localizedUrl(lang.code) }}#{{ program.id }}">{{ t.home.programsCardLink }} {{ pc.name }}</a>
+            </p>
           </article>
         </li>
       {% endfor %}
@@ -158,23 +145,15 @@ description: "NAEYC accredited child care and early learning in Plainfield, New 
   <div class="wrap">
     <div class="feature">
       <div class="feature__text">
-        <p class="eyebrow">Meals</p>
-        <h2>Breakfast, lunch and snacks, every day</h2>
-        <p>
-          Meals are provided under the New Jersey Child and Adult Care Food
-          Program and meet USDA nutritional standards, with menus posted
-          monthly. We practice family style dining, where children and staff
-          eat together and children serve themselves.
-        </p>
-        <p>
-          We accommodate food allergies as directed by your child's physician.
-          Precious Steps is a nut free center.
-        </p>
+        <p class="eyebrow">{{ t.home.mealsEyebrow }}</p>
+        <h2>{{ t.home.mealsTitle }}</h2>
+        <p>{{ t.home.mealsP1 }}</p>
+        <p>{{ t.home.mealsP2 }}</p>
       </div>
       <div class="feature__media">
         {% set slotSrc = null %}
         {% set slotRatio = "landscape" %}
-        {% set slotLabel = "Children at the lunch table" %}
+        {% set slotLabel = t.home.mealsImageSlot %}
         {% include "partials/media-slot.njk" %}
       </div>
     </div>
@@ -185,7 +164,7 @@ description: "NAEYC accredited child care and early learning in Plainfield, New 
 <section class="divider">
   {% set slotSrc = null %}
   {% set slotRatio = "wide" %}
-  {% set slotLabel = "Wide photograph of the playground or a full classroom" %}
+  {% set slotLabel = t.home.dividerImageSlot %}
   {% include "partials/media-slot.njk" %}
 </section>
 
@@ -193,12 +172,9 @@ description: "NAEYC accredited child care and early learning in Plainfield, New 
 <section class="section">
   <div class="wrap">
     <div class="section__head">
-      <p class="eyebrow">Visit us</p>
-      <h2>Two centers in Plainfield</h2>
-      <p class="section__lead">
-        Each location runs a different mix of programs and keeps different
-        hours. Call either number and we will point you to the right one.
-      </p>
+      <p class="eyebrow">{{ t.home.visitEyebrow }}</p>
+      <h2>{{ t.home.visitTitle }}</h2>
+      <p class="section__lead">{{ t.home.visitLead }}</p>
     </div>
 
     <div class="grid grid--2">
@@ -213,21 +189,23 @@ description: "NAEYC accredited child care and early learning in Plainfield, New 
               {{ location.city }}, {{ location.state }} {{ location.zip }}
             </address>
             <dl class="spec">
-              <dt>Phone</dt>
+              <dt>{{ t.common.phone }}</dt>
               <dd><a href="tel:{{ location.phone | phoneHref }}">{{ location.phone | phoneDisplay }}</a></dd>
-              <dt>Hours</dt>
+              <dt>{{ t.common.hours }}</dt>
               <dd>{{ location.hours }}</dd>
-              <dt>Calendar</dt>
+              <dt>{{ t.common.calendar }}</dt>
               <dd>{{ location.calendar }}</dd>
             </dl>
             {% if not location.addressConfirmed or not location.programsConfirmed %}
               <div class="todo">
-                <strong>Unconfirmed</strong>
+                <strong>{{ t.common.unconfirmed }}</strong>
                 Address, hours, calendar or program mix for this location is
                 pending client confirmation. See CONTENT-STATUS.md.
               </div>
             {% endif %}
-            <p><a href="/locations/#{{ location.id }}">More about {{ location.name }}</a></p>
+            <p>
+              <a href="{{ 'locations' | localizedUrl(lang.code) }}#{{ location.id }}">{{ t.home.visitMoreAbout }} {{ location.name }}</a>
+            </p>
           </div>
         </article>
       {% endfor %}
@@ -239,11 +217,11 @@ description: "NAEYC accredited child care and early learning in Plainfield, New 
 <section class="section section--subtle">
   <div class="wrap">
     <div class="section__head">
-      <p class="eyebrow">Families</p>
-      <h2>What parents say</h2>
+      <p class="eyebrow">{{ t.home.familiesEyebrow }}</p>
+      <h2>{{ t.home.familiesTitle }}</h2>
     </div>
     <div class="todo">
-      <strong>Content needed</strong>
+      <strong>{{ t.common.contentNeeded }}</strong>
       The client is approaching parents for testimonials. Each one needs the
       parent's written permission to publish, along with a first name or
       initials. Until then this section stays out of the launch build.

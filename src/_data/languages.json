@@ -1,0 +1,19 @@
+[
+  {
+    "code": "en",
+    "label": "English",
+    "shortLabel": "EN",
+    "htmlLang": "en",
+    "default": true,
+    "pathPrefix": ""
+  },
+  {
+    "code": "es",
+    "label": "Español",
+    "shortLabel": "ES",
+    "htmlLang": "es",
+    "default": false,
+    "pathPrefix": "/es",
+    "_note": "Spanish pages live under /es/ with the same slugs as English. If the client later wants localized slugs (/es/programas/ rather than /es/programs/), add a slugs map to each i18n file and read it in the localizedUrl filter. Doing it now would add risk for no benefit while the English copy is still moving."
+  }
+]

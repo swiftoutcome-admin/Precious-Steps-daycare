@@ -2,8 +2,8 @@
   Embedded map for one location.
 
   Accessibility notes:
-  - The iframe carries a title, which screen readers announce in place of
-    the frame contents.
+  - The iframe carries a title in the page's language, which screen readers
+    announce in place of the frame contents.
   - A plain text address and a directions link sit outside the frame, so the
     information is reachable without loading or interacting with the map.
   - loading="lazy" keeps the Google request off the critical path.
@@ -12,13 +12,13 @@
   <iframe
     class="map__frame"
     src="{{ location | mapEmbedUrl }}"
-    title="Map showing {{ site.name }} at {{ location.street }}, {{ location.city }}, {{ location.state }}"
+    title="{{ t.locations.mapTitlePrefix }} {{ site.name }}, {{ location.street }}, {{ location.city }}, {{ location.state }}"
     width="600"
     height="400"
     loading="lazy"
     referrerpolicy="no-referrer-when-downgrade"
   ></iframe>
   <p class="map__caption">
-    <a href="{{ location | mapUrl }}">Get directions to {{ location.name }}</a>
+    <a href="{{ location | mapUrl }}">{{ t.cta.directions }} {{ location.name }}</a>
   </p>
 </div>

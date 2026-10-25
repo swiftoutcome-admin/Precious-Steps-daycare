@@ -1,11 +1,20 @@
+{#
+  Base layout.
+
+  Every paginated page supplies `lang` (from pagination over the languages
+  data file) and `pageKey` (the identifier shared by both language versions
+  of the same page). `t` is the translation bundle for this page's language
+  and is set once here, so every partial included below can use it.
+#}
+{% set t = i18n[lang.code] %}
 <!doctype html>
-<html lang="en">
+<html lang="{{ lang.htmlLang }}">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>{% if title %}{{ title }} | {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
-    <meta name="description" content="{{ description or site.description }}" />
+    <meta name="description" content="{{ description or t.siteDescription }}" />
 
     {% if not env.allowIndexing %}
       {# Preview build. Indexing stays off until ALLOW_INDEXING=true is set
@@ -15,10 +24,20 @@
 
     <link rel="canonical" href="{{ env.baseUrl }}{{ page.url }}" />
 
+    {% if pageKey %}
+      {# Tell search engines the two language versions are the same page,
+         so neither is treated as duplicate content. #}
+      {% for l in languages %}
+        <link rel="alternate" hreflang="{{ l.htmlLang }}" href="{{ env.baseUrl }}{{ pageKey | localizedUrl(l.code) }}" />
+      {% endfor %}
+      <link rel="alternate" hreflang="x-default" href="{{ env.baseUrl }}{{ pageKey | localizedUrl('en') }}" />
+    {% endif %}
+
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="{{ site.name }}" />
+    <meta property="og:locale" content="{{ 'es_US' if lang.code == 'es' else 'en_US' }}" />
     <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ site.name }}{% endif %}" />
-    <meta property="og:description" content="{{ description or site.description }}" />
+    <meta property="og:description" content="{{ description or t.siteDescription }}" />
     <meta property="og:url" content="{{ env.baseUrl }}{{ page.url }}" />
 
     <link rel="icon" href="/assets/img/brand/favicon.svg" type="image/svg+xml" />
@@ -37,7 +56,7 @@
   </head>
 
   <body>
-    <a class="skip-link" href="#main">Skip to main content</a>
+    <a class="skip-link" href="#main">{{ t.nav.skip }}</a>
 
     {% include "partials/header.njk" %}
 

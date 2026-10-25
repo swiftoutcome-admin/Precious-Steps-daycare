@@ -1,6 +1,5 @@
 {
   "_comment": "SINGLE SOURCE OF TRUTH for every fact that appears on the site. Change it here, not in a template. Fields marked UNCONFIRMED are pending client answers tracked in CONTENT-STATUS.md.",
-
   "name": "Precious Steps Child Care Center",
   "legalName": "Precious Steps Child Care & Development Center, Inc.",
   "legalNameConfirmed": false,
@@ -10,15 +9,15 @@
   "url": "",
   "urlConfirmed": false,
   "locale": "en-US",
-
   "description": "NAEYC accredited child care and early learning in Plainfield, New Jersey, serving infants through school age since 1998.",
-
   "contact": {
     "email": "preciousstepsccdc@gmail.com",
     "responseTime": "within 24 hours, Monday through Friday. Weekend inquiries are answered the next business day.",
-    "formRecipients": ["preciousstepsccdc@gmail.com"]
+    "formRecipients": [
+      "preciousstepsccdc@gmail.com"
+    ],
+    "responseTimeEs": "dentro de 24 horas, de lunes a viernes. Las consultas de fin de semana se responden el siguiente día hábil."
   },
-
   "locations": [
     {
       "id": "washington",
@@ -35,7 +34,13 @@
       "calendarConfirmed": false,
       "contactPerson": "",
       "contactPersonConfirmed": false,
-      "programs": ["infant", "toddler", "room-to-bloom", "district-prek", "after-3"],
+      "programs": [
+        "infant",
+        "toddler",
+        "room-to-bloom",
+        "district-prek",
+        "after-3"
+      ],
       "programsConfirmed": false,
       "addressConfirmed": true
     },
@@ -54,20 +59,20 @@
       "calendarConfirmed": false,
       "contactPerson": "",
       "contactPersonConfirmed": false,
-      "programs": ["district-prek"],
+      "programs": [
+        "district-prek"
+      ],
       "programsConfirmed": false,
       "addressConfirmed": false,
       "addressNote": "Questionnaire says 522 Arlington Avenue; parent handbook says 516-522 Arlington Avenue."
     }
   ],
-
   "closures": [
     "Winter break",
     "Spring break",
     "Most public holidays"
   ],
   "closuresNote": "The center follows Plainfield Public Schools closings. In inclement weather, call the center between 6:00 AM and 7:00 AM for a recorded message.",
-
   "accreditations": [
     {
       "name": "NAEYC Accredited",
@@ -86,22 +91,29 @@
       "verified": true
     }
   ],
-
-  "parentApps": ["Brightwheel", "ClassDojo"],
-
+  "parentApps": [
+    "Brightwheel",
+    "ClassDojo"
+  ],
   "social": {
     "facebook": "",
     "instagram": "",
     "google": ""
   },
   "socialNote": "Client is rebranding and updating social profiles. Links to be supplied.",
-
-  "languages": ["English"],
+  "languages": [
+    "English"
+  ],
   "bilingualStaff": true,
   "spanishPhase2": true,
-
   "primaryCta": {
     "label": "Request a Tour",
     "href": "/contact/"
-  }
+  },
+  "closuresEs": [
+    "Vacaciones de invierno",
+    "Vacaciones de primavera",
+    "La mayoría de los días feriados"
+  ],
+  "closuresNoteEs": "El centro sigue los cierres de las Escuelas Públicas de Plainfield. En caso de mal tiempo, llame al centro entre las 6:00 AM y las 7:00 AM para escuchar un mensaje grabado."
 }

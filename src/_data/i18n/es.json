@@ -1,0 +1,332 @@
+{
+  "_comment": "DRAFT TRANSLATION. Written for review by the center's bilingual staff before launch. Formal 'usted' throughout, since the audience is parents. Proper nouns left in English on purpose: NAEYC, Grow NJ Kids, High Scope, Connect 4 Learning, Room to Bloom, Brightwheel, ClassDojo, Head Start. Do not translate a number, an address or a phone here; those live in site.json and are shared by both languages.",
+  "_reviewStatus": "UNREVIEWED",
+
+  "htmlLang": "es",
+  "siteDescription": "Cuidado infantil y educación temprana acreditados por NAEYC en Plainfield, Nueva Jersey. Desde bebés hasta edad escolar, dos sedes, sirviendo a las familias desde 1998.",
+  "tagline": "¡Donde los niños aprenden y crecen dando sus primeros Precious Steps!",
+
+  "nav": {
+    "skip": "Saltar al contenido principal",
+    "menu": "Menú",
+    "primaryLabel": "Principal",
+    "footerLabel": "Pie de página",
+    "languageLabel": "Idioma",
+    "home": "Inicio",
+    "about": "Nosotros",
+    "programs": "Programas",
+    "locations": "Sedes",
+    "enrollment": "Inscripción",
+    "gallery": "Galería",
+    "contact": "Contacto",
+    "privacy": "Privacidad"
+  },
+
+  "cta": {
+    "requestTour": "Solicite una visita",
+    "seePrograms": "Vea nuestros programas",
+    "bandTitle": "Venga a conocernos",
+    "bandText": "Díganos el nombre y la edad de su hijo y cuándo le gustaría visitarnos. Respondemos",
+    "backHome": "Volver a la página principal",
+    "directions": "Cómo llegar a",
+    "openInMaps": "Abrir en Google Maps"
+  },
+
+  "common": {
+    "phone": "Teléfono",
+    "fax": "Fax",
+    "hours": "Horario",
+    "calendar": "Calendario",
+    "email": "Correo electrónico",
+    "ages": "Edades",
+    "ratio": "Proporción maestro-niño",
+    "curriculum": "Currículo",
+    "programsHere": "Programas",
+    "contactHeading": "Contacto",
+    "licensedBy": "Con licencia de la Oficina de Licencias de Nueva Jersey.",
+    "allRights": "Todos los derechos reservados.",
+    "servingSince": "Sirviendo a las familias de Plainfield desde",
+    "photographPending": "Fotografía pendiente",
+    "contentNeeded": "Falta contenido",
+    "unconfirmed": "Sin confirmar"
+  },
+
+  "home": {
+    "eyebrow": "Plainfield, Nueva Jersey",
+    "lead": "Precious Steps ha cuidado a los niños de Plainfield desde 1998. Acreditados, con calificación estatal, y lo bastante pequeños como para conocer a cada niño por su nombre.",
+    "heroImageSlot": "Niños jugando en un salón de clase",
+
+    "storyEyebrow": "Desde 1998",
+    "storyTitle": "Casi treinta años con las familias de Plainfield",
+    "storyP1": "Comenzamos en el primer piso de una casa de dos familias, con licencia para quince niños. Un contrato de educación temprana con las Escuelas Públicas de Plainfield en el año 2000 nos permitió servir a más vecinos, y nuestra lista de espera para bebés y niños pequeños superó la capacidad de un solo edificio.",
+    "storyP2": "Hoy tenemos dos centros, acreditados por la National Association for the Education of Young Children desde 2006 y calificados por Grow NJ Kids.",
+    "storyLink": "Lea nuestra historia completa",
+    "storyImageSlot": "El exterior del centro o un salón de clase",
+
+    "teamEyebrow": "Nuestras maestras",
+    "teamTitle": "Con credenciales, bilingües y aquí para quedarse",
+    "teamP1": "Nuestras maestras principales tienen títulos de BA, BS y MA con certificación estándar de Preescolar a Tercer Grado, y varias cuentan con certificación en Educación Especial. Nuestras maestras asociadas tienen títulos universitarios y la credencial Child Development Associate.",
+    "teamP2": "Cada miembro del personal aprueba una verificación de antecedentes de abuso infantil (CARI) y una verificación de antecedentes penales (CHRI), está capacitado en RCP y primeros auxilios, y participa en desarrollo profesional continuo. Contamos con personal bilingüe en el centro.",
+    "teamLink": "Conozca al equipo",
+    "teamImageSlot": "Una maestra trabajando con niños",
+
+    "programsEyebrow": "Programas",
+    "programsTitle": "Un salón para cada etapa",
+    "programsLead": "Cinco salones, cada uno con su propio currículo y proporción de maestro a niño. High Scope para nuestros niños más pequeños, y Connect 4 Learning en el Pre-K del distrito.",
+    "programsCardLink": "Más sobre",
+
+    "mealsEyebrow": "Comidas",
+    "mealsTitle": "Desayuno, almuerzo y meriendas, todos los días",
+    "mealsP1": "Las comidas se ofrecen bajo el Programa de Alimentos para el Cuidado de Niños y Adultos de Nueva Jersey y cumplen con las normas nutricionales del USDA, con menús publicados cada mes. Practicamos el servicio estilo familiar, donde los niños y el personal comen juntos y los niños se sirven solos.",
+    "mealsP2": "Atendemos alergias alimentarias según las indicaciones del médico de su hijo. Precious Steps es un centro libre de frutos secos.",
+    "mealsImageSlot": "Niños en la mesa del almuerzo",
+
+    "dividerImageSlot": "Fotografía amplia del patio de juegos o de un salón completo",
+
+    "visitEyebrow": "Visítenos",
+    "visitTitle": "Dos centros en Plainfield",
+    "visitLead": "Cada sede ofrece una combinación distinta de programas y mantiene horarios diferentes. Llame a cualquiera de los dos números y le indicaremos cuál le conviene.",
+    "visitMoreAbout": "Más sobre",
+
+    "familiesEyebrow": "Familias",
+    "familiesTitle": "Lo que dicen los padres"
+  },
+
+  "about": {
+    "title": "Nosotros",
+    "description": "Precious Steps Child Care Center ha servido a las familias de Plainfield desde 1998. Nuestra historia, nuestra filosofía y el equipo que cuida a su hijo.",
+    "eyebrow": "Nosotros",
+    "heroTitle": "Sirviendo a las familias de Plainfield desde 1998",
+    "heroLead": "Lo que comenzó en el primer piso de una casa de dos familias, con licencia para quince niños, es hoy dos centros acreditados que atienden desde bebés hasta edad escolar.",
+
+    "storyTitle": "Nuestra historia",
+    "storyP1": "Precious Steps se fundó en 1998, con licencia para quince niños. En el año 2000 recibimos un contrato de educación temprana a través de las Escuelas Públicas de Plainfield, lo que nos permitió ofrecer educación temprana a los niños y las familias residentes, y nos mudamos a una instalación más grande con licencia para cuarenta y cinco niños.",
+    "storyP2": "Nuestra reputación en el cuidado de bebés y niños pequeños hizo crecer la lista de espera más allá de lo que un solo edificio podía sostener, así que abrimos una segunda sede dedicada a bebés y niños pequeños. Al mismo tiempo comenzamos a buscar la acreditación de la National Association for the Education of Young Children. Fue un proceso arduo, y estamos acreditados desde 2006.",
+    "storyP3": "En 2007 adquirimos las instalaciones y los salones contratados de un programa de cuidado infantil que cerraba, lo que aumentó nuestra matrícula de Pre-K a 120 niños. En 2013 aceptamos la invitación a participar en Grow NJ Kids, la iniciativa estatal de calificación de calidad, que sometió cada política y procedimiento a revisión. Ese trabajo nos ganó 4 de 5 estrellas en Arlington Avenue y 3 de 5 estrellas en Washington Avenue.",
+
+    "philosophyTitle": "Nuestra filosofía educativa",
+    "philosophyQuote": "Desde el nacimiento, las células cerebrales del bebé se multiplican velozmente, creando conexiones que pueden dar forma a toda una vida de experiencia. Los primeros cinco años son decisivos.",
+    "philosophyP1": "Esa idea es la piedra angular de nuestra filosofía. El crecimiento y el desarrollo no ocurren por casualidad. Se logran mediante experiencias de aprendizaje interactivas, planificadas y espontáneas, que estimulan los sentidos y fomentan el desarrollo físico, cognitivo, social, emocional y creativo.",
+    "philosophyP2": "En colaboración con los padres, ofrecemos un ambiente cálido y acogedor que recuerda al entorno más natural de un niño: su hogar. Hay oportunidades tanto para el juego individual como para las actividades en grupo, y nuestro personal sirve de modelo positivo, brindando un cuidado atento y receptivo a las necesidades de cada niño.",
+
+    "antibiasTitle": "Una comunidad contra los prejuicios",
+    "antibiasP1": "Trabajamos para promover y crear un ambiente inclusivo que fomente conversaciones entre niños y adultos sobre las diferencias, sin juzgar. Nuestra meta es que todos nuestros niños y sus familias se sientan respetados, incluidos y reflejados en nuestros salones de educación temprana.",
+
+    "directorTitle": "Nuestra directora",
+    "directorTodo": "Director biography is drafted from the questionnaire. Confirm the preferred name, title and level of personal detail with the client before publishing, and obtain a headshot.",
+    "directorP1": "Nuestra directora comenzó su carrera en educación temprana en 1984, en un programa Head Start en Jersey City, recién graduada con un BA en Psicología con concentración en Desarrollo Infantil y una concentración secundaria en Administración de Empresas.",
+    "directorP2": "Su trabajo con niños que enfrentan desafíos del desarrollo la llevó por programas de intervención temprana en Nueva York y Nueva Jersey, un programa de rehabilitación en Atlanta para niños médicamente frágiles, y finalmente al cargo de Coordinadora Regional Central de Necesidades Especiales de Nueva Jersey, antes de convertirse en propietaria y operadora de Precious Steps.",
+    "directorP3": "Esa experiencia sigue dando forma al centro hoy. Precious Steps recibe siempre a niños con desafíos especiales y procura que ellos y sus familias se sientan apoyados. El distrito nos refiere a estas familias con frecuencia precisamente por eso.",
+
+    "teachersTitle": "Nuestras maestras",
+    "teachersIntro": "Nuestro equipo docente cuenta con títulos y credenciales en educación temprana y educación especial.",
+    "teachersLeadLabel": "Maestras principales de Pre-K",
+    "teachersLeadDetail": "Títulos de BA, BS y MA, certificaciones estándar de Preescolar a Tercer Grado, Certificados de Elegibilidad con Posición Avanzada (CEAS) y certificación en Educación Especial.",
+    "teachersAssocLabel": "Maestras asociadas",
+    "teachersAssocDetail": "Títulos de BA, BS y AA, y la credencial Child Development Associate.",
+    "teachersInfantLabel": "Maestras asociadas de bebés y niños pequeños",
+    "teachersInfantDetail": "Títulos de AA y la credencial Child Development Associate.",
+    "teachersOutro": "Todo el personal aprueba una verificación de antecedentes de abuso infantil (CARI) y una verificación de antecedentes penales (CHRI), está capacitado en RCP y primeros auxilios, y participa en desarrollo profesional continuo. Contamos con personal bilingüe en el centro.",
+    "teachersTodo": "Client will forward individual staff biographies and photographs. Decide with the client whether to publish individual bios or keep the team described in general terms."
+  },
+
+  "programs": {
+    "title": "Programas",
+    "description": "Programas para bebés, niños pequeños, preescolar y edad escolar en Precious Steps, Plainfield, NJ, con rangos de edad, proporciones de maestro a niño y currículos.",
+    "eyebrow": "Programas",
+    "heroTitle": "Un salón para cada etapa",
+    "heroLead": "Usamos el currículo High Scope con nuestros bebés, niños pequeños y el grupo Room to Bloom, y Connect 4 Learning en nuestros salones de Pre-K del distrito. Ambos se basan en el aprendizaje activo y práctico.",
+    "typicalDay": "Un día típico",
+    "whatToBring": "Qué traer",
+    "unconfirmedAges": "Rango de edad sin confirmar",
+
+    "mealsTitle": "Comidas",
+    "mealsP1": "Las comidas y meriendas se ofrecen bajo el Programa de Alimentos para el Cuidado de Niños y Adultos de Nueva Jersey y cumplen con las normas nutricionales del USDA. Los menús se publican cada mes. Practicamos el servicio estilo familiar, donde los niños y el personal comen juntos en la mesa y los niños se sirven solos de tazones y jarras de tamaño apropiado.",
+    "mealsP2": "Atendemos alergias alimentarias según las indicaciones del médico de su hijo. Precious Steps es un centro libre de frutos secos.",
+    "tripsTitle": "Excursiones",
+    "tripsP1": "Ofrecemos transporte para las excursiones. Al inscribirse, los padres firman un permiso general para caminatas y visitas en la comunidad, y un permiso específico para cualquier salida que requiera transporte fuera del centro.",
+    "touchTitle": "Mantenerse en contacto",
+    "touchP1": "Usamos Brightwheel como nuestra plataforma principal de comunicación, y también ClassDojo. Las maestras publican cada día las comidas, los cambios de pañal y las actividades, y las conferencias de padres y maestros se realizan tres veces al año."
+  },
+
+  "locations": {
+    "title": "Sedes",
+    "description": "Precious Steps tiene dos sedes en Plainfield, Nueva Jersey. Direcciones, horarios, teléfonos y qué programas funcionan en cada lugar.",
+    "eyebrow": "Sedes",
+    "heroTitle": "Dos centros en Plainfield",
+    "heroLead": "Cada sede ofrece una combinación distinta de programas y mantiene horarios diferentes. Si no está seguro de cuál conviene a su familia, llame a cualquiera de los dos números y le orientaremos.",
+    "closingsTitle": "Cierres",
+    "unconfirmedPrograms": "Which programs run at this address is pending client confirmation. The parent handbooks and the questionnaire describe this differently. Do not publish without a written answer.",
+    "unconfirmedAddress": "Dirección sin confirmar",
+    "contactPersonNeeded": "Name of the onsite contact a parent should ask for at this location.",
+    "mapTitlePrefix": "Mapa que muestra"
+  },
+
+  "enrollment": {
+    "title": "Inscripción",
+    "description": "Cómo inscribirse en Precious Steps, Plainfield, NJ. Visita, solicitud, documentos, subsidios y qué esperar, paso a paso.",
+    "eyebrow": "Inscripción",
+    "heroTitle": "Cómo unirse a nosotros",
+    "heroLead": "La inscripción comienza con una conversación y una visita. Así es el proceso, desde su primera llamada hasta el primer día de su hijo.",
+    "stepByStep": "Paso a paso",
+    "documentsTitle": "Lo que necesitaremos",
+    "documentsNote": "Debe entregar al centro una copia actualizada del registro de vacunas de su hijo después de cada visita al médico.",
+    "tuitionTitle": "Costos y tarifas",
+    "subsidiesTitle": "Subsidios y asistencia",
+    "subsidiesExtra": "Le ayudaremos a solicitar o transferir el suyo durante la inscripción.",
+    "availabilityTitle": "Disponibilidad",
+    "toursTitle": "Visitas y jornada de puertas abiertas",
+    "safetyTitle": "Salud y seguridad",
+    "safetyP1": "Ambos centros tienen entradas seguras, cámaras en todas las áreas y alarmas contra robo e incendio, y realizamos simulacros periódicos de incendio e intruso. Todo el personal aprueba una verificación de antecedentes de abuso infantil (CARI) y una verificación de antecedentes penales (CHRI), y está capacitado en RCP y primeros auxilios.",
+    "safetyP2": "Nuestras políticas completas de salud, incluyendo cuándo mantener a un niño en casa, los procedimientos para medicamentos y nuestra filosofía de disciplina, están detalladas en el Manual para Padres.",
+    "faqTitle": "Preguntas frecuentes de los padres",
+
+    "steps": [
+      { "title": "Comuníquese con nosotros", "detail": "Llame al centro o envíenos un mensaje por este sitio web. Díganos el nombre y la edad de su hijo y cuándo le gustaría visitarnos." },
+      { "title": "Programe una visita", "detail": "Fijaremos una cita a una hora que funcione para su familia." },
+      { "title": "Recorrido y conversación", "detail": "Conocerá los salones, al equipo y nuestra filosofía, y podrá preguntar lo que desee. Hablaremos sobre las necesidades, los hábitos y el desarrollo de su hijo." },
+      { "title": "Complete la solicitud", "detail": "Le guiaremos por los formularios de inscripción y los documentos que necesitamos tener en el expediente." },
+      { "title": "Gestione la asistencia si la necesita", "detail": "Si usa un subsidio de cuidado infantil o un programa de asistencia, le ayudaremos a solicitarlo o transferirlo." },
+      { "title": "Confirme su fecha de inicio", "detail": "Entregue el depósito con su fecha de inicio y el pago inicial, y el primer día de su hijo quedará fijado." }
+    ],
+
+    "documents": [
+      "Formulario de inscripción completo y firmado",
+      "Cuota de inscripción",
+      "Certificado de nacimiento",
+      "Formulario Universal de Salud y registro de vacunas",
+      "Formulario de personas autorizadas a recoger al niño",
+      "Formulario de autorización de publicidad y comunicación",
+      "Registro en Brightwheel una vez completada la inscripción"
+    ],
+
+    "pricingMessage": "Comuníquese con nosotros para conocer las tarifas actuales.",
+    "subsidiesMessage": "Aceptamos subsidios de cuidado infantil y programas de asistencia.",
+    "openingsStatus": "Comuníquese con nosotros para conocer la disponibilidad actual.",
+    "openHouse": "De agosto a septiembre. Las visitas se programan durante todo el año comunicándose con el centro."
+  },
+
+  "gallery": {
+    "title": "Galería",
+    "description": "Fotografías de nuestros salones, el patio de juegos y la vida diaria en Precious Steps Child Care Center, Plainfield, NJ.",
+    "eyebrow": "Galería",
+    "heroTitle": "Por dentro de nuestros centros",
+    "heroLead": "Un vistazo a nuestros salones, nuestro patio de juegos y un día cualquiera en Precious Steps."
+  },
+
+  "contact": {
+    "title": "Contacto",
+    "description": "Solicite una visita a Precious Steps Child Care Center en Plainfield, NJ. Díganos el nombre y la edad de su hijo y cuándo le gustaría visitarnos.",
+    "eyebrow": "Contacto",
+    "heroTitle": "Solicite una visita",
+    "heroLead": "Cuéntenos un poco sobre su hijo y cuándo le gustaría venir, y le llamaremos para confirmar. Respondemos",
+    "formTitle": "Envíenos un mensaje",
+    "callTitle": "Llámenos directamente",
+    "parentName": "Su nombre",
+    "phone": "Teléfono",
+    "email": "Correo electrónico",
+    "childFirstName": "Nombre de su hijo",
+    "childAge": "Edad de su hijo",
+    "childAgeHint": "Por ejemplo: 8 meses, o 3 años",
+    "program": "Programa de interés",
+    "programNotSure": "Aún no estoy seguro",
+    "visitDate": "Fecha preferida para visitar",
+    "message": "Algo más que debamos saber",
+    "submit": "Enviar solicitud",
+    "sending": "Enviando...",
+    "required": "(obligatorio)",
+    "honeypot": "No llene este campo",
+    "bilingualTitle": "Se habla español",
+    "bilingualBody": "Tenemos personal bilingüe. Llámenos y con gusto le atenderemos en español."
+  },
+
+  "thankYou": {
+    "title": "Gracias",
+    "description": "Hemos recibido su solicitud. Nos pondremos en contacto pronto.",
+    "heroTitle": "Gracias",
+    "heroLead": "Hemos recibido su solicitud y le responderemos",
+    "callSooner": "Si nos necesita antes, llame al"
+  },
+
+  "notFound": {
+    "title": "Página no encontrada",
+    "heroTitle": "No encontramos esa página",
+    "heroLead": "La página que buscaba se movió o ya no existe.",
+    "contactUs": "Comuníquese con nosotros"
+  },
+
+  "privacy": {
+    "title": "Privacidad",
+    "description": "Cómo Precious Steps Child Care Center maneja la información que usted envía por este sitio web.",
+    "heroTitle": "Privacidad",
+    "heroLead": "Cómo manejamos la información que usted nos envía por este sitio web.",
+    "reviewTodo": "SPANISH LEGAL TEXT MUST BE REVIEWED BY THE CLIENT'S BILINGUAL STAFF, AND IDEALLY BY COUNSEL, BEFORE LAUNCH. A privacy notice is a representation to the reader; a drafted translation is not good enough on its own.",
+    "scopeTitle": "Qué cubre esta página",
+    "scopeBody": "Este aviso se aplica a este sitio web. No cubre la información que recogemos en papel durante la inscripción, ni la información gestionada dentro de Brightwheel o ClassDojo, que tienen sus propios términos.",
+    "collectTitle": "Qué recogemos",
+    "collectP1": "Si llena el formulario de solicitud de visita, recibimos lo que usted escriba en él: su nombre, teléfono, correo electrónico, el nombre y la edad de su hijo si decide darlos, el programa que le interesa, una fecha preferida de visita y su mensaje.",
+    "collectP2": "Por favor no envíe datos médicos, diagnósticos ni números de identificación gubernamental por este formulario. Eso corresponde a los formularios de inscripción que completamos con usted en persona.",
+    "useTitle": "Cómo la usamos",
+    "useBody": "La usamos para responder a su consulta y coordinar una visita. No la vendemos, no la alquilamos y no la compartimos con nadie fuera del centro con fines de mercadeo.",
+    "whereTitle": "A dónde va",
+    "whereBody": "El proveedor de nuestro sitio web entrega los mensajes del formulario al correo electrónico del centro y los conserva en sus registros. El sitio web usa una conexión cifrada.",
+    "cookiesTitle": "Cookies y rastreo",
+    "cookiesP1": "Este sitio web no coloca cookies propias de publicidad ni de analítica, y no carga rastreadores de analítica.",
+    "cookiesP2Before": "Nuestras páginas de Sedes e Inicio incorporan mapas de Google Maps para que usted pueda ver dónde está cada centro. Google puede colocar cookies y registrar su dirección IP cuando uno de esos mapas se carga, según la",
+    "cookiesP2Link": "política de privacidad de Google",
+    "cookiesP2After": ". Todo lo que muestran los mapas aparece también escrito como texto en la página, de modo que nunca necesita interactuar con ellos.",
+    "childrenTitle": "Niños",
+    "childrenBody": "Este sitio web está dirigido a padres y tutores. No está dirigido a niños, y no recogemos a sabiendas información enviada por un niño.",
+    "photosTitle": "Fotografías",
+    "photosBody": "Las fotografías de niños inscritos aparecen en este sitio únicamente cuando hay una autorización de publicidad firmada en el expediente. Si desea que retiremos la imagen de su hijo, comuníquese con nosotros y la quitaremos.",
+    "contactTitle": "Cómo comunicarse con nosotros",
+    "contactBefore": "Escriba a",
+    "contactAfter": "o llame a cualquiera de las dos sedes con cualquier pregunta sobre este aviso, o para pedirnos que borremos una consulta que usted haya enviado."
+  },
+
+  "programContent": {
+    "infant": {
+      "name": "Bebés",
+      "summary": "Un salón tranquilo y hogareño con cunas, juguetes apropiados para su edad y mecedoras cómodas, donde cada bebé recibe atención individual y mucho tiempo en brazos.",
+      "schedule": "Cada bebé sigue su propio horario. El día incluye siestas, alimentación, cambio de pañal, juego tranquilo y tiempo al aire libre.",
+      "bring": ["Pañales", "Toallitas húmedas", "Cobija", "Sábana de cuna", "Chupete, si lo usa", "Biberones", "Vaso entrenador", "Varios cambios de ropa"]
+    },
+    "toddler": {
+      "name": "Niños pequeños",
+      "summary": "Un salón acogedor donde se anima a los niños a usar sus palabras, y donde el aprendizaje ocurre mediante el juego, los proyectos y las actividades prácticas.",
+      "schedule": "Una rutina diaria basada en la exploración, el juego y el lenguaje temprano. Cada día va a casa una hoja con los cambios, las comidas y las horas de siesta.",
+      "bring": ["Pañales", "Sábana de cuna", "Toallitas húmedas", "Pañales de entrenamiento (pull-ups)", "Cobija", "Vaso entrenador", "Varios cambios de ropa"]
+    },
+    "room-to-bloom": {
+      "name": "Room to Bloom",
+      "summary": "",
+      "schedule": "",
+      "bring": []
+    },
+    "district-prek": {
+      "name": "Pre-K del Distrito",
+      "summary": "Un programa preescolar aprobado por el estado, alineado con los Estándares de Enseñanza y Aprendizaje Preescolar de Nueva Jersey, ofrecido en colaboración con las Escuelas Públicas de Plainfield.",
+      "schedule": "Llegada, desayuno, círculo, mensaje de la mañana, lectura en voz alta, centros de aprendizaje, grupo pequeño, juego al aire libre, almuerzo, siesta, merienda, lectura en voz alta, centros de aprendizaje, salida.",
+      "bring": ["Sábana de cuna, de arriba y de abajo, para la colchoneta", "Cambio de ropa de emergencia", "Pañales de entrenamiento (pull-ups) y toallitas, si aún no usa el baño"]
+    },
+    "after-3": {
+      "name": "Programa After 3",
+      "summary": "",
+      "schedule": "",
+      "bring": []
+    }
+  },
+
+  "faq": [
+    { "q": "¿Qué edades atienden?", "a": "Desde bebés hasta edad escolar. Consulte la página de Programas para ver el rango de edad y la proporción de maestro a niño de cada salón." },
+    { "q": "¿Tienen licencia y acreditación?", "a": "Sí. Tenemos licencia de la Oficina de Licencias de Nueva Jersey, acreditación de la National Association for the Education of Young Children, y calificación de Grow NJ Kids." },
+    { "q": "¿Ofrecen comidas?", "a": "Sí. Las comidas y meriendas se ofrecen bajo el Programa de Alimentos para el Cuidado de Niños y Adultos de Nueva Jersey y cumplen con las normas nutricionales del USDA. Atendemos alergias alimentarias según las indicaciones del médico de su hijo. Somos un centro libre de frutos secos." },
+    { "q": "¿Aceptan subsidios de cuidado infantil?", "a": "Sí. Aceptamos subsidios de cuidado infantil y programas de asistencia, y le ayudaremos a solicitarlo o transferirlo durante la inscripción." },
+    { "q": "¿Cómo se enteran los padres de cómo fue el día de su hijo?", "a": "Usamos Brightwheel como nuestra plataforma principal de comunicación, y también ClassDojo. Las maestras publican cada día las comidas, los cambios de pañal y las actividades." },
+    { "q": "¿Mi hijo necesita saber usar el baño?", "a": "No. Los niños que aún no usan el baño reciben apoyo con el cambio de pañal y el aprendizaje del baño. No saber usar el baño no excluye a ningún niño de nuestro programa." },
+    { "q": "¿Reciben niños con necesidades especiales?", "a": "Sí. Precious Steps tiene una larga trayectoria recibiendo a niños con desafíos especiales y apoyando a sus familias." },
+    { "q": "¿Qué pasa cuando hay mal tiempo?", "a": "Seguimos los cierres de las Escuelas Públicas de Plainfield. Para información específica, llame al centro entre las 6:00 AM y las 7:00 AM para escuchar un mensaje grabado." },
+    { "q": "¿Cuándo debo dejar a mi hijo en casa?", "a": "" },
+    { "q": "¿Qué tan rápido responden a mi consulta?", "a": "Dentro de 24 horas de lunes a viernes. Las consultas de fin de semana se responden el siguiente día hábil." }
+  ]
+}

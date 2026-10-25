@@ -1,145 +1,85 @@
 ---
 layout: layouts/base.njk
-title: About Us
-description: "Precious Steps Child Care Center has served Plainfield families since 1998. Our story, our philosophy, and the team caring for your child."
+pageKey: about
+pagination:
+  data: languages
+  size: 1
+  alias: lang
+  # Without this Eleventy puts only the FIRST paginated output into
+  # collections, so the Spanish pages would be missing from the sitemap.
+  addAllPagesToCollections: true
+permalink: "{{ pageKey | localizedUrl(lang.code) }}"
+eleventyComputed:
+  title: "{{ i18n[lang.code].about.title }}"
+  description: "{{ i18n[lang.code].about.description }}"
 ---
+{% set t = i18n[lang.code] %}
+{% set a = t.about %}
 
 <section class="hero">
   <div class="wrap">
-    <p class="eyebrow">About</p>
-    <h1 class="hero__title">Serving Plainfield families since {{ site.foundedYear }}</h1>
-    <p class="hero__lead">
-      What began on the first floor of a two-family home, licensed for fifteen
-      children, is today two accredited centers serving infants through school
-      age.
-    </p>
+    <p class="eyebrow">{{ a.eyebrow }}</p>
+    <h1 class="hero__title">{{ a.heroTitle }}</h1>
+    <p class="hero__lead">{{ a.heroLead }}</p>
   </div>
 </section>
 
 <section class="section">
   <div class="wrap wrap--narrow">
-    <h2>Our story</h2>
-    <p>
-      Precious Steps was established in {{ site.foundedYear }}, licensed for
-      fifteen children. In 2000 we were awarded an early childhood contract
-      through Plainfield Public Schools, which allowed us to offer early
-      childhood education to resident children and families, and we moved to a
-      larger facility licensed for forty-five children.
-    </p>
-    <p>
-      Our reputation for caring for infants and toddlers grew our waiting list
-      beyond what one building could hold, so we opened a second location
-      dedicated to infants and toddlers. At the same time we began pursuing
-      accreditation through the National Association for the Education of Young
-      Children. It was an arduous process, and we have been accredited since
-      2006.
-    </p>
-    <p>
-      In 2007 we acquired the facility and contracted classrooms of a child care
-      program that was closing, increasing our Pre-K enrollment to 120. In 2013
-      we accepted an invitation to participate in Grow NJ Kids, the state
-      quality rating initiative, which put every policy and procedure under
-      review. That work earned us 4 of 5 stars at Arlington Avenue and 3 of 5
-      stars at Washington Avenue.
-    </p>
+    <h2>{{ a.storyTitle }}</h2>
+    <p>{{ a.storyP1 }}</p>
+    <p>{{ a.storyP2 }}</p>
+    <p>{{ a.storyP3 }}</p>
   </div>
 </section>
 
 <section class="section section--subtle">
   <div class="wrap wrap--narrow">
-    <h2>Our educational philosophy</h2>
+    <h2>{{ a.philosophyTitle }}</h2>
     <blockquote>
-      <p>
-        From birth, a baby's brain cells multiply wildly, making connections
-        that may shape a lifetime of experience. The first five years are
-        critical.
-      </p>
+      <p>{{ a.philosophyQuote }}</p>
     </blockquote>
-    <p>
-      That idea is the cornerstone of our philosophy. Growth and development do
-      not happen by chance. They are achieved through planned and spontaneous
-      interactive learning experiences that stimulate the senses and foster
-      development physically, cognitively, socially, emotionally, and
-      creatively.
-    </p>
-    <p>
-      In partnership with our parents, we provide a warm and nurturing setting
-      reminiscent of a child's most natural environment, home. There are
-      opportunities for solitary play as well as group activities, and our staff
-      serve as positive role models offering care that is supportive and
-      responsive to each child's individual needs.
-    </p>
+    <p>{{ a.philosophyP1 }}</p>
+    <p>{{ a.philosophyP2 }}</p>
   </div>
 </section>
 
 <section class="section">
   <div class="wrap wrap--narrow">
-    <h2>An anti-bias community</h2>
-    <p>
-      We work to promote and create an inclusive environment that encourages
-      conversations among children and adults about difference, without
-      judgement. It is our goal that all of our children and their families feel
-      respected, included, and reflected in our early childhood classrooms.
-    </p>
+    <h2>{{ a.antibiasTitle }}</h2>
+    <p>{{ a.antibiasP1 }}</p>
   </div>
 </section>
 
 <section class="section section--ruled">
   <div class="wrap wrap--narrow">
-    <h2>Our director</h2>
+    <h2>{{ a.directorTitle }}</h2>
     <div class="todo">
       <strong>Draft pending client review</strong>
-      Director biography is drafted from the questionnaire. Confirm the preferred
-      name, title and level of personal detail with the client before publishing,
-      and obtain a headshot.
+      {{ a.directorTodo }}
     </div>
-    <p>
-      Our director began her career in early childhood education in 1984 at a
-      Head Start program in Jersey City, having just earned a BA in Psychology
-      with a concentration in Child Development and a minor in Business
-      Management.
-    </p>
-    <p>
-      Her work with children facing developmental challenges carried her through
-      early intervention programs in New York and New Jersey, a rehabilitative
-      program in Atlanta serving medically fragile children, and finally the
-      role of New Jersey Central Regional Special Needs Coordinator, before she
-      became the owner and operator of Precious Steps.
-    </p>
-    <p>
-      That experience shapes the center to this day. Precious Steps consistently
-      welcomes children with special challenges and ensures that they and their
-      families feel supported. Families are frequently referred to us by the
-      district for exactly that reason.
-    </p>
+    <p>{{ a.directorP1 }}</p>
+    <p>{{ a.directorP2 }}</p>
+    <p>{{ a.directorP3 }}</p>
   </div>
 </section>
 
 <section class="section section--subtle" id="our-teachers">
   <div class="wrap wrap--narrow">
-    <h2>Our teachers</h2>
-    <p>
-      Our teaching team holds degrees and credentials across early childhood
-      education and special education.
-    </p>
+    <h2>{{ a.teachersTitle }}</h2>
+    <p>{{ a.teachersIntro }}</p>
     <dl class="spec">
-      <dt>Pre-K Lead Teachers</dt>
-      <dd>BA, BS and MA degrees, standard Preschool through Third Grade certifications, Certificates of Eligibility with Advanced Standing, and Special Education certification.</dd>
-      <dt>Associate Teachers</dt>
-      <dd>BA, BS, AA degrees and Child Development Associate credentials.</dd>
-      <dt>Infant and Toddler Associate Teachers</dt>
-      <dd>AA degrees and Child Development Associate credentials.</dd>
+      <dt>{{ a.teachersLeadLabel }}</dt>
+      <dd>{{ a.teachersLeadDetail }}</dd>
+      <dt>{{ a.teachersAssocLabel }}</dt>
+      <dd>{{ a.teachersAssocDetail }}</dd>
+      <dt>{{ a.teachersInfantLabel }}</dt>
+      <dd>{{ a.teachersInfantDetail }}</dd>
     </dl>
-    <p>
-      All staff clear a Child Abuse Record Inquiry and a Criminal History Record
-      Inquiry, are trained in CPR and First Aid, and participate in continuous
-      professional development. We have bilingual staff at the center.
-    </p>
+    <p>{{ a.teachersOutro }}</p>
     <div class="todo">
-      <strong>Content needed</strong>
-      Client will forward individual staff biographies and photographs. Decide
-      with the client whether to publish individual bios or keep the team
-      described in general terms.
+      <strong>{{ t.common.contentNeeded }}</strong>
+      {{ a.teachersTodo }}
     </div>
   </div>
 </section>

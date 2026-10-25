@@ -1,16 +1,27 @@
 ---
 layout: layouts/base.njk
-title: Contact
-description: "Request a tour of Precious Steps Child Care Center in Plainfield, NJ. Tell us your child's name and age and when you would like to visit."
+pageKey: contact
+pagination:
+  data: languages
+  size: 1
+  alias: lang
+  # Without this Eleventy puts only the FIRST paginated output into
+  # collections, so the Spanish pages would be missing from the sitemap.
+  addAllPagesToCollections: true
+permalink: "{{ pageKey | localizedUrl(lang.code) }}"
+eleventyComputed:
+  title: "{{ i18n[lang.code].contact.title }}"
+  description: "{{ i18n[lang.code].contact.description }}"
 ---
+{% set t = i18n[lang.code] %}
+{% set c = t.contact %}
 
 <section class="hero">
   <div class="wrap">
-    <p class="eyebrow">Contact</p>
-    <h1 class="hero__title">Request a tour</h1>
+    <p class="eyebrow">{{ c.eyebrow }}</p>
+    <h1 class="hero__title">{{ c.heroTitle }}</h1>
     <p class="hero__lead">
-      Tell us a little about your child and when you would like to come in, and
-      we will call you back to confirm. We respond {{ site.contact.responseTime }}
+      {{ c.heroLead }} {{ site.contact.responseTime if lang.code == 'en' else site.contact.responseTimeEs }}
     </p>
   </div>
 </section>
@@ -19,13 +30,18 @@ description: "Request a tour of Precious Steps Child Care Center in Plainfield, 
   <div class="wrap">
     <div class="grid grid--2">
       <div>
-        <h2>Send us a message</h2>
+        <h2>{{ c.formTitle }}</h2>
 
         {#
           Netlify Forms. The data-netlify attribute registers the form at
           deploy time; submissions are emailed to the recipients configured
           in the Netlify dashboard. No database, no third-party script, and
           the POST stays same-origin so the CSP form-action stays at 'self'.
+
+          Both language versions post to the SAME form name, with a hidden
+          `language` field marking which one. That keeps every enquiry in one
+          list for the centre staff rather than splitting them across two
+          dashboards, while still telling them which language to reply in.
 
           We ask for the child's FIRST NAME only and never for health
           information. Keep it that way: anything more belongs on the
@@ -35,74 +51,75 @@ description: "Request a tour of Precious Steps Child Care Center in Plainfield, 
           class="form"
           name="tour-request"
           method="POST"
-          action="/thank-you/"
+          action="{{ 'thank-you' | localizedUrl(lang.code) }}"
           data-netlify="true"
           netlify-honeypot="company-name"
           data-guarded-form
         >
           <input type="hidden" name="form-name" value="tour-request" />
+          <input type="hidden" name="language" value="{{ lang.label }}" />
 
           <p class="field field--honeypot" aria-hidden="true">
             <label>
-              Do not fill this in
+              {{ c.honeypot }}
               <input type="text" name="company-name" tabindex="-1" autocomplete="off" />
             </label>
           </p>
 
           <div class="field field--required">
-            <label class="field__label" for="parent-name">Your name</label>
+            <label class="field__label" for="parent-name">{{ c.parentName }}</label>
             <input class="field__control" type="text" id="parent-name" name="parent-name" autocomplete="name" required />
           </div>
 
           <div class="field field--required">
-            <label class="field__label" for="phone">Phone</label>
+            <label class="field__label" for="phone">{{ c.phone }}</label>
             <input class="field__control" type="tel" id="phone" name="phone" autocomplete="tel" required />
           </div>
 
           <div class="field field--required">
-            <label class="field__label" for="email">Email</label>
+            <label class="field__label" for="email">{{ c.email }}</label>
             <input class="field__control" type="email" id="email" name="email" autocomplete="email" required />
           </div>
 
           <div class="field">
-            <label class="field__label" for="child-first-name">Child's first name</label>
+            <label class="field__label" for="child-first-name">{{ c.childFirstName }}</label>
             <input class="field__control" type="text" id="child-first-name" name="child-first-name" />
           </div>
 
           <div class="field">
-            <label class="field__label" for="child-age">Child's age</label>
-            <span class="field__hint" id="child-age-hint">For example: 8 months, or 3 years</span>
+            <label class="field__label" for="child-age">{{ c.childAge }}</label>
+            <span class="field__hint" id="child-age-hint">{{ c.childAgeHint }}</span>
             <input class="field__control" type="text" id="child-age" name="child-age" aria-describedby="child-age-hint" />
           </div>
 
           <div class="field">
-            <label class="field__label" for="program">Program of interest</label>
+            <label class="field__label" for="program">{{ c.program }}</label>
             <select class="field__control" id="program" name="program">
-              <option value="">Not sure yet</option>
+              <option value="">{{ c.programNotSure }}</option>
               {% for program in programs %}
-                <option value="{{ program.name }}">{{ program.name }} ({{ program.ages }})</option>
+                <option value="{{ t.programContent[program.id].name }}">{{ t.programContent[program.id].name }} ({{ program.ages }})</option>
               {% endfor %}
             </select>
           </div>
 
           <div class="field">
-            <label class="field__label" for="visit-date">Preferred date to visit</label>
+            <label class="field__label" for="visit-date">{{ c.visitDate }}</label>
             <input class="field__control" type="date" id="visit-date" name="visit-date" />
           </div>
 
           <div class="field">
-            <label class="field__label" for="message">Anything else we should know</label>
+            <label class="field__label" for="message">{{ c.message }}</label>
             <textarea class="field__control" id="message" name="message" rows="5"></textarea>
           </div>
 
-          <button class="button button--primary button--lg" type="submit" data-sending-label="Sending...">
-            Send request
+          <button class="button button--primary button--lg" type="submit" data-sending-label="{{ c.sending }}">
+            {{ c.submit }}
           </button>
         </form>
       </div>
 
       <div>
-        <h2>Call us directly</h2>
+        <h2>{{ c.callTitle }}</h2>
         {% for location in site.locations %}
           <h3>{{ location.name }}</h3>
           <address>
@@ -111,18 +128,15 @@ description: "Request a tour of Precious Steps Child Care Center in Plainfield, 
             <a href="tel:{{ location.phone | phoneHref }}">{{ location.phone | phoneDisplay }}</a>
           </address>
           <p>{{ location.hours }}</p>
-          <p><a href="{{ location | mapUrl }}">Open in Google Maps</a></p>
+          <p><a href="{{ location | mapUrl }}">{{ t.cta.openInMaps }}</a></p>
         {% endfor %}
 
-        <h3>Email</h3>
+        <h3>{{ t.common.email }}</h3>
         <p><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></p>
 
-        {% if site.bilingualStaff %}
-          <h3>Se habla espa&ntilde;ol</h3>
-          <p>
-            Tenemos personal biling&uuml;e. Ll&aacute;menos y con gusto le
-            atenderemos en espa&ntilde;ol.
-          </p>
+        {% if site.bilingualStaff and lang.code == 'en' %}
+          <h3 lang="es">{{ c.bilingualTitle }}</h3>
+          <p lang="es">{{ c.bilingualBody }}</p>
         {% endif %}
       </div>
     </div>

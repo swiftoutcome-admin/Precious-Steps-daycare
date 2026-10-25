@@ -1,6 +1,6 @@
 <header class="site-header">
   <div class="site-header__inner">
-    <a class="site-header__brand" href="/">
+    <a class="site-header__brand" href="{{ 'home' | localizedUrl(lang.code) }}">
       <img
         class="site-header__logo"
         src="/assets/img/brand/logo.svg"
@@ -10,6 +10,38 @@
       />
     </a>
 
+    {#
+      Language toggle.
+
+      Plain links, not a scripted switch, so it works with JavaScript off
+      and so each language version has a real crawlable URL. The current
+      language carries aria-current, and each link carries hreflang and
+      lang so a screen reader announces "Espanol" in Spanish rather than
+      reading it with an English voice.
+    #}
+    <nav class="lang-switch" aria-label="{{ t.nav.languageLabel }}">
+      <ul class="lang-switch__list">
+        {# Pages outside the paginated set (404) carry no pageKey, so the
+           switch falls back to each language's homepage rather than
+           building a link to a page that does not exist. #}
+        {% set switchKey = pageKey or "home" %}
+        {% for l in languages %}
+          <li>
+            <a
+              class="lang-switch__link"
+              href="{{ switchKey | localizedUrl(l.code) }}"
+              hreflang="{{ l.htmlLang }}"
+              lang="{{ l.htmlLang }}"
+              {% if l.code == lang.code %}aria-current="true"{% endif %}
+            >
+              <span class="lang-switch__short" aria-hidden="true">{{ l.shortLabel }}</span>
+              <span class="visually-hidden">{{ l.label }}</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+
     <button
       class="nav-toggle"
       type="button"
@@ -18,31 +50,25 @@
       data-nav-toggle
     >
       <span class="nav-toggle__bar" aria-hidden="true"></span>
-      <span class="nav-toggle__label">Menu</span>
+      <span class="nav-toggle__label">{{ t.nav.menu }}</span>
     </button>
 
-    <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+    <nav class="primary-nav" id="primary-nav" aria-label="{{ t.nav.primaryLabel }}">
       <ul class="primary-nav__list">
-        {% set navItems = [
-          { url: "/about/", label: "About" },
-          { url: "/programs/", label: "Programs" },
-          { url: "/locations/", label: "Locations" },
-          { url: "/enrollment/", label: "Enrollment" },
-          { url: "/gallery/", label: "Gallery" },
-          { url: "/contact/", label: "Contact" }
-        ] %}
-        {% for item in navItems %}
+        {% set navKeys = ["about", "programs", "locations", "enrollment", "gallery", "contact"] %}
+        {% for key in navKeys %}
+          {% set href = key | localizedUrl(lang.code) %}
           <li>
             <a
-              href="{{ item.url }}"
-              {% if page.url == item.url %}aria-current="page"{% endif %}
-            >{{ item.label }}</a>
+              href="{{ href }}"
+              {% if page.url == href %}aria-current="page"{% endif %}
+            >{{ t.nav[key] }}</a>
           </li>
         {% endfor %}
       </ul>
 
-      <a class="button button--primary primary-nav__cta" href="{{ site.primaryCta.href }}">
-        {{ site.primaryCta.label }}
+      <a class="button button--primary primary-nav__cta" href="{{ 'contact' | localizedUrl(lang.code) }}">
+        {{ t.cta.requestTour }}
       </a>
     </nav>
   </div>

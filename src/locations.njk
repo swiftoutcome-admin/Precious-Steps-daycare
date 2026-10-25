@@ -1,18 +1,26 @@
 ---
 layout: layouts/base.njk
-title: Locations
-description: "Precious Steps has two locations in Plainfield, New Jersey. Addresses, hours, phone numbers and which programs run at each site."
+pageKey: locations
+pagination:
+  data: languages
+  size: 1
+  alias: lang
+  # Without this Eleventy puts only the FIRST paginated output into
+  # collections, so the Spanish pages would be missing from the sitemap.
+  addAllPagesToCollections: true
+permalink: "{{ pageKey | localizedUrl(lang.code) }}"
+eleventyComputed:
+  title: "{{ i18n[lang.code].locations.title }}"
+  description: "{{ i18n[lang.code].locations.description }}"
 ---
+{% set t = i18n[lang.code] %}
+{% set lc = t.locations %}
 
 <section class="hero">
   <div class="wrap">
-    <p class="eyebrow">Locations</p>
-    <h1 class="hero__title">Two centers in Plainfield</h1>
-    <p class="hero__lead">
-      Each location runs a different mix of programs and keeps different hours.
-      If you are not sure which fits your family, call either number and we will
-      point you to the right one.
-    </p>
+    <p class="eyebrow">{{ lc.eyebrow }}</p>
+    <h1 class="hero__title">{{ lc.heroTitle }}</h1>
+    <p class="hero__lead">{{ lc.heroLead }}</p>
   </div>
 </section>
 
@@ -26,21 +34,25 @@ description: "Precious Steps has two locations in Plainfield, New Jersey. Addres
         {{ location.city }}, {{ location.state }} {{ location.zip }}
       </address>
 
+      <div class="map map--standalone">
+        {% include "partials/location-map.njk" %}
+      </div>
+
       <dl class="spec">
-        <dt>Phone</dt>
+        <dt>{{ t.common.phone }}</dt>
         <dd><a href="tel:{{ location.phone | phoneHref }}">{{ location.phone | phoneDisplay }}</a></dd>
-        <dt>Fax</dt>
+        <dt>{{ t.common.fax }}</dt>
         <dd>{{ location.fax | phoneDisplay }}</dd>
-        <dt>Hours</dt>
+        <dt>{{ t.common.hours }}</dt>
         <dd>{{ location.hours }}{% if location.hoursNote %} {{ location.hoursNote }}{% endif %}</dd>
-        <dt>Calendar</dt>
+        <dt>{{ t.common.calendar }}</dt>
         <dd>{{ location.calendar }}</dd>
-        <dt>Programs</dt>
+        <dt>{{ t.common.programsHere }}</dt>
         <dd>
           {% for id in location.programs %}
             {%- for program in programs -%}
               {%- if program.id == id -%}
-                <a href="/programs/#{{ program.id }}">{{ program.name }}</a>{% if not loop.last %}, {% endif %}
+                <a href="{{ 'programs' | localizedUrl(lang.code) }}#{{ program.id }}">{{ t.programContent[program.id].name }}</a>{% if not loop.last %}, {% endif %}
               {%- endif -%}
             {%- endfor -%}
           {% endfor %}
@@ -49,38 +61,34 @@ description: "Precious Steps has two locations in Plainfield, New Jersey. Addres
 
       {% if not location.programsConfirmed %}
         <div class="todo">
-          <strong>Unconfirmed</strong>
-          Which programs run at this address is pending client confirmation. The
-          parent handbooks and the questionnaire describe this differently. Do
-          not publish without a written answer.
+          <strong>{{ t.common.unconfirmed }}</strong>
+          {{ lc.unconfirmedPrograms }}
         </div>
       {% endif %}
 
       {% if not location.addressConfirmed %}
         <div class="todo">
-          <strong>Unconfirmed address</strong>
+          <strong>{{ lc.unconfirmedAddress }}</strong>
           {{ location.addressNote }}
         </div>
       {% endif %}
 
       {% if not location.contactPerson %}
         <div class="todo">
-          <strong>Content needed</strong>
-          Name of the onsite contact a parent should ask for at this location.
+          <strong>{{ t.common.contentNeeded }}</strong>
+          {{ lc.contactPersonNeeded }}
         </div>
       {% endif %}
-
-      <p><a href="{{ location | mapUrl }}">Open in Google Maps</a></p>
     </div>
   </section>
 {% endfor %}
 
 <section class="section section--ruled">
   <div class="wrap wrap--narrow">
-    <h2>Closings</h2>
-    <p>{{ site.closuresNote }}</p>
+    <h2>{{ lc.closingsTitle }}</h2>
+    <p>{{ site.closuresNote if lang.code == 'en' else site.closuresNoteEs }}</p>
     <ul>
-      {% for closure in site.closures %}
+      {% for closure in (site.closures if lang.code == 'en' else site.closuresEs) %}
         <li>{{ closure }}</li>
       {% endfor %}
     </ul>

@@ -66,6 +66,20 @@ export default function (eleventyConfig) {
     return `https://www.google.com/maps?q=${encodeURIComponent(query)}&z=15&output=embed`;
   });
 
+  /**
+   * The URL for a given page in a given language.
+   *
+   * English is the default language and sits at the root; Spanish lives
+   * under /es/ with the same slugs. Every paginated page declares a
+   * `pageKey` in its front matter ("home", "about", ...), which is the
+   * only thing that ties the two language versions of a page together.
+   * The language toggle and the hreflang tags both run through here.
+   */
+  eleventyConfig.addFilter("localizedUrl", (pageKey, langCode) => {
+    const prefix = langCode === "en" ? "" : `/${langCode}`;
+    return pageKey === "home" ? `${prefix}/` : `${prefix}/${pageKey}/`;
+  });
+
   eleventyConfig.addFilter("isoDate", (value) =>
     new Date(value).toISOString().slice(0, 10)
   );

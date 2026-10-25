@@ -1,25 +1,37 @@
 ---
 layout: layouts/base.njk
-title: Thank You
-description: "Your request has been received. We will be in touch shortly."
+pageKey: thank-you
+pagination:
+  data: languages
+  size: 1
+  alias: lang
+  # Without this Eleventy puts only the FIRST paginated output into
+  # collections, so the Spanish pages would be missing from the sitemap.
+  addAllPagesToCollections: true
+permalink: "{{ pageKey | localizedUrl(lang.code) }}"
 eleventyExcludeFromCollections: true
+eleventyComputed:
+  title: "{{ i18n[lang.code].thankYou.title }}"
+  description: "{{ i18n[lang.code].thankYou.description }}"
 ---
+{% set t = i18n[lang.code] %}
+{% set ty = t.thankYou %}
 
 <section class="hero">
   <div class="wrap wrap--narrow">
-    <h1 class="hero__title">Thank you</h1>
+    <h1 class="hero__title">{{ ty.heroTitle }}</h1>
     <p class="hero__lead">
-      We have your request and we will get back to you {{ site.contact.responseTime }}
+      {{ ty.heroLead }} {{ site.contact.responseTime if lang.code == 'en' else site.contact.responseTimeEs }}
     </p>
     <p>
-      If you need us sooner, call
+      {{ ty.callSooner }}
       {% for location in site.locations %}
-        <a href="tel:{{ location.phone | phoneHref }}">{{ location.phone | phoneDisplay }}</a>{% if not loop.last %} or {% endif %}
+        <a href="tel:{{ location.phone | phoneHref }}">{{ location.phone | phoneDisplay }}</a>{% if not loop.last %} {{ 'or' if lang.code == 'en' else 'o' }} {% endif %}
       {% endfor %}.
     </p>
     <div class="hero__actions">
-      <a class="button button--secondary" href="/">Back to the homepage</a>
-      <a class="button button--secondary" href="/programs/">See our programs</a>
+      <a class="button button--secondary" href="{{ 'home' | localizedUrl(lang.code) }}">{{ t.cta.backHome }}</a>
+      <a class="button button--secondary" href="{{ 'programs' | localizedUrl(lang.code) }}">{{ t.cta.seePrograms }}</a>
     </div>
   </div>
 </section>

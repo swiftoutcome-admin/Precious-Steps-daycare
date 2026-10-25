@@ -1,60 +1,69 @@
 ---
 layout: layouts/base.njk
-title: Programs
-description: "Infant, toddler, preschool and school age programs at Precious Steps in Plainfield, NJ, with age ranges, teacher to child ratios and curricula."
+pageKey: programs
+pagination:
+  data: languages
+  size: 1
+  alias: lang
+  # Without this Eleventy puts only the FIRST paginated output into
+  # collections, so the Spanish pages would be missing from the sitemap.
+  addAllPagesToCollections: true
+permalink: "{{ pageKey | localizedUrl(lang.code) }}"
+eleventyComputed:
+  title: "{{ i18n[lang.code].programs.title }}"
+  description: "{{ i18n[lang.code].programs.description }}"
 ---
+{% set t = i18n[lang.code] %}
+{% set pg = t.programs %}
 
 <section class="hero">
   <div class="wrap">
-    <p class="eyebrow">Programs</p>
-    <h1 class="hero__title">A classroom for every stage</h1>
-    <p class="hero__lead">
-      We use the High Scope curriculum with our infants, toddlers and Room to
-      Bloom children, and Connect 4 Learning in our district Pre-K classrooms.
-      Both are built around active, hands-on learning.
-    </p>
+    <p class="eyebrow">{{ pg.eyebrow }}</p>
+    <h1 class="hero__title">{{ pg.heroTitle }}</h1>
+    <p class="hero__lead">{{ pg.heroLead }}</p>
   </div>
 </section>
 
 {% for program in programs %}
+  {% set pc = t.programContent[program.id] %}
   <section class="section{% if loop.index0 % 2 == 1 %} section--subtle{% endif %}" id="{{ program.id }}">
     <div class="wrap wrap--narrow">
-      <h2>{{ program.name }}</h2>
+      <h2>{{ pc.name }}</h2>
 
       <dl class="spec">
-        <dt>Ages</dt>
+        <dt>{{ t.common.ages }}</dt>
         <dd>{{ program.ages }}</dd>
-        <dt>Teacher to child ratio</dt>
+        <dt>{{ t.common.ratio }}</dt>
         <dd>{{ program.ratio }}</dd>
-        <dt>Curriculum</dt>
+        <dt>{{ t.common.curriculum }}</dt>
         <dd>{{ program.curriculum }}</dd>
       </dl>
 
       {% if not program.agesConfirmed %}
         <div class="todo">
-          <strong>Unconfirmed age range</strong>
+          <strong>{{ pg.unconfirmedAges }}</strong>
           {{ program.agesNote }}
         </div>
       {% endif %}
 
-      {% if program.summary %}
-        <p>{{ program.summary }}</p>
+      {% if pc.summary %}
+        <p>{{ pc.summary }}</p>
       {% else %}
         <div class="todo">
-          <strong>Content needed</strong>
+          <strong>{{ t.common.contentNeeded }}</strong>
           {{ program.sourceNote }}
         </div>
       {% endif %}
 
-      {% if program.schedule %}
-        <h3>A typical day</h3>
-        <p>{{ program.schedule }}</p>
+      {% if pc.schedule %}
+        <h3>{{ pg.typicalDay }}</h3>
+        <p>{{ pc.schedule }}</p>
       {% endif %}
 
-      {% if program.bring.length %}
-        <h3>What to bring</h3>
+      {% if pc.bring.length %}
+        <h3>{{ pg.whatToBring }}</h3>
         <ul>
-          {% for item in program.bring %}
+          {% for item in pc.bring %}
             <li>{{ item }}</li>
           {% endfor %}
         </ul>
@@ -65,34 +74,15 @@ description: "Infant, toddler, preschool and school age programs at Precious Ste
 
 <section class="section section--ruled">
   <div class="wrap wrap--narrow">
-    <h2>Meals</h2>
-    <p>
-      Meals and snacks are provided under the New Jersey Child and Adult Care
-      Food Program and meet USDA nutritional standards. Menus are posted
-      monthly. We practice family style dining, where children and staff eat
-      together at the table and children serve themselves from appropriately
-      sized bowls and pitchers.
-    </p>
-    <p>
-      We accommodate food allergies as directed by your child's physician.
-      Precious Steps is a nut free center.
-    </p>
+    <h2>{{ pg.mealsTitle }}</h2>
+    <p>{{ pg.mealsP1 }}</p>
+    <p>{{ pg.mealsP2 }}</p>
 
-    <h2>Field trips</h2>
-    <p>
-      We provide transportation for field trips. Parents sign a blanket
-      permission slip at registration for walks and visits in the community, and
-      a trip-specific permission slip for any outing requiring transportation
-      away from the center.
-    </p>
+    <h2>{{ pg.tripsTitle }}</h2>
+    <p>{{ pg.tripsP1 }}</p>
 
-    <h2>Staying in touch</h2>
-    <p>
-      We use Brightwheel as our primary communication platform, with ClassDojo
-      also in use. Meals, diaper changes and daily activities are posted by
-      teachers each day, and parent teacher conferences are held three times a
-      year.
-    </p>
+    <h2>{{ pg.touchTitle }}</h2>
+    <p>{{ pg.touchP1 }}</p>
   </div>
 </section>
 

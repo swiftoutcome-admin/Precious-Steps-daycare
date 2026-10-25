@@ -2,8 +2,8 @@
   <div class="site-footer__inner">
     <div class="site-footer__col">
       <p class="site-footer__name">{{ site.name }}</p>
-      <p class="site-footer__tagline">{{ site.tagline }}</p>
-      <p class="site-footer__since">Serving Plainfield families since {{ site.foundedYear }}.</p>
+      <p class="site-footer__tagline">{{ t.tagline }}</p>
+      <p class="site-footer__since">{{ t.common.servingSince }} {{ site.foundedYear }}.</p>
     </div>
 
     {% for location in site.locations %}
@@ -19,16 +19,16 @@
     {% endfor %}
 
     <div class="site-footer__col">
-      <h2 class="site-footer__heading">Contact</h2>
+      <h2 class="site-footer__heading">{{ t.common.contactHeading }}</h2>
       <p>
         <a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a>
       </p>
-      <nav aria-label="Footer">
+      <nav aria-label="{{ t.nav.footerLabel }}">
         <ul class="site-footer__links">
-          <li><a href="/programs/">Programs</a></li>
-          <li><a href="/enrollment/">Enrollment</a></li>
-          <li><a href="/contact/">Request a tour</a></li>
-          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="{{ 'programs' | localizedUrl(lang.code) }}">{{ t.nav.programs }}</a></li>
+          <li><a href="{{ 'enrollment' | localizedUrl(lang.code) }}">{{ t.nav.enrollment }}</a></li>
+          <li><a href="{{ 'contact' | localizedUrl(lang.code) }}">{{ t.cta.requestTour }}</a></li>
+          <li><a href="{{ 'privacy' | localizedUrl(lang.code) }}">{{ t.nav.privacy }}</a></li>
         </ul>
       </nav>
     </div>
@@ -36,10 +36,10 @@
 
   <div class="site-footer__bar">
     <p class="site-footer__legal">
-      &copy; {{ "" | year }} {{ site.legalName }}. All rights reserved.
+      &copy; {{ "" | year }} {{ site.legalName }}. {{ t.common.allRights }}
     </p>
     <p class="site-footer__accred">
-      Licensed by the New Jersey Office of Licensing.
+      {{ t.common.licensedBy }}
     </p>
   </div>
 </footer>

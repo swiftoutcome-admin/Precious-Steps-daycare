@@ -8,7 +8,8 @@
     slotLabel  what belongs here, shown only while the slot is empty
 
   When the real photo lands, set slotSrc and slotAlt and nothing else
-  about the layout changes.
+  about the layout changes. Alt text is per-language and comes from the
+  i18n bundle, never hardcoded here.
 #}
 <figure class="media media--{{ slotRatio | default('landscape') }}">
   {% if slotSrc %}
@@ -20,9 +21,9 @@
       decoding="async"
     />
   {% else %}
-    <div class="media__placeholder" role="img" aria-label="Photograph pending: {{ slotLabel }}">
+    <div class="media__placeholder" role="img" aria-label="{{ t.common.photographPending }}: {{ slotLabel }}">
       <span class="media__placeholder-label">{{ slotLabel }}</span>
-      <span class="media__placeholder-note">Photograph pending</span>
+      <span class="media__placeholder-note">{{ t.common.photographPending }}</span>
     </div>
   {% endif %}
   {% if slotCaption %}
