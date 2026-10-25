@@ -80,52 +80,118 @@
   width: 100%;
 }
 
-/* --- Buttons ---------------------------------------------------------------- */
+/* --- Buttons -----------------------------------------------------------------
+   Depth comes from three stacked shadow layers plus a one-pixel lift, not
+   from a colour swap. The ambient shadow is tinted with the button's own
+   hue; a grey shadow under a coloured button is what makes a button look
+   like a default. Borders are drawn with inset box-shadow rather than
+   border, so hover can thicken the edge without shifting layout.
+   ----------------------------------------------------------------------- */
 
 .button {
-  display: inline-block;
-  padding: var(--space-xs) var(--space-lg);
-  border: 2px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85em 1.75em;
+  border: 0;
   border-radius: var(--radius-pill);
   font-family: var(--font-sans);
   font-size: var(--text-sm);
-  font-weight: var(--weight-medium);
-  line-height: 1.4;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.005em;
+  line-height: 1.35;
   text-align: center;
   text-decoration: none;
+  white-space: nowrap;
   cursor: pointer;
+  /* Paint the gradient against its own stacking context so the inset
+     highlight never bleeds over neighbouring content. */
+  isolation: isolate;
   transition:
+    transform var(--transition),
+    box-shadow var(--transition),
     background-color var(--transition),
-    border-color var(--transition),
     color var(--transition);
 }
 
+.button:focus-visible {
+  outline: 2px solid var(--brand-rose-500);
+  outline-offset: 3px;
+}
+
+/* Primary: a lit surface. The gradient is deliberately shallow, about one
+   step of the blue ramp, so it reads as light falling on the button rather
+   than as a gradient. */
 .button--primary {
-  background-color: var(--color-accent);
-  border-color: var(--color-accent);
-  color: var(--paper);
+  background-color: var(--brand-blue-700);
+  background-image: linear-gradient(
+    180deg,
+    var(--brand-blue-500) 0%,
+    var(--brand-blue-700) 100%
+  );
+  color: var(--paper-pure);
+  box-shadow: var(--shadow-btn);
 }
 
 .button--primary:hover {
-  background-color: var(--color-accent-hover);
-  border-color: var(--color-accent-hover);
-  color: var(--paper);
+  color: var(--paper-pure);
+  background-image: linear-gradient(
+    180deg,
+    var(--brand-blue-500) 0%,
+    var(--brand-blue-900) 100%
+  );
+  box-shadow: var(--shadow-btn-hover);
+  transform: translateY(-1px);
 }
 
+/* Press returns the button to the page and inverts the highlight, so the
+   click is felt rather than just seen. */
+.button--primary:active {
+  box-shadow: var(--shadow-btn-active);
+  transform: translateY(1px);
+}
+
+/* Secondary: a quiet surface with a hairline that strengthens on hover. */
 .button--secondary {
   background-color: var(--color-surface);
-  border-color: var(--brand-blue-200);
   color: var(--color-accent);
+  box-shadow: var(--shadow-btn-ghost);
 }
 
 .button--secondary:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
+  color: var(--color-accent-hover);
+  box-shadow: var(--shadow-btn-ghost-hover);
+  transform: translateY(-1px);
+}
+
+.button--secondary:active {
+  box-shadow: inset 0 0 0 1.5px var(--brand-blue-500),
+    inset 0 2px 3px rgb(74 64 59 / 0.1);
+  transform: translateY(1px);
 }
 
 .button--lg {
-  padding: var(--space-sm) var(--space-lg);
+  padding: 1em 2.25em;
   font-size: var(--text-base);
+}
+
+/* A disabled submit, used by the form guard while a request is sending. */
+.button[disabled] {
+  background-image: none;
+  background-color: var(--ink-300);
+  color: var(--paper-pure);
+  box-shadow: none;
+  transform: none;
+  cursor: progress;
+}
+
+/* Motion is decoration here; the shadow change alone carries the state. */
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .button:hover,
+  .button:active {
+    transform: none;
+  }
 }
 
 /* --- Header and navigation --------------------------------------------------- */
@@ -150,7 +216,9 @@
   width: 100%;
   max-width: var(--width-wide);
   margin-inline: auto;
-  padding: var(--space-xs) var(--gutter);
+  /* Vertical padding is set against the CTA button's height, not a fixed
+     value, so the header never looks pinched around it. */
+  padding: var(--space-sm) var(--gutter);
 }
 
 .site-header__brand {
@@ -230,6 +298,16 @@
 .primary-nav a[aria-current="page"] {
   color: var(--color-accent);
   box-shadow: inset 0 -1px 0 0 currentColor;
+}
+
+/* The nav CTA is an <a> inside .primary-nav, so the link colour rule above
+   (specificity 0,1,1) was beating .button--primary (0,1,0) and painting
+   dark text on the dark teal fill. Restate the button's own colours at
+   matching specificity. */
+.primary-nav .button--primary,
+.primary-nav .button--primary:hover,
+.primary-nav .button--primary:active {
+  color: var(--paper-pure);
 }
 
 /* Mobile: nav collapses behind the toggle. */
@@ -949,4 +1027,69 @@ textarea.field__control {
   .primary-nav {
     order: 2;
   }
+}
+
+
+/* --- Wallpaper pattern -------------------------------------------------------
+   Reusable: add .pattern-bg to any section.
+
+   The tile is transparent, so it takes on whatever background the section
+   already has rather than pasting a cream rectangle over it. It is painted
+   on a pseudo-element behind the content so opacity can be tuned without
+   fading the text, and so it never intercepts clicks.
+
+   Tune density and strength with --pattern-size and --pattern-opacity,
+   either globally in tokens.css or per section.
+   ----------------------------------------------------------------------- */
+
+.pattern-bg {
+  position: relative;
+  isolation: isolate;
+}
+
+.pattern-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--pattern-url);
+  background-repeat: repeat;
+  background-size: var(--pattern-size) auto;
+  opacity: var(--pattern-opacity);
+  pointer-events: none;
+}
+
+/* The pattern is decorative. Anyone who has asked for less visual noise
+   should not have motifs behind their text. */
+@media (prefers-reduced-transparency: reduce) {
+  .pattern-bg::before {
+    opacity: 0.25;
+  }
+}
+
+/* The CTA band carries the pattern, but body copy sits on top of it, so
+   the motifs are faded out of the middle with a radial mask. Texture at
+   the edges, clear paper behind the words. */
+.cta-band {
+  --pattern-opacity: 0.42;
+}
+
+.cta-band::before {
+  -webkit-mask-image: radial-gradient(
+    ellipse 58% 72% at 50% 50%,
+    transparent 12%,
+    #000 82%
+  );
+  mask-image: radial-gradient(
+    ellipse 58% 72% at 50% 50%,
+    transparent 12%,
+    #000 82%
+  );
+}
+
+/* Footer runs it as texture, not decoration. Four columns of text sit on
+   top of it, so it stays near the threshold of noticeable. */
+.site-footer {
+  --pattern-size: 300px;
+  --pattern-opacity: 0.18;
 }

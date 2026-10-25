@@ -1,4 +1,4 @@
-<footer class="site-footer">
+<footer class="site-footer pattern-bg">
   <div class="site-footer__inner">
     <div class="site-footer__col">
       <p class="site-footer__name">{{ site.name }}</p>
@@ -36,7 +36,7 @@
 
   <div class="site-footer__bar">
     <p class="site-footer__legal">
-      &copy; {{ "" | year }} {{ site.legalName }}. {{ t.common.allRights }}
+      &copy; {{ "" | year }} {{ site.legalName | period }} {{ t.common.allRights }}
     </p>
     <p class="site-footer__accred">
       {{ t.common.licensedBy }}

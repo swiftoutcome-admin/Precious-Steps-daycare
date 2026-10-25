@@ -84,6 +84,15 @@ export default function (eleventyConfig) {
     new Date(value).toISOString().slice(0, 10)
   );
 
+  /**
+   * Terminate a sentence with exactly one period. The centre's legal name
+   * ends in "Inc.", so appending one in the template produced "Inc..".
+   */
+  eleventyConfig.addFilter("period", (value) => {
+    const s = String(value || "").trim();
+    return s.endsWith(".") ? s : s + ".";
+  });
+
   eleventyConfig.addFilter("year", () => new Date().getFullYear());
 
   /**
