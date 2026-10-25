@@ -13,11 +13,13 @@
     "build": "eleventy",
     "clean": "rm -rf _site",
     "check:html": "html-validate \"_site/**/*.html\"",
-    "check:links": "linkinator _site --recurse --silent --skip \"google\\.com|example\\.invalid\"",
+    "check:links": "linkinator _site --recurse --silent --skip \"google\\.com|localhost:8080\"",
     "check": "npm run build && npm run check:html && npm run check:links"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/nunito-sans": "^5.3.0",
     "html-validate": "^8.24.2",
     "linkinator": "^6.1.2"
   }

@@ -6,7 +6,8 @@
   "legalNameConfirmed": false,
   "tagline": "Where children learn and grow by taking their first Precious Steps!",
   "foundedYear": 1998,
-  "url": "https://example.invalid",
+  "_urlNote": "Canonical URLs, Open Graph tags, robots.txt and the sitemap all use env.baseUrl (see src/_data/env.js), which Netlify supplies per deploy. This field is the final production domain for reference only, once the client registers one.",
+  "url": "",
   "urlConfirmed": false,
   "locale": "en-US",
 

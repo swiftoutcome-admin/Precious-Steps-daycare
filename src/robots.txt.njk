@@ -2,7 +2,14 @@
 permalink: /robots.txt
 eleventyExcludeFromCollections: true
 ---
+{%- if env.allowIndexing %}
 User-agent: *
 Allow: /
 
-Sitemap: {{ site.url }}/sitemap.xml
+Sitemap: {{ env.baseUrl }}/sitemap.xml
+{%- else %}
+# Preview build. Crawling is disabled until launch.
+# Set ALLOW_INDEXING=true in the Netlify environment to publish.
+User-agent: *
+Disallow: /
+{%- endif %}

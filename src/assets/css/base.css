@@ -44,7 +44,10 @@ h3,
 h4 {
   margin: 0 0 var(--space-sm);
   font-family: var(--font-display);
-  font-weight: var(--weight-regular);
+  /* SOFT rounds the terminals, WONK tilts the occasional letter. This is
+     what stops the headings reading as a corporate serif. */
+  font-variation-settings: var(--display-variation);
+  font-weight: var(--weight-semibold);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
   text-wrap: balance;
@@ -78,13 +81,15 @@ p {
 
 a {
   color: var(--color-accent);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.18em;
-  transition: color var(--transition);
+  text-decoration-color: var(--brand-blue-200);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+  transition: color var(--transition), text-decoration-color var(--transition);
 }
 
 a:hover {
   color: var(--color-accent-hover);
+  text-decoration-color: currentColor;
 }
 
 :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
@@ -152,9 +157,7 @@ td {
 th {
   font-family: var(--font-sans);
   font-weight: var(--weight-semibold);
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
+  font-size: var(--text-sm);
   color: var(--color-text-muted);
 }
 

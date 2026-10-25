@@ -1,0 +1,52 @@
+/* ===========================================================================
+   SELF-HOSTED WEBFONTS
+
+   Sourced from the @fontsource-variable npm packages and copied into
+   src/assets/fonts/ at build time, so nothing is fetched from Google and
+   the CSP stays at font-src 'self'.
+
+   To refresh after an npm update:
+     cp node_modules/@fontsource-variable/fraunces/files/fraunces-latin-full-normal.woff2 \
+        src/assets/fonts/fraunces-latin-variable.woff2
+     cp node_modules/@fontsource-variable/nunito-sans/files/nunito-sans-latin-wght-normal.woff2 \
+        src/assets/fonts/nunito-sans-latin-variable.woff2
+     cp node_modules/@fontsource-variable/nunito-sans/files/nunito-sans-latin-wght-italic.woff2 \
+        src/assets/fonts/nunito-sans-latin-variable-italic.woff2
+
+   Fraunces is the full variable cut because we use its SOFT and WONK axes.
+   Those two axes are what make the headings feel handmade rather than
+   institutional, and they are the whole reason this face was chosen.
+   =========================================================================== */
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/fraunces-latin-variable.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("/assets/fonts/nunito-sans-latin-variable.woff2") format("woff2-variations");
+  font-weight: 200 1000;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("/assets/fonts/nunito-sans-latin-variable-italic.woff2") format("woff2-variations");
+  font-weight: 200 1000;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}

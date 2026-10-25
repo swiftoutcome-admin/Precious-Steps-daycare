@@ -4,109 +4,142 @@
    This is the rebrand swap point. The client's new logo and palette are not
    final. When they arrive, change the values in this file only. No other
    stylesheet should contain a raw colour, font family, or spacing value.
+
+   Direction: warm and nurturing. Everything here leans away from the
+   cool, hairlined, high-contrast look of a corporate product page.
+   Neutrals are warm rather than grey, the page sits on cream instead of
+   pure white, corners are generous, and the type is a soft serif over a
+   humanist sans.
    =========================================================================== */
 
 :root {
   /* --- Brand -------------------------------------------------------------
-     Placeholder palette derived from the client's stated "pink and blue".
-     Muted and restrained on purpose: saturated primaries read as clip art.
-     Replace on receipt of the final brand guide. */
-  --brand-blue-900: #12314f;
-  --brand-blue-700: #1d4e7c;
-  --brand-blue-500: #3d7bad;
-  --brand-blue-100: #e3eef7;
-  --brand-blue-50:  #f2f7fb;
+     Placeholder palette reading the client's "pink and blue" warmly.
+     The blue is pulled toward teal so it sits beside the rose without
+     going corporate-navy. Replace on receipt of the final brand guide. */
+  --brand-blue-900: #17424f;
+  --brand-blue-700: #235d72;
+  --brand-blue-500: #3d8099;
+  --brand-blue-200: #bedbe4;
+  --brand-blue-100: #dcecf1;
+  --brand-blue-50: #eff7f9;
 
-  --brand-rose-700: #9c4a63;
-  --brand-rose-500: #c2708a;
-  --brand-rose-100: #f7e7ec;
-  --brand-rose-50:  #fcf5f7;
+  --brand-rose-700: #a84f63;
+  --brand-rose-500: #c96f84;
+  --brand-rose-300: #e9b3bf;
+  --brand-rose-100: #f8e4e8;
+  --brand-rose-50: #fdf4f6;
 
-  /* --- Neutrals ---------------------------------------------------------- */
-  --ink-900: #16191d;
-  --ink-700: #33383f;
-  --ink-500: #5c636d;
-  --ink-400: #7b828c;
-  --ink-300: #aeb4bc;
-  --ink-200: #d9dde2;
-  --ink-100: #ebeef1;
-  --ink-50:  #f6f7f9;
-  --paper:   #ffffff;
+  /* A small amount of apricot keeps the palette from reading as
+     two-colour. Use sparingly: highlights and small marks only. */
+  --brand-apricot-500: #d99246;
+  --brand-apricot-100: #fbeedd;
 
-  /* --- Semantic ----------------------------------------------------------- */
+  /* --- Neutrals ------------------------------------------------------------
+     Warm greys. Every one carries a little red and yellow, so nothing on
+     the page reads as cold slate. */
+  --ink-900: #2e2724;
+  --ink-700: #4a403b;
+  --ink-500: #6f625b;
+  --ink-400: #8d7f77;
+  --ink-300: #b6aaa2;
+  --ink-200: #ded4cb;
+  --ink-100: #ece4da;
+  --ink-50: #f6f1e9;
+
+  --paper: #fdfaf5;
+  --paper-pure: #ffffff;
+
+  /* --- Semantic ------------------------------------------------------------- */
   --color-text: var(--ink-900);
   --color-text-muted: var(--ink-500);
   --color-bg: var(--paper);
   --color-bg-subtle: var(--brand-blue-50);
+  --color-bg-warm: var(--brand-rose-50);
+  --color-surface: var(--paper-pure);
   --color-accent: var(--brand-blue-700);
   --color-accent-hover: var(--brand-blue-900);
   --color-accent-soft: var(--brand-blue-100);
   --color-highlight: var(--brand-rose-700);
   --color-highlight-soft: var(--brand-rose-100);
 
-  /* Hairlines. One pixel, low contrast, never a heavy border. */
+  /* Borders are now the exception rather than the rule. Soft tinted
+     panels do most of the separating work; keep hairlines for tables
+     and genuine dividers. */
   --rule: 1px solid var(--ink-200);
   --rule-faint: 1px solid var(--ink-100);
-  --rule-accent: 1px solid var(--brand-blue-100);
+  --rule-accent: 2px solid var(--brand-blue-200);
 
-  --focus-ring: 2px solid var(--brand-blue-700);
-  --focus-offset: 2px;
+  --focus-ring: 3px solid var(--brand-rose-500);
+  --focus-offset: 3px;
 
-  /* --- Type ---------------------------------------------------------------
-     System stack until brand fonts are chosen. Self-host any webfont into
-     src/assets/fonts so the CSP stays at font-src 'self'. */
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-  --font-display: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+  /* --- Type -----------------------------------------------------------------
+     Fraunces for display: a soft serif whose SOFT and WONK axes round the
+     terminals and tilt the odd letter, which is what keeps headings from
+     reading as institutional. Nunito Sans for text: humanist, rounded,
+     and comfortable at small sizes. Both self-hosted; see fonts.css. */
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Nunito Sans", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, sans-serif;
 
-  /* Fluid type scale, 1.200 minor third at the small end. */
-  --text-xs:   0.8125rem;
-  --text-sm:   0.9375rem;
-  --text-base: 1.0625rem;
-  --text-lg:   clamp(1.1875rem, 1.1rem + 0.4vw, 1.375rem);
-  --text-xl:   clamp(1.4375rem, 1.3rem + 0.7vw, 1.75rem);
-  --text-2xl:  clamp(1.75rem, 1.5rem + 1.2vw, 2.375rem);
-  --text-3xl:  clamp(2.125rem, 1.7rem + 2vw, 3.25rem);
+  /* The warmth levers on Fraunces. Raise SOFT for rounder terminals. */
+  --display-variation: "SOFT" 60, "WONK" 1;
 
-  --leading-tight: 1.15;
-  --leading-snug: 1.3;
-  --leading-normal: 1.6;
-  --leading-relaxed: 1.75;
+  /* Slightly larger base than a typical marketing site. Parents read this
+     on a phone, often one-handed, often tired. */
+  --text-xs: 0.875rem;
+  --text-sm: 1rem;
+  --text-base: 1.125rem;
+  --text-lg: clamp(1.25rem, 1.15rem + 0.45vw, 1.4375rem);
+  --text-xl: clamp(1.5rem, 1.35rem + 0.75vw, 1.875rem);
+  --text-2xl: clamp(1.875rem, 1.6rem + 1.3vw, 2.625rem);
+  --text-3xl: clamp(2.25rem, 1.8rem + 2.2vw, 3.5rem);
 
-  --tracking-tight: -0.02em;
+  /* Looser than before across the board. Air is most of the warmth. */
+  --leading-tight: 1.2;
+  --leading-snug: 1.4;
+  --leading-normal: 1.7;
+  --leading-relaxed: 1.85;
+
+  --tracking-tight: -0.015em;
   --tracking-normal: 0;
-  --tracking-wide: 0.08em;
+  --tracking-wide: 0.02em;
 
   --weight-regular: 400;
   --weight-medium: 500;
   --weight-semibold: 600;
+  --weight-bold: 700;
 
-  /* --- Space -------------------------------------------------------------- */
+  /* --- Space ----------------------------------------------------------------- */
   --space-3xs: 0.25rem;
   --space-2xs: 0.5rem;
-  --space-xs:  0.75rem;
-  --space-sm:  1rem;
-  --space-md:  1.5rem;
-  --space-lg:  2.25rem;
-  --space-xl:  3.5rem;
-  --space-2xl: 5rem;
-  --space-3xl: 7.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.25rem;
+  --space-xl: 3.5rem;
+  --space-2xl: 5.5rem;
+  --space-3xl: 8rem;
 
-  /* --- Layout -------------------------------------------------------------- */
-  --measure: 68ch;
+  /* --- Layout ------------------------------------------------------------------ */
+  --measure: 64ch;
   --width-content: 46rem;
-  --width-wide: 72rem;
+  --width-wide: 74rem;
   --gutter: clamp(1.25rem, 5vw, 3rem);
 
-  --radius-sm: 3px;
-  --radius-md: 6px;
-  --radius-lg: 10px;
+  /* Generous corners. This is the single biggest lever on how soft the
+     page feels, after the typeface. */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
 
-  /* Shadows stay almost invisible. Depth comes from spacing, not drop shadow. */
-  --shadow-sm: 0 1px 2px rgb(22 25 29 / 0.05);
-  --shadow-md: 0 2px 8px rgb(22 25 29 / 0.06);
+  /* Warm-tinted shadows. A grey shadow on cream looks like dirt. */
+  --shadow-sm: 0 1px 2px rgb(74 64 59 / 0.05);
+  --shadow-md: 0 4px 16px rgb(74 64 59 / 0.07);
+  --shadow-lg: 0 10px 34px rgb(74 64 59 / 0.09);
 
-  --transition: 150ms ease;
+  --transition: 180ms cubic-bezier(0.2, 0.8, 0.3, 1);
 }
 
 @media (prefers-reduced-motion: reduce) {

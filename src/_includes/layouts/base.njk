@@ -7,18 +7,28 @@
     <title>{% if title %}{{ title }} | {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
     <meta name="description" content="{{ description or site.description }}" />
 
-    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+    {% if not env.allowIndexing %}
+      {# Preview build. Indexing stays off until ALLOW_INDEXING=true is set
+         in the Netlify environment. See src/_data/env.js. #}
+      <meta name="robots" content="noindex, nofollow" />
+    {% endif %}
+
+    <link rel="canonical" href="{{ env.baseUrl }}{{ page.url }}" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="{{ site.name }}" />
     <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ site.name }}{% endif %}" />
     <meta property="og:description" content="{{ description or site.description }}" />
-    <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+    <meta property="og:url" content="{{ env.baseUrl }}{{ page.url }}" />
 
     <link rel="icon" href="/assets/img/brand/favicon.svg" type="image/svg+xml" />
     {# Add back on brand delivery, once apple-touch-icon.png (180x180) exists:
        <link rel="apple-touch-icon" href="/assets/img/brand/apple-touch-icon.png" /> #}
 
+    <link rel="preload" href="/assets/fonts/fraunces-latin-variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/nunito-sans-latin-variable.woff2" as="font" type="font/woff2" crossorigin />
+
+    <link rel="stylesheet" href="/assets/css/fonts.css" />
     <link rel="stylesheet" href="/assets/css/tokens.css" />
     <link rel="stylesheet" href="/assets/css/base.css" />
     <link rel="stylesheet" href="/assets/css/components.css" />
