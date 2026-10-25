@@ -229,7 +229,10 @@
 
 .site-header__logo {
   width: auto;
-  height: 2.75rem;
+  /* Scales with the viewport: the header has six nav items, a CTA and the
+     language switch to fit alongside it, so the wordmark grows on wide
+     screens and backs off before it crowds them. */
+  height: clamp(2.75rem, 2.3rem + 1.1vw, 3.5rem);
 }
 
 .nav-toggle {
@@ -310,8 +313,12 @@
   color: var(--paper-pure);
 }
 
-/* Mobile: nav collapses behind the toggle. */
-@media (max-width: 57.99rem) {
+/* Below the desktop breakpoint the nav collapses behind the toggle.
+   The breakpoint is 72rem rather than a conventional 58rem because this
+   header carries a lot: wordmark, six links, a CTA button and the language
+   switch. Below ~1150px they do not fit on one line, and a nav that wraps
+   to two rows looks broken. */
+@media (max-width: 71.99rem) {
   .primary-nav {
     display: none;
     width: 100%;
@@ -337,7 +344,7 @@
   }
 }
 
-@media (min-width: 58rem) {
+@media (min-width: 72rem) {
   .nav-toggle {
     display: none;
   }
@@ -1018,7 +1025,7 @@ textarea.field__control {
   box-shadow: var(--shadow-sm);
 }
 
-@media (min-width: 58rem) {
+@media (min-width: 72rem) {
   .lang-switch {
     order: 3;
     margin-left: 0;
