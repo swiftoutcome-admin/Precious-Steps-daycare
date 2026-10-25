@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{% if title %}{{ title }} | {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
+    <meta name="description" content="{{ description or site.description }}" />
+
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="{{ site.name }}" />
+    <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ site.name }}{% endif %}" />
+    <meta property="og:description" content="{{ description or site.description }}" />
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+
+    <link rel="icon" href="/assets/img/brand/favicon.svg" type="image/svg+xml" />
+    {# Add back on brand delivery, once apple-touch-icon.png (180x180) exists:
+       <link rel="apple-touch-icon" href="/assets/img/brand/apple-touch-icon.png" /> #}
+
+    <link rel="stylesheet" href="/assets/css/tokens.css" />
+    <link rel="stylesheet" href="/assets/css/base.css" />
+    <link rel="stylesheet" href="/assets/css/components.css" />
+
+    <script src="/assets/js/main.js" defer></script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    {% include "partials/header.njk" %}
+
+    <main id="main" tabindex="-1">
+      {{ content | safe }}
+    </main>
+
+    {% include "partials/footer.njk" %}
+  </body>
+</html>

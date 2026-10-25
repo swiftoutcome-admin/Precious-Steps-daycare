@@ -1,0 +1,97 @@
+[
+  {
+    "id": "infant",
+    "name": "Infants",
+    "ages": "6 weeks to 18 months",
+    "agesConfirmed": false,
+    "agesNote": "Questionnaire says 6 weeks to 18 months; Infant/Toddler handbook says 4 weeks to 24 months.",
+    "ratio": "1:4",
+    "curriculum": "High Scope",
+    "location": "washington",
+    "schedule": "Each infant follows their own schedule. The day includes napping, eating, diapering, quiet play, and outside time.",
+    "summary": "A calm, home-like room with cribs, age appropriate toys, and comfortable rocking chairs, where every baby gets individualized attention and plenty of cuddle time.",
+    "bring": [
+      "Diapers",
+      "Baby wipes",
+      "Blanket",
+      "Crib sheet",
+      "Pacifier, if needed",
+      "Bottles",
+      "Sippy cup",
+      "Multiple changes of clothing"
+    ],
+    "sourced": true
+  },
+  {
+    "id": "toddler",
+    "name": "Toddlers",
+    "ages": "19 months to 2.5 years",
+    "agesConfirmed": false,
+    "agesNote": "Questionnaire says 19 months to 2.5 years; Infant/Toddler handbook says 24 to 36 months.",
+    "ratio": "1:6",
+    "curriculum": "High Scope for Toddlers",
+    "location": "washington",
+    "schedule": "A daily routine built around exploration, play, and early language. A daily sheet goes home with changes, meals, and nap times.",
+    "summary": "A nurturing room where children are encouraged to use their words, and where learning happens through play, projects, and hands-on activities.",
+    "bring": [
+      "Diapers",
+      "Crib sheet",
+      "Baby wipes",
+      "Pull ups",
+      "Blanket",
+      "Sippy cup",
+      "Multiple changes of clothing"
+    ],
+    "sourced": true
+  },
+  {
+    "id": "room-to-bloom",
+    "name": "Room to Bloom",
+    "ages": "2.5 to 5 years",
+    "agesConfirmed": true,
+    "ratio": "1:10",
+    "curriculum": "High Scope",
+    "location": "washington",
+    "locationConfirmed": false,
+    "schedule": "",
+    "summary": "",
+    "bring": [],
+    "sourced": false,
+    "sourceNote": "NO SOURCE COPY. This program appears only in the client questionnaire and is described in neither parent handbook. Awaiting a written description from the client."
+  },
+  {
+    "id": "district-prek",
+    "name": "District Pre-K",
+    "ages": "3 to 5 years",
+    "agesConfirmed": true,
+    "agesNote": "Preschool handbook adds: children must be 3 years of age by October 1.",
+    "ratio": "2:15",
+    "curriculum": "Connect 4 Learning",
+    "location": "arlington",
+    "locationConfirmed": false,
+    "schedule": "Arrival, breakfast, circle time, morning message, read aloud, learning centers, small group, outdoor play, lunch, nap, snack, read aloud, learning centers, dismissal.",
+    "summary": "A state approved preschool program aligned with the New Jersey Preschool Teaching and Learning Standards, delivered in partnership with Plainfield Public Schools.",
+    "bring": [
+      "Top and bottom crib sheet for the nap mat",
+      "Emergency change of clothes",
+      "Pull-ups and wipes, if not potty trained"
+    ],
+    "sourced": true
+  },
+  {
+    "id": "after-3",
+    "name": "After 3 Program",
+    "ages": "3 to 8 years",
+    "agesConfirmed": true,
+    "ratio": "1:10",
+    "curriculum": "Extended day",
+    "location": "washington",
+    "locationConfirmed": false,
+    "schedule": "",
+    "summary": "",
+    "detail": "An extension of daily activities with homework support.",
+    "bring": [],
+    "sourced": false,
+    "sourceNote": "NO SOURCE COPY. This program appears only in the client questionnaire and is described in neither parent handbook. Awaiting a written description from the client."
+  }
+]

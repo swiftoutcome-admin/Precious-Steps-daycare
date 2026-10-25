@@ -1,0 +1,49 @@
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="/">
+      <img
+        class="site-header__logo"
+        src="/assets/img/brand/logo.svg"
+        alt="{{ site.name }}"
+        width="180"
+        height="48"
+      />
+    </a>
+
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+      data-nav-toggle
+    >
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+      <span class="nav-toggle__label">Menu</span>
+    </button>
+
+    <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+      <ul class="primary-nav__list">
+        {% set navItems = [
+          { url: "/about/", label: "About" },
+          { url: "/programs/", label: "Programs" },
+          { url: "/locations/", label: "Locations" },
+          { url: "/enrollment/", label: "Enrollment" },
+          { url: "/gallery/", label: "Gallery" },
+          { url: "/contact/", label: "Contact" }
+        ] %}
+        {% for item in navItems %}
+          <li>
+            <a
+              href="{{ item.url }}"
+              {% if page.url == item.url %}aria-current="page"{% endif %}
+            >{{ item.label }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <a class="button button--primary primary-nav__cta" href="{{ site.primaryCta.href }}">
+        {{ site.primaryCta.label }}
+      </a>
+    </nav>
+  </div>
+</header>

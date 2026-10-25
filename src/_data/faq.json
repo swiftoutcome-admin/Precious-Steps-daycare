@@ -1,0 +1,53 @@
+[
+  {
+    "q": "What ages do you serve?",
+    "a": "Infants through school age. See the Programs page for each classroom's age range and teacher to child ratio.",
+    "sourced": true
+  },
+  {
+    "q": "Are you licensed and accredited?",
+    "a": "Yes. We are licensed by the New Jersey Office of Licensing, accredited by the National Association for the Education of Young Children, and rated by Grow NJ Kids.",
+    "sourced": true
+  },
+  {
+    "q": "Do you provide meals?",
+    "a": "Yes. Meals and snacks are provided under the New Jersey Child and Adult Care Food Program and meet USDA nutritional standards. We accommodate food allergies as directed by your child's physician. We are a nut free center.",
+    "sourced": true
+  },
+  {
+    "q": "Do you accept childcare subsidies?",
+    "a": "Yes. We accept childcare subsidies and assistance programs, and we will help you request or transfer yours during enrollment.",
+    "sourced": true
+  },
+  {
+    "q": "How do parents hear about their child's day?",
+    "a": "We use Brightwheel as our primary communication platform, with ClassDojo also in use. Meals, diaper changes, and daily activities are posted by teachers each day.",
+    "sourced": true
+  },
+  {
+    "q": "Does my child need to be potty trained?",
+    "a": "No. Children who are not potty trained receive support with diapering and potty training skills. The absence of potty training does not exclude a child from our program.",
+    "sourced": true
+  },
+  {
+    "q": "Do you welcome children with special needs?",
+    "a": "Yes. Precious Steps has a long history of welcoming children with special challenges and supporting their families.",
+    "sourced": true
+  },
+  {
+    "q": "What happens in bad weather?",
+    "a": "We follow Plainfield Public Schools closings. For specific information, call the center between 6:00 AM and 7:00 AM for a recorded message.",
+    "sourced": true
+  },
+  {
+    "q": "When should I keep my child home?",
+    "a": "",
+    "sourced": false,
+    "sourceNote": "Summarize the handbook's Healthy Child Policy in plain language and link the current handbook PDF. Do not reproduce the full exclusion list on the site."
+  },
+  {
+    "q": "How quickly will you respond to my inquiry?",
+    "a": "Within 24 hours Monday through Friday. Weekend inquiries are answered the next business day.",
+    "sourced": true
+  }
+]

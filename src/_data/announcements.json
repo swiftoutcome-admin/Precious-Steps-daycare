@@ -1,0 +1,9 @@
+[
+  {
+    "title": "Example announcement, not shown while published is false",
+    "body": "Enrollment for the fall is open. Call either location to schedule a tour.",
+    "date": "2026-01-05",
+    "expires": "2026-03-31",
+    "published": false
+  }
+]

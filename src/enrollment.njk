@@ -1,0 +1,110 @@
+---
+layout: layouts/base.njk
+title: Enrollment
+description: "How to enroll at Precious Steps in Plainfield, NJ. Tour, application, documents, subsidies and what to expect, step by step."
+---
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Enrollment</p>
+    <h1 class="hero__title">How to join us</h1>
+    <p class="hero__lead">
+      Enrollment starts with a conversation and a visit. Here is what the
+      process looks like from your first call to your child's first day.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap wrap--narrow">
+    <h2>Step by step</h2>
+    <ol class="steps">
+      {% for step in enrollment.steps %}
+        <li>
+          <p class="steps__title">{{ step.title }}</p>
+          <p>{{ step.detail }}</p>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="section section--subtle">
+  <div class="wrap wrap--narrow">
+    <h2>What we will need</h2>
+    <ul>
+      {% for doc in enrollment.documents %}
+        <li>{{ doc }}</li>
+      {% endfor %}
+    </ul>
+    <p>
+      An updated copy of your child's immunization record must be given to the
+      center after each doctor visit.
+    </p>
+    <div class="todo">
+      <strong>Decision needed</strong>
+      {{ enrollment.publishApplicationPdfNote }}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap wrap--narrow">
+    <h2>Tuition</h2>
+    <p>{{ enrollment.pricing.message }}</p>
+
+    <h2>Subsidies and assistance</h2>
+    <p>{{ enrollment.subsidies.message }} We will help you request or transfer yours during enrollment.</p>
+
+    <h2>Availability</h2>
+    <p>{{ enrollment.openings.status }}</p>
+
+    <h2>Tours and open house</h2>
+    <p>{{ enrollment.openHouse }}</p>
+  </div>
+</section>
+
+<section class="section section--subtle">
+  <div class="wrap wrap--narrow">
+    <h2>Health and safety</h2>
+    <p>
+      Both centers have secure entrances, cameras throughout, and burglar and
+      fire alarms, and we run regular fire and intruder drills. All staff clear
+      a Child Abuse Record Inquiry and a Criminal History Record Inquiry and are
+      trained in CPR and First Aid.
+    </p>
+    <p>
+      Our full health policies, including when to keep a child home, medication
+      procedures and our discipline philosophy, are set out in the Parent
+      Handbook.
+    </p>
+    <div class="todo">
+      <strong>Awaiting file</strong>
+      Link the current Parent Handbook PDF here once the client sends the revised
+      version. Place it in src/assets/docs/. Do not restate handbook policy text
+      on the site: summarize and link, so the handbook stays the single source
+      of truth.
+    </div>
+  </div>
+</section>
+
+<section class="section section--ruled">
+  <div class="wrap wrap--narrow">
+    <h2>Questions parents ask</h2>
+    {% for item in faq %}
+      {% if item.a %}
+        <details class="faq__item">
+          <summary>{{ item.q }}</summary>
+          <p>{{ item.a }}</p>
+        </details>
+      {% else %}
+        <div class="todo">
+          <strong>Answer needed: {{ item.q }}</strong>
+          {{ item.sourceNote }}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+{% include "partials/cta-band.njk" %}

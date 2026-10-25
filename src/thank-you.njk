@@ -1,0 +1,25 @@
+---
+layout: layouts/base.njk
+title: Thank You
+description: "Your request has been received. We will be in touch shortly."
+eleventyExcludeFromCollections: true
+---
+
+<section class="hero">
+  <div class="wrap wrap--narrow">
+    <h1 class="hero__title">Thank you</h1>
+    <p class="hero__lead">
+      We have your request and we will get back to you {{ site.contact.responseTime }}
+    </p>
+    <p>
+      If you need us sooner, call
+      {% for location in site.locations %}
+        <a href="tel:{{ location.phone | phoneHref }}">{{ location.phone | phoneDisplay }}</a>{% if not loop.last %} or {% endif %}
+      {% endfor %}.
+    </p>
+    <div class="hero__actions">
+      <a class="button button--secondary" href="/">Back to the homepage</a>
+      <a class="button button--secondary" href="/programs/">See our programs</a>
+    </div>
+  </div>
+</section>

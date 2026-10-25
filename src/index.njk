@@ -1,0 +1,131 @@
+---
+layout: layouts/base.njk
+title: ""
+description: "NAEYC accredited child care and early learning in Plainfield, New Jersey. Infants through school age, two locations, serving families since 1998."
+eleventyNavigation:
+  key: Home
+---
+
+{% set active = announcements | activeAnnouncements %}
+{% if active.length %}
+  <div class="announcement">
+    <div class="wrap">
+      {% for item in active %}
+        <p class="announcement__title">{{ item.title }}</p>
+        <p>{{ item.body }}</p>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Plainfield, New Jersey</p>
+    <h1 class="hero__title">{{ site.tagline }}</h1>
+    <p class="hero__lead">
+      Precious Steps has cared for Plainfield's children since {{ site.foundedYear }}.
+      We are accredited by the National Association for the Education of Young
+      Children and rated by Grow NJ Kids, with programs for infants through
+      school age across two neighborhood locations.
+    </p>
+    <div class="hero__actions">
+      <a class="button button--primary button--lg" href="{{ site.primaryCta.href }}">{{ site.primaryCta.label }}</a>
+      <a class="button button--secondary button--lg" href="/programs/">See our programs</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>Our mission</h2>
+    <p class="section__lead">
+      To offer early learning opportunities reflective of developmentally
+      appropriate practices while embracing the eclectic urban culture and
+      community in which we are located. Understanding that all families have
+      differing needs, we pride ourselves on our ability to meet our children
+      and families at their levels of development within an intimate, family
+      oriented environment that promotes and supports lifelong learning.
+    </p>
+  </div>
+</section>
+
+<section class="section section--subtle">
+  <div class="wrap">
+    <h2>Programs</h2>
+    <p class="section__lead">
+      Five classrooms, each with its own curriculum and teacher to child ratio.
+    </p>
+
+    <ul class="grid grid--3 grid--list">
+      {% for program in programs %}
+        <li>
+          <article class="card">
+            <h3 class="card__title">{{ program.name }}</h3>
+            <p class="card__meta">{{ program.ages }} &middot; Ratio {{ program.ratio }}</p>
+            <div class="card__body">
+              {% if program.summary %}
+                <p>{{ program.summary }}</p>
+              {% else %}
+                <div class="todo">
+                  <strong>Content needed</strong>
+                  {{ program.sourceNote }}
+                </div>
+              {% endif %}
+            </div>
+            <p class="card__link"><a href="/programs/#{{ program.id }}">About {{ program.name }}</a></p>
+          </article>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>Our locations</h2>
+    <div class="grid grid--2">
+      {% for location in site.locations %}
+        <article class="card">
+          <h3 class="card__title">{{ location.name }}</h3>
+          <div class="card__body">
+            <address>
+              {{ location.street }}<br />
+              {{ location.city }}, {{ location.state }} {{ location.zip }}
+            </address>
+            <dl class="spec">
+              <dt>Phone</dt>
+              <dd><a href="tel:{{ location.phone | phoneHref }}">{{ location.phone | phoneDisplay }}</a></dd>
+              <dt>Hours</dt>
+              <dd>{{ location.hours }}</dd>
+              <dt>Calendar</dt>
+              <dd>{{ location.calendar }}</dd>
+            </dl>
+            {% if not location.addressConfirmed or not location.calendarConfirmed %}
+              <div class="todo">
+                <strong>Unconfirmed</strong>
+                Address, hours or calendar for this location is still pending client confirmation. See CONTENT-STATUS.md.
+              </div>
+            {% endif %}
+          </div>
+          <p class="card__link"><a href="{{ location | mapUrl }}">Open in Google Maps</a></p>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--ruled">
+  <div class="wrap">
+    <h2>Recognition</h2>
+    <ul class="accred">
+      {% for item in site.accreditations %}
+        <li>
+          <span class="accred__name">{{ item.name }}</span>
+          <span class="accred__detail">{{ item.detail }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+{% include "partials/cta-band.njk" %}

@@ -1,0 +1,59 @@
+{
+  "steps": [
+    {
+      "title": "Reach out",
+      "detail": "Call the center or send us a message through this website. Tell us your child's name and age and when you would like to visit."
+    },
+    {
+      "title": "Schedule a visit",
+      "detail": "We will set an appointment at a time that works for your family."
+    },
+    {
+      "title": "Tour and talk",
+      "detail": "You will see the classrooms, meet the team, review our philosophy, and ask anything you like. We will discuss your child's needs, habits, and development."
+    },
+    {
+      "title": "Complete the application",
+      "detail": "We will walk you through the enrollment paperwork and the documents we need on file."
+    },
+    {
+      "title": "Arrange assistance if needed",
+      "detail": "If you are using a childcare subsidy or an assistance program, we will help you request or transfer it."
+    },
+    {
+      "title": "Confirm your start date",
+      "detail": "Submit the deposit with your start date and the initial tuition, and your child's first day is set."
+    }
+  ],
+
+  "documents": [
+    "Completed and signed registration form",
+    "Registration fee",
+    "Birth certificate",
+    "Universal Health form and immunization record",
+    "Authorized pick-up form",
+    "Publicity and communication release form",
+    "Brightwheel sign-up once registration is complete"
+  ],
+  "documentsNote": "Infant/Toddler handbook lists a $100 registration fee. Confirm the current amount and whether it should be published before showing a figure.",
+
+  "pricing": {
+    "publish": false,
+    "message": "Please contact us about current tuition rates."
+  },
+
+  "subsidies": {
+    "accepted": true,
+    "message": "We accept childcare subsidies and assistance programs."
+  },
+
+  "openings": {
+    "status": "Please contact us about current availability.",
+    "statusConfirmed": false
+  },
+
+  "openHouse": "August through September. Tours are scheduled year round by contacting the center.",
+
+  "publishApplicationPdf": false,
+  "publishApplicationPdfNote": "DO NOT publish the supplied enrollment packet. It is a low quality scan and includes health history forms covering pregnancy, seizures, lead exposure and medications. If a download is required later, produce a clean, retyped, fillable application page only."
+}

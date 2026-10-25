@@ -1,0 +1,34 @@
+# Build output
+_site/
+dist/
+
+# Dependencies
+node_modules/
+.pnp.*
+.yarn/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Netlify
+.netlify/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Logs
+npm-debug.log*
+*.log
+
+# Client source material that must NOT be published.
+# Enrollment packets contain health histories and family PII.
+/client-private/

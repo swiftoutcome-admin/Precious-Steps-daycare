@@ -1,0 +1,130 @@
+---
+layout: layouts/base.njk
+title: Contact
+description: "Request a tour of Precious Steps Child Care Center in Plainfield, NJ. Tell us your child's name and age and when you would like to visit."
+---
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Contact</p>
+    <h1 class="hero__title">Request a tour</h1>
+    <p class="hero__lead">
+      Tell us a little about your child and when you would like to come in, and
+      we will call you back to confirm. We respond {{ site.contact.responseTime }}
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="grid grid--2">
+      <div>
+        <h2>Send us a message</h2>
+
+        {#
+          Netlify Forms. The data-netlify attribute registers the form at
+          deploy time; submissions are emailed to the recipients configured
+          in the Netlify dashboard. No database, no third-party script, and
+          the POST stays same-origin so the CSP form-action stays at 'self'.
+
+          We ask for the child's FIRST NAME only and never for health
+          information. Keep it that way: anything more belongs on the
+          enrollment paperwork, not a public web form.
+        #}
+        <form
+          class="form"
+          name="tour-request"
+          method="POST"
+          action="/thank-you/"
+          data-netlify="true"
+          netlify-honeypot="company-name"
+          data-guarded-form
+        >
+          <input type="hidden" name="form-name" value="tour-request" />
+
+          <p class="field field--honeypot" aria-hidden="true">
+            <label>
+              Do not fill this in
+              <input type="text" name="company-name" tabindex="-1" autocomplete="off" />
+            </label>
+          </p>
+
+          <div class="field field--required">
+            <label class="field__label" for="parent-name">Your name</label>
+            <input class="field__control" type="text" id="parent-name" name="parent-name" autocomplete="name" required />
+          </div>
+
+          <div class="field field--required">
+            <label class="field__label" for="phone">Phone</label>
+            <input class="field__control" type="tel" id="phone" name="phone" autocomplete="tel" required />
+          </div>
+
+          <div class="field field--required">
+            <label class="field__label" for="email">Email</label>
+            <input class="field__control" type="email" id="email" name="email" autocomplete="email" required />
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="child-first-name">Child's first name</label>
+            <input class="field__control" type="text" id="child-first-name" name="child-first-name" />
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="child-age">Child's age</label>
+            <span class="field__hint" id="child-age-hint">For example: 8 months, or 3 years</span>
+            <input class="field__control" type="text" id="child-age" name="child-age" aria-describedby="child-age-hint" />
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="program">Program of interest</label>
+            <select class="field__control" id="program" name="program">
+              <option value="">Not sure yet</option>
+              {% for program in programs %}
+                <option value="{{ program.name }}">{{ program.name }} ({{ program.ages }})</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="visit-date">Preferred date to visit</label>
+            <input class="field__control" type="date" id="visit-date" name="visit-date" />
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="message">Anything else we should know</label>
+            <textarea class="field__control" id="message" name="message" rows="5"></textarea>
+          </div>
+
+          <button class="button button--primary button--lg" type="submit" data-sending-label="Sending...">
+            Send request
+          </button>
+        </form>
+      </div>
+
+      <div>
+        <h2>Call us directly</h2>
+        {% for location in site.locations %}
+          <h3>{{ location.name }}</h3>
+          <address>
+            {{ location.street }}<br />
+            {{ location.city }}, {{ location.state }} {{ location.zip }}<br />
+            <a href="tel:{{ location.phone | phoneHref }}">{{ location.phone | phoneDisplay }}</a>
+          </address>
+          <p>{{ location.hours }}</p>
+          <p><a href="{{ location | mapUrl }}">Open in Google Maps</a></p>
+        {% endfor %}
+
+        <h3>Email</h3>
+        <p><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></p>
+
+        {% if site.bilingualStaff %}
+          <h3>Se habla espa&ntilde;ol</h3>
+          <p>
+            Tenemos personal biling&uuml;e. Ll&aacute;menos y con gusto le
+            atenderemos en espa&ntilde;ol.
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

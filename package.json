@@ -1,0 +1,24 @@
+{
+  "name": "precious-steps-daycare",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Marketing website for Precious Steps Child Care Center, Plainfield, NJ.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "eleventy --serve --quiet",
+    "dev": "eleventy --serve",
+    "build": "eleventy",
+    "clean": "rm -rf _site",
+    "check:html": "html-validate \"_site/**/*.html\"",
+    "check:links": "linkinator _site --recurse --silent --skip \"google\\.com|example\\.invalid\"",
+    "check": "npm run build && npm run check:html && npm run check:links"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "html-validate": "^8.24.2",
+    "linkinator": "^6.1.2"
+  }
+}

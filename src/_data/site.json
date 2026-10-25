@@ -1,0 +1,106 @@
+{
+  "_comment": "SINGLE SOURCE OF TRUTH for every fact that appears on the site. Change it here, not in a template. Fields marked UNCONFIRMED are pending client answers tracked in CONTENT-STATUS.md.",
+
+  "name": "Precious Steps Child Care Center",
+  "legalName": "Precious Steps Child Care & Development Center, Inc.",
+  "legalNameConfirmed": false,
+  "tagline": "Where children learn and grow by taking their first Precious Steps!",
+  "foundedYear": 1998,
+  "url": "https://example.invalid",
+  "urlConfirmed": false,
+  "locale": "en-US",
+
+  "description": "NAEYC accredited child care and early learning in Plainfield, New Jersey, serving infants through school age since 1998.",
+
+  "contact": {
+    "email": "preciousstepsccdc@gmail.com",
+    "responseTime": "within 24 hours, Monday through Friday. Weekend inquiries are answered the next business day.",
+    "formRecipients": ["preciousstepsccdc@gmail.com"]
+  },
+
+  "locations": [
+    {
+      "id": "washington",
+      "name": "Washington Avenue",
+      "street": "20 Washington Avenue",
+      "city": "Plainfield",
+      "state": "NJ",
+      "zip": "07060",
+      "phone": "9087555005",
+      "fax": "9087555115",
+      "hours": "Monday through Friday, 7:30 AM to 5:30 PM",
+      "hoursNote": "Hours include before and after care.",
+      "calendar": "Open year round.",
+      "calendarConfirmed": false,
+      "contactPerson": "",
+      "contactPersonConfirmed": false,
+      "programs": ["infant", "toddler", "room-to-bloom", "district-prek", "after-3"],
+      "programsConfirmed": false,
+      "addressConfirmed": true
+    },
+    {
+      "id": "arlington",
+      "name": "Arlington Avenue",
+      "street": "516-522 Arlington Avenue",
+      "city": "Plainfield",
+      "state": "NJ",
+      "zip": "07060",
+      "phone": "9082220029",
+      "fax": "9082220079",
+      "hours": "Monday through Friday, 8:30 AM to 3:00 PM",
+      "hoursNote": "Wrap-around care availability is pending confirmation.",
+      "calendar": "Follows the Plainfield Public Schools calendar.",
+      "calendarConfirmed": false,
+      "contactPerson": "",
+      "contactPersonConfirmed": false,
+      "programs": ["district-prek"],
+      "programsConfirmed": false,
+      "addressConfirmed": false,
+      "addressNote": "Questionnaire says 522 Arlington Avenue; parent handbook says 516-522 Arlington Avenue."
+    }
+  ],
+
+  "closures": [
+    "Winter break",
+    "Spring break",
+    "Most public holidays"
+  ],
+  "closuresNote": "The center follows Plainfield Public Schools closings. In inclement weather, call the center between 6:00 AM and 7:00 AM for a recorded message.",
+
+  "accreditations": [
+    {
+      "name": "NAEYC Accredited",
+      "detail": "Accredited by the National Association for the Education of Young Children since 2006.",
+      "verified": false,
+      "verifyNote": "Confirm the accreditation is currently active and obtain a permitted logo asset before publishing a badge."
+    },
+    {
+      "name": "Grow NJ Kids Rated",
+      "detail": "State quality rated: 4 of 5 stars at Arlington Avenue, 3 of 5 stars at Washington Avenue.",
+      "verified": false
+    },
+    {
+      "name": "State Licensed",
+      "detail": "Licensed by the New Jersey Office of Licensing, Department of Children and Families.",
+      "verified": true
+    }
+  ],
+
+  "parentApps": ["Brightwheel", "ClassDojo"],
+
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "google": ""
+  },
+  "socialNote": "Client is rebranding and updating social profiles. Links to be supplied.",
+
+  "languages": ["English"],
+  "bilingualStaff": true,
+  "spanishPhase2": true,
+
+  "primaryCta": {
+    "label": "Request a Tour",
+    "href": "/contact/"
+  }
+}

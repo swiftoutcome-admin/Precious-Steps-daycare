@@ -1,0 +1,5 @@
+# Netlify redirects. Netlify serves 404.html automatically for unmatched
+# paths, so no catch-all rule is needed here.
+#
+# Add legacy-path redirects below once the client confirms whether any old
+# URLs are in circulation (printed flyers, Google listing, Facebook).

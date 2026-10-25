@@ -1,0 +1,90 @@
+---
+layout: layouts/base.njk
+title: Locations
+description: "Precious Steps has two locations in Plainfield, New Jersey. Addresses, hours, phone numbers and which programs run at each site."
+---
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Locations</p>
+    <h1 class="hero__title">Two centers in Plainfield</h1>
+    <p class="hero__lead">
+      Each location runs a different mix of programs and keeps different hours.
+      If you are not sure which fits your family, call either number and we will
+      point you to the right one.
+    </p>
+  </div>
+</section>
+
+{% for location in site.locations %}
+  <section class="section{% if loop.index0 % 2 == 1 %} section--subtle{% endif %}" id="{{ location.id }}">
+    <div class="wrap wrap--narrow">
+      <h2>{{ location.name }}</h2>
+
+      <address>
+        {{ location.street }}<br />
+        {{ location.city }}, {{ location.state }} {{ location.zip }}
+      </address>
+
+      <dl class="spec">
+        <dt>Phone</dt>
+        <dd><a href="tel:{{ location.phone | phoneHref }}">{{ location.phone | phoneDisplay }}</a></dd>
+        <dt>Fax</dt>
+        <dd>{{ location.fax | phoneDisplay }}</dd>
+        <dt>Hours</dt>
+        <dd>{{ location.hours }}{% if location.hoursNote %} {{ location.hoursNote }}{% endif %}</dd>
+        <dt>Calendar</dt>
+        <dd>{{ location.calendar }}</dd>
+        <dt>Programs</dt>
+        <dd>
+          {% for id in location.programs %}
+            {%- for program in programs -%}
+              {%- if program.id == id -%}
+                <a href="/programs/#{{ program.id }}">{{ program.name }}</a>{% if not loop.last %}, {% endif %}
+              {%- endif -%}
+            {%- endfor -%}
+          {% endfor %}
+        </dd>
+      </dl>
+
+      {% if not location.programsConfirmed %}
+        <div class="todo">
+          <strong>Unconfirmed</strong>
+          Which programs run at this address is pending client confirmation. The
+          parent handbooks and the questionnaire describe this differently. Do
+          not publish without a written answer.
+        </div>
+      {% endif %}
+
+      {% if not location.addressConfirmed %}
+        <div class="todo">
+          <strong>Unconfirmed address</strong>
+          {{ location.addressNote }}
+        </div>
+      {% endif %}
+
+      {% if not location.contactPerson %}
+        <div class="todo">
+          <strong>Content needed</strong>
+          Name of the onsite contact a parent should ask for at this location.
+        </div>
+      {% endif %}
+
+      <p><a href="{{ location | mapUrl }}">Open in Google Maps</a></p>
+    </div>
+  </section>
+{% endfor %}
+
+<section class="section section--ruled">
+  <div class="wrap wrap--narrow">
+    <h2>Closings</h2>
+    <p>{{ site.closuresNote }}</p>
+    <ul>
+      {% for closure in site.closures %}
+        <li>{{ closure }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+{% include "partials/cta-band.njk" %}

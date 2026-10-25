@@ -1,0 +1,45 @@
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__col">
+      <p class="site-footer__name">{{ site.name }}</p>
+      <p class="site-footer__tagline">{{ site.tagline }}</p>
+      <p class="site-footer__since">Serving Plainfield families since {{ site.foundedYear }}.</p>
+    </div>
+
+    {% for location in site.locations %}
+      <div class="site-footer__col">
+        <h2 class="site-footer__heading">{{ location.name }}</h2>
+        <address>
+          {{ location.street }}<br />
+          {{ location.city }}, {{ location.state }} {{ location.zip }}<br />
+          <a href="tel:{{ location.phone | phoneHref }}">{{ location.phone | phoneDisplay }}</a>
+        </address>
+        <p class="site-footer__hours">{{ location.hours }}</p>
+      </div>
+    {% endfor %}
+
+    <div class="site-footer__col">
+      <h2 class="site-footer__heading">Contact</h2>
+      <p>
+        <a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a>
+      </p>
+      <nav aria-label="Footer">
+        <ul class="site-footer__links">
+          <li><a href="/programs/">Programs</a></li>
+          <li><a href="/enrollment/">Enrollment</a></li>
+          <li><a href="/contact/">Request a tour</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <div class="site-footer__bar">
+    <p class="site-footer__legal">
+      &copy; {{ "" | year }} {{ site.legalName }}. All rights reserved.
+    </p>
+    <p class="site-footer__accred">
+      Licensed by the New Jersey Office of Licensing.
+    </p>
+  </div>
+</footer>
