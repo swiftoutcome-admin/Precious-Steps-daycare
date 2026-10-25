@@ -1,13 +1,20 @@
 <header class="site-header">
   <div class="site-header__inner">
+    {#
+      The wordmark is live text in the site's own display face, not an
+      image. The previous SVG had a viewBox a third wider than its
+      content, so sizing it by height scaled the empty padding along with
+      the letters and it always looked small. Text also stays crisp at any
+      size and matches the page typography exactly.
+
+      When the client's real logo arrives, swap this span back to an <img>
+      with alt="{{ site.name }}".
+    #}
     <a class="site-header__brand" href="{{ 'home' | localizedUrl(lang.code) }}">
-      <img
-        class="site-header__logo"
-        src="/assets/img/brand/logo.svg"
-        alt="{{ site.name }}"
-        width="180"
-        height="48"
-      />
+      <span class="brand">
+        <span class="brand__name">Precious Steps</span>
+        <span class="brand__sub">Child Care Center</span>
+      </span>
     </a>
 
     {#

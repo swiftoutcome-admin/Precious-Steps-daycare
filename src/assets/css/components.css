@@ -224,15 +224,42 @@
 .site-header__brand {
   display: block;
   flex-shrink: 0;
-  line-height: 0;
+  text-decoration: none;
 }
 
-.site-header__logo {
-  width: auto;
-  /* Scales with the viewport: the header has six nav items, a CTA and the
-     language switch to fit alongside it, so the wordmark grows on wide
-     screens and backs off before it crowds them. */
-  height: clamp(2.75rem, 2.3rem + 1.1vw, 3.5rem);
+/* Wordmark. Live text in the display face, so it is crisp at any size and
+   sized directly rather than through an SVG's viewBox. */
+.brand {
+  display: block;
+  line-height: 1;
+}
+
+.brand__name {
+  display: block;
+  font-family: var(--font-display);
+  font-variation-settings: var(--display-variation);
+  font-size: clamp(1.5rem, 1.15rem + 1.1vw, 2.125rem);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.05;
+  color: var(--brand-blue-900);
+  white-space: nowrap;
+}
+
+.brand__sub {
+  display: block;
+  margin-top: 0.22em;
+  font-family: var(--font-sans);
+  font-size: clamp(0.5625rem, 0.48rem + 0.22vw, 0.6875rem);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brand-rose-700);
+  white-space: nowrap;
+}
+
+.site-header__brand:hover .brand__name {
+  color: var(--brand-blue-700);
 }
 
 .nav-toggle {
