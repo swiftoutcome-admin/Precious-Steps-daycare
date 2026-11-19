@@ -7,57 +7,62 @@ Sources referenced:
 - **Q** = client questionnaire (Daycare Website Questionnaire, Revised 2)
 - **PH** = Precious Steps Preschool Parent Handbook
 - **ITH** = Precious Steps Infant Toddler Parent Handbook
+- **A** = client's written answers, 18 Nov 2026
+- **BG** = Digital Brand Standards, 2026-2027
 
-Status key: `OPEN` / `ANSWERED` / `PUBLISHED`
+Status key: `OPEN` / `ANSWERED` / `APPLIED`
 
 ---
 
-## Blocking: conflicts between source documents
+## Resolved by the client's answers (18 Nov 2026)
 
-| # | Item | Conflict | Where it lives | Status |
-| --- | --- | --- | --- | --- |
-| 1 | Which programs run at which building | PH lists Washington as infant/toddler plus district preschool and Arlington as district preschool only. ITH places the whole infant/toddler department at Washington. Titles disagree on who directs what. | `site.json` → `locations[].programs` | OPEN |
-| 2 | Arlington street address | Q says 522 Arlington Avenue. PH says 516-522 Arlington Avenue. | `site.json` → `locations[1].street` | OPEN |
-| 3 | Infant and toddler age ranges | Q says infants 6 weeks to 18 months, toddlers 19 months to 2.5 years. ITH says infants 4 weeks to 24 months, toddlers 24 to 36 months. | `programs.json` → `ages` | OPEN |
-| 4 | Arlington hours and wrap-around | Q says 8:30 to 3:00. PH describes wrap-around 7:30 to 8:30 and 3:00 to 5:30. Publishing the narrow hours will lose working parents. | `site.json` → `locations[1].hours` | OPEN |
-| 5 | Operating calendar per program | ITH says the centre operates twelve months a year. PH says preschool runs September through June. | `site.json` → `locations[].calendar` | OPEN |
-| 6 | Washington phone number | Q has a typo, `908755.5005`. PH confirms 908-755-5005. Needs explicit confirmation. | `site.json` → `locations[0].phone` | OPEN |
-| 7 | Legal entity name | Appears as both "Precious Steps Child Care & Development Center, Inc." and "...Development Inc." | `site.json` → `legalName` | OPEN |
+| # | Item | Answer | Status |
+| --- | --- | --- | --- |
+| 1 | Programs per building | Washington: Infant/Toddler, Room to Bloom, District Pre-K, Before/Aftercare. Arlington: District Pre-K only. Room to Bloom was absent from her November breakdown but named four times in her questionnaire, including as the only programme besides Infant/Toddler offering part-time and drop-in care, so it is published at Washington. | APPLIED |
+| 2 | Arlington street address | 522 Arlington Avenue. Client chose the shorter form as friendlier than 516-522. | APPLIED |
+| 3 | Phone numbers | Washington 908-755-5005, Arlington 908-222-0029 confirmed. | APPLIED |
+| 4 | Ages served | The **handbook** figures are current: infants 4 weeks to 24 months, toddlers 24 to 36 months. The questionnaire figures were stale. | APPLIED |
+| 5 | Arlington hours | 8:30 to 3:00 is correct. Arlington has **no** before or after care. The handbook's wrap-around text applies to Washington only. | APPLIED |
+| 6 | Calendar | Infant and toddler year round; District Pre-K on the Plainfield Public Schools calendar. Washington carries both, so its calendar line now says so. | APPLIED |
+| 8 | Onsite contacts | Washington: Patricia Joroff. Arlington: Doris Valentin. | APPLIED |
+| 9 | Web address | The centre already owns **preciousstepschildcarecenter.com**. No registration needed. | APPLIED |
+| 12 | Enrollment packet | Confirmed: do not publish. The centre is revamping it. | APPLIED |
+| 7 | Legal entity name | 'PS CC&DC' expands to **Precious Steps Child Care & Development Center**. The brand name is used everywhere a parent reads it; the entity appears only in the footer copyright. | APPLIED |
+| 25 | Late pickup contradiction in PH | Acknowledged; the client is revising the handbook. | ANSWERED |
 
-## Blocking: missing content
+## Blocking: still open
 
 | # | Item | Note | Status |
 | --- | --- | --- | --- |
-| 8 | "Room to Bloom" description | Appears only in Q. Described in neither handbook. | OPEN |
-| 9 | "After 3 Program" description | Appears only in Q. Described in neither handbook. | OPEN |
-| 10 | Onsite contact per location | Who a parent should ask for at each site. | OPEN |
-| 11 | Domain name | Client has none. Recommend registering in the centre's name, with the client as owner. | OPEN |
-| 12 | Final logo and palette | Rebrand in progress. Client described current colours only as "pink and blue". Placeholder wordmark is in `src/assets/img/brand/logo.svg`. | OPEN |
+| 13 | **Photo releases** | **The client did not answer this.** No photograph showing a child's face can publish without a signed release on file and her written confirmation. This is the single highest-risk open item. | OPEN |
+| 14 | **NAEYC accreditation currency** | **The client did not answer this.** The site currently claims NAEYC accreditation since 2006 in the trust strip on every page. Confirm it is active and obtain the permitted logo file, or the claim comes down. | OPEN |
+| 27 | **"After 3 Program" public name** | She calls it "Before/Aftercare"; Q called it the "After 3 Program" for ages 3 to 8. The site still shows the Q name. Confirm the public name and whether it covers mornings as well as afternoons. | OPEN |
+| 15 | Privacy notice accuracy | Not addressed in her answers. She still needs to read and confirm it. | OPEN |
+| 22 | Spanish review | Still marked UNREVIEWED. Her bilingual staff must check it, the privacy page above all. Hours, calendars and ages are now translated too, so there is more to review than before. | OPEN |
 
-## Blocking: legal and compliance
+## Awaiting client content (she confirmed she will send)
 
-| # | Item | Note | Status |
-| --- | --- | --- | --- |
-| 13 | Photo releases | Every child whose face appears needs a signed publicity release on file. Client must confirm clearance **in writing** before any photo publishes. Log each one in `docs/photo-release-log.md`. | OPEN |
-| 14 | NAEYC accreditation currency | Confirm accreditation is active, with expiry date, and obtain a permitted logo asset before any badge publishes. A lapsed badge is a real problem for the client. | OPEN |
-| 15 | Privacy notice accuracy | Draft at `src/privacy.njk` is written to match actual site behaviour. Client must read and confirm. | OPEN |
-| 16 | Enrollment packet must not be published | Supplied PDF is a poor scan containing health history forms covering pregnancy, seizures, lead exposure and medications. Do not upload. If a download is needed, produce a clean retyped application page only. | DECIDED: do not publish |
-
-## Non-blocking
-
-| # | Item | Note | Status |
-| --- | --- | --- | --- |
-| 17 | Photography | Elena is shooting new photos. Gallery is built to accept them without layout changes. No launch dependency. | OPEN |
-| 18 | Staff bios and photos | Client to forward. Decide whether to publish individual bios or a general team description. | OPEN |
-| 19 | Social links | Client rebranding; Facebook, Instagram and Google profiles being updated. | OPEN |
-| 20 | Testimonials | Client will approach parents. Needs written permission to publish each one. | OPEN |
-| 21 | Announcements ownership | Decide whether the client self-edits (needs a CMS layer and a short training session) or emails changes in (needs a maintenance retainer). | OPEN |
-| 22 | Spanish version | Enrollment paperwork is bilingual and Plainfield has a large Spanish-speaking population. Phase 2 candidate. Contact page currently carries a Spanish note only. | OPEN |
-| 23 | Registration fee | ITH states $100. Confirm current amount and whether to publish it. | OPEN |
-| 24 | Current openings | Q says contact for availability. Confirm whether to show a live status. | OPEN |
-
-## Flagged back to the client as a courtesy
-
-| # | Item | Note |
+| # | Item | Status |
 | --- | --- | --- |
-| 25 | Late pickup policy contradicts itself in PH | Page 7 says a five minute grace period then $1 per minute. Page 15 says the first late pickup is a courtesy and charging begins with the second. Client is revising the handbook anyway. Not a website issue. |
+| 28 | Fuller Room to Bloom and Before/Aftercare descriptions. Room to Bloom currently carries a short summary built only from facts she stated (High Scope, 1:10, full/part time and drop-in). | OPEN |
+| 18 | Staff biographies and photographs. She has them but asked to hold. | HOLDING |
+| 20 | Parent testimonials, each with written permission to publish | OPEN |
+| 16 | Revised Parent Handbook, to link from the enrollment page | OPEN |
+
+## Decisions made, work not yet done
+
+| # | Item | Note | Status |
+| --- | --- | --- | --- |
+| 21 | **Announcements** | She wants to post them **herself**, with our setup and tech support. That means adding a CMS layer the site does not currently have. This is a scope addition worth pricing. | OPEN |
+| 29 | **Brand standards** | BG received 18 Nov. New palette, new typography, new tagline, real logo artwork, social handles. Not yet applied; the site still carries placeholder brand values. | OPEN |
+| 30 | **DNS and hosting** | The domain exists but is not yet pointed at Netlify. Need the registrar and access. | OPEN |
+| 31 | **Launch indexing** | `ALLOW_INDEXING=true` must be set in the Netlify environment on launch day, or the live site stays invisible to Google. | OPEN |
+
+## Repo hygiene
+
+| # | Item | Note | Status |
+| --- | --- | --- | --- |
+| 32 | 13MB of source PNGs tracked | `/images/` is in `.gitignore` but the files were committed before that rule landed, so they remain tracked. `git rm --cached` to drop them. | OPEN |
+| 33 | CI workflow never landed | `.github/workflows/build-check.yml` was blocked during transfer and never added. Nothing checks builds, HTML, links or CSP on push. | OPEN |
+| 34 | Orphaned `blocks-hero.webp` | Superseded image still tracked under `src/assets/img/programs/`. | OPEN |
+| 35 | Placeholder images carry embedded provenance metadata | Each shipped image holds a ~5.7KB signed manifest recording how the file was handled, which is why repo copies are larger than the originals. It goes away for good when the placeholder photography is replaced with the centre's own. Tracked under item 17. | OPEN |

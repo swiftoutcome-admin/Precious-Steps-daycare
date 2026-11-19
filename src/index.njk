@@ -125,7 +125,7 @@ eleventyComputed:
         <li>
           <article class="card">
             <h3 class="card__title">{{ pc.name }}</h3>
-            <p class="card__meta">{{ program.ages }} &middot; {{ program.ratio }}</p>
+            <p class="card__meta">{{ program.ages if lang.code == 'en' else program.agesEs }} &middot; {{ program.ratio }}</p>
             <div class="card__body">
               {% if pc.summary %}
                 <p>{{ pc.summary }}</p>
@@ -200,9 +200,9 @@ eleventyComputed:
               <dt>{{ t.common.phone }}</dt>
               <dd><a href="tel:{{ location.phone | phoneHref }}">{{ location.phone | phoneDisplay }}</a></dd>
               <dt>{{ t.common.hours }}</dt>
-              <dd>{{ location.hours }}</dd>
+              <dd>{{ location.hours if lang.code == 'en' else location.hoursEs }}</dd>
               <dt>{{ t.common.calendar }}</dt>
-              <dd>{{ location.calendar }}</dd>
+              <dd>{{ location.calendar if lang.code == 'en' else location.calendarEs }}</dd>
             </dl>
             {% if not location.addressConfirmed or not location.programsConfirmed %}
               <div class="todo">

@@ -43,7 +43,8 @@
     "servingSince": "Serving Plainfield families since",
     "photographPending": "Photograph pending",
     "contentNeeded": "Content needed",
-    "unconfirmed": "Unconfirmed"
+    "unconfirmed": "Unconfirmed",
+    "careTypes": "Care options"
   },
   "home": {
     "eyebrow": "Plainfield, New Jersey",
@@ -303,7 +304,7 @@
     },
     "room-to-bloom": {
       "name": "Room to Bloom",
-      "summary": "",
+      "summary": "A High Scope classroom for children who have outgrown the toddler room but are not yet in Pre-K, with a ratio of one teacher to ten children. Available full time, part time, or as drop-in care.",
       "schedule": "",
       "bring": []
     },

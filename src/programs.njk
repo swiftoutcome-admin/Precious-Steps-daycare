@@ -32,11 +32,15 @@ eleventyComputed:
 
       <dl class="spec">
         <dt>{{ t.common.ages }}</dt>
-        <dd>{{ program.ages }}</dd>
+        <dd>{{ program.ages if lang.code == 'en' else program.agesEs }}</dd>
         <dt>{{ t.common.ratio }}</dt>
         <dd>{{ program.ratio }}</dd>
         <dt>{{ t.common.curriculum }}</dt>
         <dd>{{ program.curriculum }}</dd>
+        {% if program.careTypes %}
+          <dt>{{ t.common.careTypes }}</dt>
+          <dd>{{ (program.careTypes if lang.code == 'en' else program.careTypesEs) | join(', ') }}</dd>
+        {% endif %}
       </dl>
 
       {% if not program.agesConfirmed %}

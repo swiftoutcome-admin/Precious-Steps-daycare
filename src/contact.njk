@@ -97,7 +97,7 @@ eleventyComputed:
             <select class="field__control" id="program" name="program">
               <option value="">{{ c.programNotSure }}</option>
               {% for program in programs %}
-                <option value="{{ t.programContent[program.id].name }}">{{ t.programContent[program.id].name }} ({{ program.ages }})</option>
+                <option value="{{ t.programContent[program.id].name }}">{{ t.programContent[program.id].name }} ({{ program.ages if lang.code == 'en' else program.agesEs }})</option>
               {% endfor %}
             </select>
           </div>
@@ -127,7 +127,7 @@ eleventyComputed:
             {{ location.city }}, {{ location.state }} {{ location.zip }}<br />
             <a href="tel:{{ location.phone | phoneHref }}">{{ location.phone | phoneDisplay }}</a>
           </address>
-          <p>{{ location.hours }}</p>
+          <p>{{ location.hours if lang.code == 'en' else location.hoursEs }}</p>
           <p><a href="{{ location | mapUrl }}">{{ t.cta.openInMaps }}</a></p>
         {% endfor %}
 

@@ -14,7 +14,7 @@
           {{ location.city }}, {{ location.state }} {{ location.zip }}<br />
           <a href="tel:{{ location.phone | phoneHref }}">{{ location.phone | phoneDisplay }}</a>
         </address>
-        <p class="site-footer__hours">{{ location.hours }}</p>
+        <p class="site-footer__hours">{{ location.hours if lang.code == 'en' else location.hoursEs }}</p>
       </div>
     {% endfor %}
 

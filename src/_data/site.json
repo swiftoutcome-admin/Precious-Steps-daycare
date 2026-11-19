@@ -1,13 +1,13 @@
 {
   "_comment": "SINGLE SOURCE OF TRUTH for every fact that appears on the site. Change it here, not in a template. Fields marked UNCONFIRMED are pending client answers tracked in CONTENT-STATUS.md.",
   "name": "Precious Steps Child Care Center",
-  "legalName": "Precious Steps Child Care & Development Center, Inc.",
-  "legalNameConfirmed": false,
+  "legalName": "Precious Steps Child Care & Development Center",
+  "legalNameConfirmed": true,
   "tagline": "Where children learn and grow by taking their first Precious Steps!",
   "foundedYear": 1998,
   "_urlNote": "Canonical URLs, Open Graph tags, robots.txt and the sitemap all use env.baseUrl (see src/_data/env.js), which Netlify supplies per deploy. This field is the final production domain for reference only, once the client registers one.",
-  "url": "",
-  "urlConfirmed": false,
+  "url": "https://preciousstepschildcarecenter.com",
+  "urlConfirmed": true,
   "locale": "en-US",
   "description": "NAEYC accredited child care and early learning in Plainfield, New Jersey, serving infants through school age since 1998.",
   "contact": {
@@ -29,11 +29,11 @@
       "phone": "9087555005",
       "fax": "9087555115",
       "hours": "Monday through Friday, 7:30 AM to 5:30 PM",
-      "hoursNote": "Hours include before and after care.",
-      "calendar": "Open year round.",
-      "calendarConfirmed": false,
-      "contactPerson": "",
-      "contactPersonConfirmed": false,
+      "hoursNote": "Includes before and after care.",
+      "calendar": "Infant and toddler programs run year round. District Pre-K follows the Plainfield Public Schools calendar.",
+      "calendarConfirmed": true,
+      "contactPerson": "Patricia Joroff",
+      "contactPersonConfirmed": true,
       "programs": [
         "infant",
         "toddler",
@@ -41,30 +41,35 @@
         "district-prek",
         "after-3"
       ],
-      "programsConfirmed": false,
-      "addressConfirmed": true
+      "programsConfirmed": true,
+      "addressConfirmed": true,
+      "hoursEs": "De lunes a viernes, de 7:30 AM a 5:30 PM",
+      "hoursNoteEs": "Incluye cuidado antes y después del horario escolar.",
+      "calendarEs": "Los programas de bebés y niños pequeños funcionan todo el año. El Pre-K del distrito sigue el calendario de las Escuelas Públicas de Plainfield."
     },
     {
       "id": "arlington",
       "name": "Arlington Avenue",
-      "street": "516-522 Arlington Avenue",
+      "street": "522 Arlington Avenue",
       "city": "Plainfield",
       "state": "NJ",
       "zip": "07060",
       "phone": "9082220029",
       "fax": "9082220079",
       "hours": "Monday through Friday, 8:30 AM to 3:00 PM",
-      "hoursNote": "Wrap-around care availability is pending confirmation.",
+      "hoursNote": "This location does not offer before or after care.",
       "calendar": "Follows the Plainfield Public Schools calendar.",
-      "calendarConfirmed": false,
-      "contactPerson": "",
-      "contactPersonConfirmed": false,
+      "calendarConfirmed": true,
+      "contactPerson": "Doris Valentin",
+      "contactPersonConfirmed": true,
       "programs": [
         "district-prek"
       ],
-      "programsConfirmed": false,
-      "addressConfirmed": false,
-      "addressNote": "Questionnaire says 522 Arlington Avenue; parent handbook says 516-522 Arlington Avenue."
+      "programsConfirmed": true,
+      "addressConfirmed": true,
+      "hoursEs": "De lunes a viernes, de 8:30 AM a 3:00 PM",
+      "hoursNoteEs": "Esta sede no ofrece cuidado antes ni después del horario escolar.",
+      "calendarEs": "Sigue el calendario de las Escuelas Públicas de Plainfield."
     }
   ],
   "closures": [
@@ -115,5 +120,6 @@
     "Vacaciones de primavera",
     "La mayoría de los días feriados"
   ],
-  "closuresNoteEs": "El centro sigue los cierres de las Escuelas Públicas de Plainfield. En caso de mal tiempo, llame al centro entre las 6:00 AM y las 7:00 AM para escuchar un mensaje grabado."
+  "closuresNoteEs": "El centro sigue los cierres de las Escuelas Públicas de Plainfield. En caso de mal tiempo, llame al centro entre las 6:00 AM y las 7:00 AM para escuchar un mensaje grabado.",
+  "_nameNote": "`name` is the brand, used everywhere a parent reads it. `legalName` is the registered entity and appears only in the footer copyright line. The client asked to brand as 'Precious Steps Child Care Center'; the entity is 'PS CC&DC', which expands to the value in legalName."
 }

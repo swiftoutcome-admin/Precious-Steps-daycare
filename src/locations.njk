@@ -44,18 +44,23 @@ eleventyComputed:
         <dt>{{ t.common.fax }}</dt>
         <dd>{{ location.fax | phoneDisplay }}</dd>
         <dt>{{ t.common.hours }}</dt>
-        <dd>{{ location.hours }}{% if location.hoursNote %} {{ location.hoursNote }}{% endif %}</dd>
+        <dd>{{ location.hours if lang.code == 'en' else location.hoursEs }}{% if location.hoursNote %} {{ location.hoursNote if lang.code == 'en' else location.hoursNoteEs }}{% endif %}</dd>
         <dt>{{ t.common.calendar }}</dt>
-        <dd>{{ location.calendar }}</dd>
+        <dd>{{ location.calendar if lang.code == 'en' else location.calendarEs }}</dd>
         <dt>{{ t.common.programsHere }}</dt>
         <dd>
-          {% for id in location.programs %}
+          {%- for id in location.programs -%}
+            {#- loop.last inside the inner loop refers to the full programs
+                list, not this location's, which printed a trailing comma
+                whenever the matched programme was not last overall. Hold the
+                outer loop so the separator tracks the right list. -#}
+            {%- set outer = loop -%}
             {%- for program in programs -%}
               {%- if program.id == id -%}
-                <a href="{{ 'programs' | localizedUrl(lang.code) }}#{{ program.id }}">{{ t.programContent[program.id].name }}</a>{% if not loop.last %}, {% endif %}
+                <a href="{{ 'programs' | localizedUrl(lang.code) }}#{{ program.id }}">{{ t.programContent[program.id].name }}</a>{%- if not outer.last %}, {% endif -%}
               {%- endif -%}
             {%- endfor -%}
-          {% endfor %}
+          {%- endfor -%}
         </dd>
       </dl>
 

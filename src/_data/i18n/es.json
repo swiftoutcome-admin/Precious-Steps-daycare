@@ -44,7 +44,8 @@
     "servingSince": "Sirviendo a las familias de Plainfield desde",
     "photographPending": "Fotografía pendiente",
     "contentNeeded": "Falta contenido",
-    "unconfirmed": "Sin confirmar"
+    "unconfirmed": "Sin confirmar",
+    "careTypes": "Opciones de cuidado"
   },
   "home": {
     "eyebrow": "Plainfield, Nueva Jersey",
@@ -304,7 +305,7 @@
     },
     "room-to-bloom": {
       "name": "Room to Bloom",
-      "summary": "",
+      "summary": "Un salón con currículo High Scope para niños que ya pasaron la etapa de niño pequeño pero aún no entran al Pre-K, con una proporción de un maestro por cada diez niños. Disponible a tiempo completo, a tiempo parcial o como cuidado ocasional.",
       "schedule": "",
       "bring": []
     },
