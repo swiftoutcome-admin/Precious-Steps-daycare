@@ -156,6 +156,12 @@
   --width-wide: 74rem;
   --gutter: clamp(1.25rem, 5vw, 3rem);
 
+  /* The header packs the logo, six links, a CTA and the language switch
+     into one row at the page's own content width. This gap is the lever
+     that decides whether they fit, so it is a token rather than a value
+     buried in the nav rule. */
+  --nav-gap: 1.25rem;
+
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 22px;

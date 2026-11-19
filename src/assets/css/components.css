@@ -227,39 +227,25 @@
   text-decoration: none;
 }
 
-/* Wordmark. Live text in the display face, so it is crisp at any size and
-   sized directly rather than through an SVG's viewBox. */
-.brand {
+/* The approved logo artwork.
+
+   Sized by height so the lockup scales as one piece and the proportions
+   the client approved are never altered. The source file is trimmed to
+   its own content, which matters: the placeholder this replaced had a
+   third of its canvas as empty padding, so setting a height scaled the
+   padding along with the artwork and it always looked small at the size
+   it was given. */
+.site-header__logo {
   display: block;
-  line-height: 1;
+  width: auto;
+  height: clamp(3rem, 2.4rem + 2.4vw, 3.75rem);
+  transition: opacity var(--transition);
 }
 
-.brand__name {
-  display: block;
-  font-family: var(--font-display);
-  font-variation-settings: var(--display-variation);
-  font-size: clamp(1.5rem, 1.15rem + 1.1vw, 2.125rem);
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-tight);
-  line-height: 1.05;
-  color: var(--brand-navy-700);
-  white-space: nowrap;
-}
-
-.brand__sub {
-  display: block;
-  margin-top: 0.22em;
-  font-family: var(--font-sans);
-  font-size: clamp(0.5625rem, 0.48rem + 0.22vw, 0.6875rem);
-  font-weight: var(--weight-semibold);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--brand-pink-700);
-  white-space: nowrap;
-}
-
-.site-header__brand:hover .brand__name {
-  color: var(--brand-royal-600);
+/* A link needs to answer the pointer. Opacity rather than a filter or a
+   colour shift, so the artwork itself is never altered. */
+.site-header__brand:hover .site-header__logo {
+  opacity: 0.86;
 }
 
 .nav-toggle {
@@ -305,7 +291,7 @@
 .primary-nav__list {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-md);
+  gap: var(--nav-gap);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -341,11 +327,14 @@
 }
 
 /* Below the desktop breakpoint the nav collapses behind the toggle.
-   The breakpoint is 72rem rather than a conventional 58rem because this
-   header carries a lot: wordmark, six links, a CTA button and the language
-   switch. Below ~1150px they do not fit on one line, and a nav that wraps
-   to two rows looks broken. */
-@media (max-width: 71.99rem) {
+   The breakpoint is 75rem rather than a conventional 58rem because this
+   header carries a lot: the logo, six links, a CTA button and the language
+   switch. The header's inner row is capped at the page's content width so
+   it stays aligned with everything below it, which means widening the
+   window past that point adds no room. Spanish is the binding case: its
+   labels run about 40px longer than the English ones. Below 75rem they do
+   not fit on one line, and a nav that wraps to two rows looks broken. */
+@media (max-width: 74.99rem) {
   .primary-nav {
     display: none;
     width: 100%;
@@ -371,7 +360,7 @@
   }
 }
 
-@media (min-width: 72rem) {
+@media (min-width: 75rem) {
   .nav-toggle {
     display: none;
   }
@@ -379,7 +368,7 @@
   .primary-nav {
     display: flex;
     align-items: center;
-    gap: var(--space-lg);
+    gap: var(--space-md);
   }
 }
 
@@ -683,10 +672,11 @@ textarea.field__control {
   }
 }
 
-.site-footer__name {
-  margin-bottom: var(--space-3xs);
-  font-family: var(--font-display);
-  font-size: var(--text-lg);
+.site-footer__logo {
+  display: block;
+  width: auto;
+  height: 2.875rem;
+  margin-bottom: var(--space-xs);
 }
 
 .site-footer__tagline,
@@ -1052,7 +1042,7 @@ textarea.field__control {
   box-shadow: var(--shadow-sm);
 }
 
-@media (min-width: 72rem) {
+@media (min-width: 75rem) {
   .lang-switch {
     order: 3;
     margin-left: 0;

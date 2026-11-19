@@ -1,7 +1,17 @@
 <footer class="site-footer pattern-bg">
   <div class="site-footer__inner">
     <div class="site-footer__col">
-      <p class="site-footer__name">{{ site.name }}</p>
+      {# Same artwork as the header, smaller. The footer sits on white, so
+         the transparent source needs no variant of its own. #}
+      <img
+        class="site-footer__logo"
+        src="/assets/img/brand/logo-horizontal.webp"
+        alt="{{ site.name }}"
+        width="900"
+        height="220"
+        loading="lazy"
+        decoding="async"
+      />
       <p class="site-footer__tagline">{{ t.tagline }}</p>
       <p class="site-footer__since">{{ t.common.servingSince }} {{ site.foundedYear }}.</p>
     </div>

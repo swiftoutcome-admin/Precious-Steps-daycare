@@ -1,20 +1,29 @@
 <header class="site-header">
   <div class="site-header__inner">
     {#
-      The wordmark is live text in the site's own display face, not an
-      image. The previous SVG had a viewBox a third wider than its
-      content, so sizing it by height scaled the empty padding along with
-      the letters and it always looked small. Text also stays crisp at any
-      size and matches the page typography exactly.
+      The client's approved logo artwork. The brand standards say to use
+      the original artwork rather than recreating it, so this is their
+      file, trimmed to its content and resized, with nothing redrawn.
 
-      When the client's real logo arrives, swap this span back to an <img>
-      with alt="{{ site.name }}".
+      The source is transparent, so it carries no white box of its own and
+      sits on whatever the header colour happens to be. It is served at
+      three times its largest display size so it stays sharp on a retina
+      screen, and width and height are declared so the header does not
+      reflow while it loads.
+
+      The logo already reads "Precious Steps Child Care Center", so the
+      alt text is the name alone. Repeating "logo" there would make a
+      screen reader announce the word twice.
     #}
     <a class="site-header__brand" href="{{ 'home' | localizedUrl(lang.code) }}">
-      <span class="brand">
-        <span class="brand__name">Precious Steps</span>
-        <span class="brand__sub">Child Care Center</span>
-      </span>
+      <img
+        class="site-header__logo"
+        src="/assets/img/brand/logo-horizontal.webp"
+        alt="{{ site.name }}"
+        width="900"
+        height="220"
+        decoding="async"
+      />
     </a>
 
     {#
