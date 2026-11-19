@@ -1,88 +1,118 @@
 /* ===========================================================================
    DESIGN TOKENS
 
-   This is the rebrand swap point. The client's new logo and palette are not
-   final. When they arrive, change the values in this file only. No other
-   stylesheet should contain a raw colour, font family, or spacing value.
+   Colour is set from the client's Digital Brand Standards (2026-2027).
+   No other stylesheet contains a raw colour, font family, or spacing value.
 
-   Direction: warm and nurturing. Everything here leans away from the
-   cool, hairlined, high-contrast look of a corporate product page.
-   Neutrals are warm rather than grey, the page sits on cream instead of
-   pure white, corners are generous, and the type is a soft serif over a
-   humanist sans.
+   The five official colours are marked OFFICIAL below and are used at their
+   exact published values. Everything else in the colour section is a tint or
+   shade of one of those five, generated so the interface has the range it
+   needs without introducing a colour the standards do not sanction.
+
+   Two values carry a deliberate adjustment, both for legibility. Neither is
+   a free choice: each is the lightest shade that still clears 4.5:1 against
+   every panel colour on the site, not only against white. Checking against
+   white alone is what lets a palette ship with text that fails on a tinted
+   section, so both were measured against all six.
+
+     --brand-royal-700  Royal Blue deepened, used wherever blue carries text
+                        and as the button fill. Royal Blue itself is 4.41:1
+                        on white, under the 4.5:1 minimum, and lower again on
+                        a tinted panel. This is 5.43:1 on white and never
+                        below 4.67:1 anywhere it is used.
+
+     --brand-pink-700   Hot Pink deepened toward Deep Navy, used wherever
+                        pink carries small text. Hot Pink is 3.64:1 on white,
+                        fine for large display type and decoration but well
+                        under the minimum for labels. This is 5.74:1 on white
+                        and never below 4.94:1 anywhere it is used.
+
+   Hot Pink and Blush Pink are otherwise used exactly as published, for
+   highlights, focus rings and soft backgrounds, which is what the standards
+   assign them. Royal Blue is used as published for borders and accents.
    =========================================================================== */
 
 :root {
-  /* --- Brand -------------------------------------------------------------
-     Placeholder palette reading the client's "pink and blue" warmly.
-     The blue is pulled toward teal so it sits beside the rose without
-     going corporate-navy. Replace on receipt of the final brand guide. */
-  --brand-blue-900: #17424f;
-  --brand-blue-700: #235d72;
-  --brand-blue-500: #3d8099;
-  --brand-blue-200: #bedbe4;
-  --brand-blue-100: #dcecf1;
-  --brand-blue-50: #eff7f9;
+  /* --- Brand ---------------------------------------------------------------
+     Deep Navy    #17345E   headings and primary text
+     Royal Blue   #2878D7   buttons and informational accents
+     Hot Pink     #EC438F   highlights
+     Blush Pink   #F7B7C9   softer backgrounds
+     White        #FFFFFF   clean spaces                                     */
 
-  --brand-rose-700: #a84f63;
-  --brand-rose-500: #c96f84;
-  --brand-rose-300: #e9b3bf;
-  --brand-rose-100: #f8e4e8;
-  --brand-rose-50: #fdf4f6;
+  --brand-navy-900: #102340;
+  --brand-navy-800: #132b4d;
+  --brand-navy-700: #17345e; /* OFFICIAL  Deep Navy */
+  --brand-navy-500: #3a5276;
+  --brand-navy-400: #516786;
+  --brand-navy-300: #7f8fa6;
+  --brand-navy-100: #dfe3e8;
+  --brand-navy-50: #f1f4f8;
 
-  /* A small amount of apricot keeps the palette from reading as
-     two-colour. Use sparingly: highlights and small marks only. */
-  --brand-apricot-500: #d99246;
-  --brand-apricot-100: #fbeedd;
+  --brand-royal-800: #1f5aa3;
+  --brand-royal-700: #236abd; /* text-safe blue, never below 4.67:1 in use */
+  --brand-royal-600: #2672cc;
+  --brand-royal-500: #2878d7; /* OFFICIAL  Royal Blue */
+  --brand-royal-200: #a9c9ef;
+  --brand-royal-100: #d0e1f6;
+  --brand-royal-50: #eaf2fb;
+
+  --brand-pink-700: #a83e7f; /* text-safe pink, never below 4.94:1 in use */
+  --brand-pink-500: #ec438f; /* OFFICIAL  Hot Pink */
+  --brand-pink-300: #f7b7c9; /* OFFICIAL  Blush Pink */
+  --brand-pink-100: #fbd7e1;
+  --brand-pink-50: #fde9ef;
 
   /* --- Neutrals ------------------------------------------------------------
-     Warm greys. Every one carries a little red and yellow, so nothing on
-     the page reads as cold slate. */
-  --ink-900: #2e2724;
-  --ink-700: #4a403b;
-  --ink-500: #6f625b;
-  --ink-400: #8d7f77;
-  --ink-300: #b6aaa2;
-  --ink-200: #ded4cb;
-  --ink-100: #ece4da;
-  --ink-50: #f6f1e9;
+     Cool greys carrying a navy cast, so nothing on the page reads as a
+     neutral borrowed from somewhere else. Every one of these is Deep Navy
+     mixed toward white. */
+  --ink-900: #17345e;
+  --ink-700: #3a5276;
+  --ink-500: #516786;
+  --ink-400: #5f7490; /* still passes 4.5:1 on white, so it is safe as text */
+  --ink-300: #b9c2cf;
+  --ink-200: #dfe3e8;
+  --ink-100: #eef1f5;
+  --ink-50: #f6f8fa;
 
-  --paper: #fdfaf5;
+  --paper: #ffffff; /* OFFICIAL  White */
   --paper-pure: #ffffff;
 
-  /* --- Semantic ------------------------------------------------------------- */
+  /* --- Semantic -------------------------------------------------------------
+     Cards sit on the same white as the page and are separated by shadow
+     rather than by a tinted fill, which is what keeps the page reading as
+     the clean white space the standards call for. */
   --color-text: var(--ink-900);
   --color-text-muted: var(--ink-500);
   --color-bg: var(--paper);
-  --color-bg-subtle: var(--brand-blue-50);
-  --color-bg-warm: var(--brand-rose-50);
+  --color-bg-subtle: var(--brand-royal-50);
+  --color-bg-warm: var(--brand-pink-50);
   --color-surface: var(--paper-pure);
-  --color-accent: var(--brand-blue-700);
-  --color-accent-hover: var(--brand-blue-900);
-  --color-accent-soft: var(--brand-blue-100);
-  --color-highlight: var(--brand-rose-700);
-  --color-highlight-soft: var(--brand-rose-100);
+  --color-accent: var(--brand-royal-700);
+  --color-accent-hover: var(--brand-royal-800);
+  --color-accent-soft: var(--brand-royal-100);
+  --color-highlight: var(--brand-pink-700);
+  --color-highlight-soft: var(--brand-pink-50);
 
-  /* Borders are now the exception rather than the rule. Soft tinted
-     panels do most of the separating work; keep hairlines for tables
-     and genuine dividers. */
   --rule: 1px solid var(--ink-200);
   --rule-faint: 1px solid var(--ink-100);
-  --rule-accent: 2px solid var(--brand-blue-200);
+  --rule-accent: 2px solid var(--brand-royal-200);
 
-  --focus-ring: 3px solid var(--brand-rose-500);
+  /* Hot Pink as the focus ring. It is the brand's highlight colour and it
+     measures 3.64:1 against white, above the 3:1 a focus indicator needs. */
+  --focus-ring: 3px solid var(--brand-pink-500);
   --focus-offset: 3px;
 
   /* --- Type -----------------------------------------------------------------
-     Fraunces for display: a soft serif whose SOFT and WONK axes round the
-     terminals and tilt the odd letter, which is what keeps headings from
-     reading as institutional. Nunito Sans for text: humanist, rounded,
-     and comfortable at small sizes. Both self-hosted; see fonts.css. */
+     Fraunces for display and Nunito Sans for text. The standards specify
+     Fredoka Bold for headings and Nunito for everything else; that swap is
+     a separate change and is not in this file yet. Both current faces are
+     self-hosted; see fonts.css. */
   --font-display: "Fraunces", ui-serif, Georgia, serif;
   --font-sans: "Nunito Sans", ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, sans-serif;
 
-  /* The warmth levers on Fraunces. Raise SOFT for rounder terminals. */
   --display-variation: "SOFT" 60, "WONK" 1;
 
   /* Slightly larger base than a typical marketing site. Parents read this
@@ -95,7 +125,6 @@
   --text-2xl: clamp(1.875rem, 1.6rem + 1.3vw, 2.625rem);
   --text-3xl: clamp(2.25rem, 1.8rem + 2.2vw, 3.5rem);
 
-  /* Looser than before across the board. Air is most of the warmth. */
   --leading-tight: 1.2;
   --leading-snug: 1.4;
   --leading-normal: 1.7;
@@ -127,17 +156,16 @@
   --width-wide: 74rem;
   --gutter: clamp(1.25rem, 5vw, 3rem);
 
-  /* Generous corners. This is the single biggest lever on how soft the
-     page feels, after the typeface. */
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 22px;
   --radius-pill: 999px;
 
-  /* Warm-tinted shadows. A grey shadow on cream looks like dirt. */
-  --shadow-sm: 0 1px 2px rgb(74 64 59 / 0.05);
-  --shadow-md: 0 4px 16px rgb(74 64 59 / 0.07);
-  --shadow-lg: 0 10px 34px rgb(74 64 59 / 0.09);
+  /* Shadows tinted with Deep Navy rather than grey, so they read as the
+     page's own shadow instead of dirt. */
+  --shadow-sm: 0 1px 2px rgb(23 52 94 / 0.06);
+  --shadow-md: 0 4px 16px rgb(23 52 94 / 0.09);
+  --shadow-lg: 0 10px 34px rgb(23 52 94 / 0.12);
 
   /* Button depth.
      Three stacked layers, not one drop shadow:
@@ -146,17 +174,17 @@
        3. a wide ambient shadow tinted with the button's OWN colour
      A grey shadow under a coloured button is the single most common
      tell of a default-looking button. */
-  --shadow-btn: inset 0 1px 0 rgb(255 255 255 / 0.16),
-    0 1px 2px rgb(23 66 79 / 0.24), 0 6px 16px -8px rgb(23 66 79 / 0.5);
-  --shadow-btn-hover: inset 0 1px 0 rgb(255 255 255 / 0.2),
-    0 2px 4px rgb(23 66 79 / 0.22), 0 14px 26px -10px rgb(23 66 79 / 0.55);
-  --shadow-btn-active: inset 0 1px 2px rgb(10 35 45 / 0.28),
-    0 1px 1px rgb(23 66 79 / 0.2);
+  --shadow-btn: inset 0 1px 0 rgb(255 255 255 / 0.18),
+    0 1px 2px rgb(23 52 94 / 0.26), 0 6px 16px -8px rgb(31 90 163 / 0.55);
+  --shadow-btn-hover: inset 0 1px 0 rgb(255 255 255 / 0.22),
+    0 2px 4px rgb(23 52 94 / 0.24), 0 14px 26px -10px rgb(31 90 163 / 0.6);
+  --shadow-btn-active: inset 0 1px 2px rgb(16 35 64 / 0.3),
+    0 1px 1px rgb(23 52 94 / 0.22);
 
-  --shadow-btn-ghost: inset 0 0 0 1.5px var(--brand-blue-200),
-    0 1px 2px rgb(74 64 59 / 0.05);
-  --shadow-btn-ghost-hover: inset 0 0 0 1.5px var(--brand-blue-500),
-    0 8px 18px -10px rgb(23 66 79 / 0.45);
+  --shadow-btn-ghost: inset 0 0 0 1.5px var(--brand-royal-200),
+    0 1px 2px rgb(23 52 94 / 0.06);
+  --shadow-btn-ghost-hover: inset 0 0 0 1.5px var(--brand-royal-500),
+    0 8px 18px -10px rgb(31 90 163 / 0.5);
 
   /* Wallpaper pattern. Built as a seamless transparent tile from the
      client's pastel motif artwork, so it composites over any section
