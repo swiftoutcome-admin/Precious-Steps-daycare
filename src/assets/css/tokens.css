@@ -132,41 +132,41 @@
   --color-field-border: var(--brand-navy-300);
   --color-field-border-focus: var(--brand-royal-700);
 
-  /* --- Liquid and glass materials -------------------------------------------
-     Built only from White, Deep Navy and Royal Blue at varying opacity, so
-     the finish adds depth without adding a colour.
+  /* --- Clay (soft 3D) -------------------------------------------------------------
+     Raised elements read as soft, matte moulded clay lit from the top left:
+       - a soft White highlight inset along the top-left edge
+       - gentle inset shading toward the lower right
+       - a broad, blurred shadow beneath, tinted to the surface's own colour
+     Pressed elements reverse it: shading inset from the top left, no shadow
+     beneath. Text is never shaded or embossed.
 
-     Liquid (primary actions): a solid Royal Blue body, a glossy lip confined
-     to the top third so it never sits behind the label, a light-catching
-     rim, a darker lower edge for thickness, and a blue-tinted float shadow.
-     The label is white on Royal 600 to 800, never below 4.84:1.
+     Each surface sets --clay-shade to one of the tints below (an "r g b"
+     triplet, so the recipes in components.css can vary its opacity). Every
+     tint is a shade of one of the five brand colours. */
+  --clay-light: 255 255 255;
+  --clay-tint-paper: 23 52 94;      /* Deep Navy, under white surfaces */
+  --clay-tint-blush: 168 62 127;    /* deepened Hot Pink, under Blush Pink */
+  --clay-tint-sky: 31 90 163;       /* Royal Blue 800, under pale blue */
+  --clay-tint-royal: 16 35 64;      /* Deep Navy 900, under Royal Blue */
+  --clay-tint-magenta: 112 41 85;   /* deeper shade of Hot Pink, under magenta */
+  --clay-tint-navy: 6 14 26;        /* darker shade of Deep Navy, under navy */
+  --clay-tint-button: 35 106 189;   /* Royal Blue 700: the tour button's own glow */
 
-     Glass (secondary actions, call bar): translucent White over a blurred
-     backdrop with a hairline rim. Deep Navy text on it stays above 7:1 even
-     with the darkest section of the site behind it. */
-  --liquid-gloss: rgb(255 255 255 / 0.24);
-  --liquid-gloss-soft: rgb(255 255 255 / 0.06);
-  --liquid-lip: rgb(255 255 255 / 0.55);
-  --liquid-glint: rgb(255 255 255 / 0.95);
-  --liquid-edge: rgb(16 35 64 / 0.35);
-  --glass-fill: rgb(255 255 255 / 0.66);
-  --glass-fill-strong: rgb(255 255 255 / 0.8);
-  --glass-rim-hi: rgb(255 255 255 / 0.95);
-  --glass-rim-lo: rgb(169 201 239 / 0.6);
-  --glass-blur: blur(16px) saturate(1.6);
+  --clay-radius: 28px;
+  --clay-radius-lg: 36px;
+  --clay-radius-pill: 999px;
 
-  --shadow-liquid: inset 0 -2px 3px rgb(16 35 64 / 0.28),
-    0 1px 1px rgb(23 52 94 / 0.16), 0 4px 10px -3px rgb(31 90 163 / 0.35),
-    0 16px 30px -12px rgb(35 106 189 / 0.6);
-  --shadow-liquid-hover: inset 0 -2px 3px rgb(16 35 64 / 0.28),
-    0 2px 2px rgb(23 52 94 / 0.14), 0 8px 16px -4px rgb(31 90 163 / 0.35),
-    0 26px 40px -14px rgb(35 106 189 / 0.62);
-  --shadow-liquid-press: inset 0 2px 5px rgb(16 35 64 / 0.35),
-    0 1px 1px rgb(23 52 94 / 0.2), 0 4px 8px -4px rgb(31 90 163 / 0.35);
-  --shadow-glass: inset 0 1px 0 rgb(255 255 255 / 0.9),
-    0 1px 2px rgb(23 52 94 / 0.08), 0 10px 26px -10px rgb(23 52 94 / 0.28);
-  --shadow-glass-hover: inset 0 1px 0 rgb(255 255 255 / 0.95),
-    0 2px 4px rgb(23 52 94 / 0.08), 0 18px 34px -12px rgb(23 52 94 / 0.32);
+  /* How strong each part is. Dark surfaces take a softer highlight, since
+     White reads far brighter against them. */
+  --clay-hi: 0.6;
+  --clay-hi-dark: 0.22;
+  --clay-lo: 0.16;
+  --clay-cast: 0.38;
+
+  /* Pattern-free photo frames: a hairline of White inside the edge and a
+     broad soft shadow, so the photo sits in the page like a pressed print. */
+  --photo-radius: 32px;
+
   /* --- Cut paper ----------------------------------------------------------------
      Coloured bands read as sheets laid on white paper. Their top and bottom
      edges are soft waves of White cut over the band, each casting a faint
@@ -176,13 +176,6 @@
   --edge-top: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 48' preserveAspectRatio='none'%3E%3Cfilter id='s' x='-5%25' y='-60%25' width='110%25' height='220%25'%3E%3CfeDropShadow dx='0' dy='3' stdDeviation='3' flood-color='%2317345e' flood-opacity='.2'/%3E%3C/filter%3E%3Cpath filter='url(%23s)' fill='%23ffffff' d='M0 0H1440V20C1320 32 1180 34 1040 24S760 4 600 14 300 36 160 28 40 14 0 18Z'/%3E%3C/svg%3E");
   --edge-bottom: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 48' preserveAspectRatio='none'%3E%3Cfilter id='s' x='-5%25' y='-60%25' width='110%25' height='220%25'%3E%3CfeDropShadow dx='0' dy='-2' stdDeviation='3' flood-color='%2317345e' flood-opacity='.14'/%3E%3C/filter%3E%3Cpath filter='url(%23s)' fill='%23ffffff' d='M0 48H1440V28C1320 16 1180 14 1040 24S760 44 600 34 300 12 160 20 40 34 0 30Z'/%3E%3C/svg%3E");
 
-  /* Blush paper cards: lighter at the top, Blush Pink at the bottom, a 1px
-     White highlight along the top edge and a two-layer shadow tinted with
-     the deepened Hot Pink. Deep Navy text clears 7:1 at both ends. */
-  --paper-blush: linear-gradient(180deg, var(--brand-pink-100) 0%, var(--brand-pink-300) 100%);
-  --paper-blush-soft: linear-gradient(180deg, var(--brand-pink-50) 0%, var(--brand-pink-100) 100%);
-  --shadow-paper-pink: inset 0 1px 0 rgb(255 255 255 / 0.8),
-    0 2px 4px rgb(168 62 127 / 0.16), 0 24px 44px -18px rgb(168 62 127 / 0.42);
 
   /* Organic shapes peeking from behind the blush cards. Light Blue is a
      Royal Blue tint; the warm shape is Hot Pink, the brand's warm accent. */
@@ -200,8 +193,6 @@
      5.6:1 with the grain at full strength. */
   --color-link-on-tint: var(--brand-royal-800);
 
-  --shadow-dock: inset 0 1px 0 rgb(255 255 255 / 0.9),
-    0 2px 6px rgb(23 52 94 / 0.1), 0 18px 44px -12px rgb(23 52 94 / 0.38);
 
   --rule: 1px solid var(--ink-200);
   --rule-faint: 1px solid var(--ink-100);

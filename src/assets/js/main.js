@@ -118,43 +118,51 @@
   }
 
   /**
-   * Liquid buttons: the rim brightens nearest the pointer, as light would
-   * catch the edge of a lens. Only on devices with a fine pointer and only
-   * when the visitor has not asked for reduced motion. Positions are set as
-   * custom properties through style.setProperty, never as a style string,
-   * so the strict CSP holds.
+   * Programs page: mark the age-group link for the programme being read.
+   * The links stay plain in-page links (they are not converted to ARIA
+   * tabs); aria-current says which one matches what is on screen, and the
+   * CSS draws it pressed in with a bar under the name. Without JavaScript
+   * the links simply all look the same and still jump to each programme.
    */
-  function initLiquid() {
-    var fine = window.matchMedia("(hover: hover) and (pointer: fine)");
-    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (!fine.matches || reduce.matches) return;
+  function initLadder() {
+    var links = document.querySelectorAll(".ladder__link");
+    if (!links.length) return;
 
-    var selector = ".button, .ticket__call, .phone-chip, .callbar__button, .nav-toggle";
-    var frame = 0;
-
-    document.addEventListener(
-      "pointermove",
-      function (event) {
-        var el = event.target.closest ? event.target.closest(selector) : null;
-        if (!el) return;
-        var rect = el.getBoundingClientRect();
-        var x = event.clientX - rect.left;
-        var y = event.clientY - rect.top;
-        cancelAnimationFrame(frame);
-        frame = requestAnimationFrame(function () {
-          el.style.setProperty("--mx", x + "px");
-          el.style.setProperty("--my", y + "px");
-        });
-      },
-      { passive: true }
-    );
-
-    document.addEventListener("pointerout", function (event) {
-      var el = event.target.closest ? event.target.closest(selector) : null;
-      if (!el || el.contains(event.relatedTarget)) return;
-      el.style.removeProperty("--mx");
-      el.style.removeProperty("--my");
+    var items = [];
+    links.forEach(function (link) {
+      var section = document.getElementById(link.getAttribute("href").slice(1));
+      if (section) items.push({ link: link, section: section });
     });
+    if (!items.length) return;
+
+    // The programme whose section has crossed 40% of the way down the
+    // screen is the one being read. Above the first, the first is marked.
+    function update() {
+      var line = window.innerHeight * 0.4;
+      var current = items[0];
+      items.forEach(function (item) {
+        if (item.section.getBoundingClientRect().top <= line) current = item;
+      });
+      items.forEach(function (item) {
+        if (item === current) item.link.setAttribute("aria-current", "true");
+        else item.link.removeAttribute("aria-current");
+      });
+    }
+
+    var queued = false;
+    function schedule() {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(function () {
+        queued = false;
+        update();
+      });
+    }
+
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    window.addEventListener("hashchange", schedule);
+    update();
   }
 
   function init() {
@@ -163,7 +171,7 @@
     initFormGuard();
     initReveals();
     initCallSheet();
-    initLiquid();
+    initLadder();
   }
 
   if (document.readyState === "loading") {

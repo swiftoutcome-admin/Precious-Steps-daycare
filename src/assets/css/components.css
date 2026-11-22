@@ -854,7 +854,7 @@ body {
 
 .stairs-section {
   padding-block: var(--space-2xl);
-  overflow: hidden;
+  overflow-x: clip;
 }
 
 .stairs {
@@ -946,14 +946,6 @@ body {
 .stair--3 .stair__riser { background-color: var(--riser-3-bg); color: var(--riser-3-fg); }
 .stair--4 .stair__riser { background-color: var(--riser-4-bg); color: var(--riser-4-fg); }
 .stair--5 .stair__riser { background-color: var(--riser-5-bg); color: var(--riser-5-fg); }
-
-/* Narrow screens: a ladder, each rung stepped in a little further. */
-@media (min-width: 30rem) and (max-width: 63.99rem) {
-  .stair--2 { margin-left: var(--space-sm); }
-  .stair--3 { margin-left: var(--space-lg); }
-  .stair--4 { margin-left: calc(var(--space-lg) + var(--space-sm)); }
-  .stair--5 { margin-left: var(--space-xl); }
-}
 
 /* Wide screens: real stairs. Each riser is one step taller than the last,
    and every column sits on the same floor. */
@@ -2662,23 +2654,6 @@ textarea.field__control {
   color: var(--color-link-on-tint);
 }
 
-/* Blush paper cards. */
-.meals__panel,
-.philosophy__panel,
-.closings__panel,
-.bilingual {
-  background-color: var(--brand-pink-300);
-  background-image: var(--paper-blush);
-  box-shadow: var(--shadow-paper-pink);
-}
-
-.closing__inner {
-  background-color: var(--brand-pink-100);
-  background-image: var(--pattern-url), var(--paper-blush-soft);
-  background-size: var(--pattern-size), auto;
-  box-shadow: var(--shadow-paper-pink);
-}
-
 /* Two organic shapes peek out from behind each blush card: Light Blue at
    the top right, Hot Pink at the bottom left. They are the section's own
    pseudo-elements, placed from the card's edges, and sit behind it. */
@@ -2757,161 +2732,417 @@ body::after {
   }
 }
 
-/* --- 11b. Liquid and glass materials -----------------------------------------
-   Two finishes, one for each kind of action.
+/* --- 11b. Clay (soft 3D) -----------------------------------------------------------
+   One material for everything raised, lit from the top left.
 
-   Liquid: primary actions. A solid Royal Blue body graded from 600 at the
-   top to 800 at the bottom, a glossy lip in the top third only (so it never
-   sits behind the white label), a rim that catches light, a darker lower
-   edge for thickness, and a float shadow tinted with the button's own blue.
+     raised   a soft White highlight inset along the top-left edge, gentle
+              inset shading toward the lower right, and a broad blurred
+              shadow beneath, all tinted to the surface's own colour
+     pressed  the reverse: shading inset from the top left, nothing beneath
 
-   Glass: secondary actions. Translucent white over a blurred backdrop, a
-   hairline rim bright at the top and bottom, and a soft navy float shadow.
+   Surfaces stay matte: no gloss bands, no glass, no gradients standing in
+   for light. Text is never shaded. Each element sets --clay-shade (one of
+   the tints in tokens.css) and the recipes below do the rest. The header,
+   footer, long-form text and gallery stay flat on purpose. */
 
-   On devices with a fine pointer, main.js moves --mx and --my with the
-   cursor, so the rim brightens nearest the pointer as if light were
-   catching the edge of a lens. Without it the glint rests at the top. */
+/* Shadow tint per surface. White is the default. */
+.clay-surface,
+.stair__card,
+.ticket,
+.creds__item,
+.trio__item,
+.quad__item,
+.journey__step,
+.checklist--card,
+.contact__form-card,
+.letter,
+.notice__card,
+.closing__copy,
+.button--secondary,
+.phone-chip,
+.callbar,
+.callbar__button--call {
+  --clay-shade: var(--clay-tint-paper);
+}
+
+.meals__panel,
+.philosophy__panel,
+.closings__panel,
+.bilingual,
+.closing__inner,
+.stair--1 .stair__riser,
+.ladder .stair--1 .ladder__link,
+.program.stair--1 .program__facts {
+  --clay-shade: var(--clay-tint-blush);
+}
+
+.stair--2 .stair__riser,
+.ladder .stair--2 .ladder__link,
+.program.stair--2 .program__facts {
+  --clay-shade: var(--clay-tint-sky);
+}
 
 .button--primary,
 .ticket__call,
-.callbar__button--tour {
+.callbar__button--tour,
+.stair--3 .stair__riser,
+.ladder .stair--3 .ladder__link,
+.program.stair--3 .program__facts {
+  --clay-shade: var(--clay-tint-royal);
+  --clay-hi: var(--clay-hi-dark);
+}
+
+.stair--4 .stair__riser,
+.ladder .stair--4 .ladder__link,
+.program.stair--4 .program__facts {
+  --clay-shade: var(--clay-tint-magenta);
+  --clay-hi: var(--clay-hi-dark);
+}
+
+.stair--5 .stair__riser,
+.ladder .stair--5 .ladder__link,
+.program.stair--5 .program__facts,
+.callpanel {
+  --clay-shade: var(--clay-tint-navy);
+  --clay-hi: var(--clay-hi-dark);
+}
+
+/* Raised cushions: white description cards and every recurring card. */
+.clay-surface,
+.stair__card,
+.ticket,
+.creds__item,
+.trio__item,
+.quad__item,
+.journey__step,
+.checklist--card,
+.contact__form-card,
+.letter,
+.notice__card,
+.closing__copy,
+.program__facts,
+.callpanel {
+  border-radius: var(--clay-radius);
+  box-shadow:
+    inset 3px 3px 6px rgb(var(--clay-light) / var(--clay-hi)),
+    inset -4px -6px 12px rgb(var(--clay-shade) / var(--clay-lo)),
+    0 2px 4px rgb(var(--clay-shade) / 0.08),
+    0 22px 40px -20px rgb(var(--clay-shade) / var(--clay-cast));
+}
+
+/* Soft raised slabs: the blush panels. Matte, one colour, more lift. */
+.meals__panel,
+.philosophy__panel,
+.closings__panel,
+.bilingual {
+  background-color: var(--color-blush-surface);
+  background-image: none;
+  border-radius: var(--clay-radius-lg);
+  box-shadow:
+    inset 4px 4px 8px rgb(var(--clay-light) / 0.55),
+    inset -6px -8px 16px rgb(var(--clay-shade) / 0.18),
+    0 3px 6px rgb(var(--clay-shade) / 0.1),
+    0 30px 56px -26px rgb(var(--clay-shade) / 0.5);
+}
+
+/* Come see us: the pattern stays; the outer panel gets the deepest lift on
+   the page, and the cards inside sit up off it. */
+.closing__inner {
+  background-color: var(--color-blush-surface-soft);
+  background-image: var(--pattern-url);
+  background-size: var(--pattern-size);
+  border-radius: var(--clay-radius-lg);
+  box-shadow:
+    inset 4px 4px 10px rgb(var(--clay-light) / 0.7),
+    inset -6px -8px 18px rgb(var(--clay-shade) / 0.14),
+    0 4px 8px rgb(var(--clay-shade) / 0.1),
+    0 36px 64px -28px rgb(var(--clay-shade) / 0.5);
+}
+
+.closing__actions {
+  border-radius: var(--clay-radius);
+  background-color: var(--color-blush-surface-soft);
+}
+
+/* Coloured age blocks: rounded shoulders, a soft top-left highlight and
+   shading that gathers toward the base. */
+.stair__riser {
+  box-shadow:
+    inset 3px 4px 6px rgb(var(--clay-light) / var(--clay-hi)),
+    inset 0 -16px 22px -10px rgb(var(--clay-shade) / 0.32),
+    inset -4px 0 10px -4px rgb(var(--clay-shade) / 0.18);
+}
+
+@media (min-width: 64rem) {
+  .stair__riser {
+    border-radius: var(--clay-radius) var(--clay-radius) 10px 10px;
+  }
+}
+
+/* Phones and tablets: no forced staircase. Each programme is one unit in
+   reading order, the raised card resting on its coloured age block. */
+@media (max-width: 63.99rem) {
+  .stairs {
+    gap: var(--space-lg);
+  }
+
+  .stair {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
+  }
+
+  .stair__card {
+    position: relative;
+    z-index: 1;
+    border-radius: var(--clay-radius);
+  }
+
+  .stair__riser {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: calc(-1 * var(--clay-radius));
+    padding: calc(var(--clay-radius) + var(--space-xs)) var(--space-md) var(--space-sm);
+    border-radius: 0 0 var(--clay-radius) var(--clay-radius);
+  }
+
+  .stair__ages {
+    order: -1;
+    text-align: left;
+    font-size: var(--text-base);
+  }
+
+  .stair__print {
+    width: 1.25rem;
+    height: 2.5rem;
+  }
+}
+
+/* Programs page: the five age-group links take the same finish. The one
+   for the programme being read is pressed in, and carries a bar under its
+   name, so the state never rests on colour or shadow alone. */
+.ladder__link {
   position: relative;
-  isolation: isolate;
+  border-radius: var(--clay-radius);
+  box-shadow:
+    inset 3px 3px 6px rgb(var(--clay-light) / var(--clay-hi)),
+    inset 0 -12px 18px -10px rgb(var(--clay-shade) / 0.3),
+    0 2px 4px rgb(var(--clay-shade) / 0.1),
+    0 16px 28px -16px rgb(var(--clay-shade) / var(--clay-cast));
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.ladder__link:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 3px 3px 6px rgb(var(--clay-light) / var(--clay-hi)),
+    inset 0 -12px 18px -10px rgb(var(--clay-shade) / 0.3),
+    0 3px 6px rgb(var(--clay-shade) / 0.12),
+    0 22px 34px -16px rgb(var(--clay-shade) / var(--clay-cast));
+}
+
+.ladder__link[aria-current="true"] {
+  transform: translateY(2px);
+  box-shadow:
+    inset 4px 5px 10px rgb(var(--clay-shade) / 0.42),
+    inset -2px -3px 6px rgb(var(--clay-light) / calc(var(--clay-hi) * 0.6));
+}
+
+.ladder__link[aria-current="true"] .ladder__name::after {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 4px;
+  margin-top: 0.3rem;
+  border-radius: 4px;
+  background-color: currentColor;
+}
+
+@media (min-width: 64rem) {
+  .ladder__link {
+    border-radius: var(--clay-radius) var(--clay-radius) 12px 12px;
+  }
+}
+
+/* Buttons and pills. The shared Request a Tour button is the most
+   prominent object on any page; it compresses when pressed. */
+.button--primary,
+.ticket__call,
+.callbar__button--tour {
   background-color: var(--brand-royal-700);
-  background-image:
-    linear-gradient(180deg, var(--liquid-gloss) 0%, var(--liquid-gloss-soft) 30%, transparent 44%),
-    linear-gradient(180deg, var(--brand-royal-600) 0%, var(--brand-royal-700) 55%, var(--brand-royal-800) 100%);
+  background-image: none;
   color: var(--paper);
-  box-shadow: var(--shadow-liquid);
-  transition: transform 520ms var(--ease-spring), box-shadow 320ms var(--ease-out);
+  box-shadow:
+    inset 2px 3px 4px rgb(var(--clay-light) / 0.28),
+    inset -3px -4px 8px rgb(var(--clay-shade) / 0.35),
+    0 2px 3px rgb(var(--clay-shade) / 0.2),
+    0 16px 28px -12px rgb(var(--clay-tint-button) / 0.6);
+  transition: transform 160ms var(--ease-out), box-shadow 160ms var(--ease-out),
+    background-color var(--transition);
 }
 
 .button--primary:hover,
 .ticket__call:hover,
 .callbar__button--tour:hover {
-  background-image:
-    linear-gradient(180deg, var(--liquid-gloss) 0%, var(--liquid-gloss-soft) 30%, transparent 44%),
-    linear-gradient(180deg, var(--brand-royal-600) 0%, var(--brand-royal-700) 45%, var(--brand-royal-800) 100%);
+  background-color: var(--brand-royal-800);
+  background-image: none;
   color: var(--paper);
-  box-shadow: var(--shadow-liquid-hover);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
+  box-shadow:
+    inset 2px 3px 4px rgb(var(--clay-light) / 0.28),
+    inset -3px -4px 8px rgb(var(--clay-shade) / 0.35),
+    0 3px 5px rgb(var(--clay-shade) / 0.2),
+    0 22px 34px -12px rgb(var(--clay-tint-button) / 0.62);
 }
 
 .button--primary:active,
 .ticket__call:active,
 .callbar__button--tour:active {
-  box-shadow: var(--shadow-liquid-press);
-  transform: translateY(0) scale(0.97);
-  transition-duration: 120ms;
+  transform: translateY(1px) scale(0.96);
+  box-shadow:
+    inset 3px 4px 8px rgb(var(--clay-shade) / 0.5),
+    inset -1px -2px 3px rgb(var(--clay-light) / 0.18),
+    0 1px 2px rgb(var(--clay-shade) / 0.2);
+  transition-duration: 90ms;
 }
 
+/* Secondary buttons and the location phone pills: quieter white clay. */
 .button--secondary,
 .phone-chip,
-.nav-toggle,
 .callbar__button--call {
-  position: relative;
-  isolation: isolate;
-  background-color: var(--glass-fill);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  box-shadow: var(--shadow-glass);
-  transition: transform 520ms var(--ease-spring), box-shadow 320ms var(--ease-out);
+  background-color: var(--paper);
+  background-image: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow:
+    inset 2px 2px 4px rgb(var(--clay-light) / 1),
+    inset -2px -3px 6px rgb(var(--clay-shade) / 0.12),
+    0 1px 2px rgb(var(--clay-shade) / 0.08),
+    0 10px 20px -12px rgb(var(--clay-shade) / 0.32);
+  transition: transform 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
 }
 
 .button--secondary:hover,
 .phone-chip:hover,
-.nav-toggle:hover,
 .callbar__button--call:hover {
-  box-shadow: var(--shadow-glass-hover);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
+  box-shadow:
+    inset 2px 2px 4px rgb(var(--clay-light) / 1),
+    inset -2px -3px 6px rgb(var(--clay-shade) / 0.12),
+    0 2px 3px rgb(var(--clay-shade) / 0.1),
+    0 14px 24px -12px rgb(var(--clay-shade) / 0.36);
 }
 
 .button--secondary:active,
 .phone-chip:active,
-.nav-toggle:active,
 .callbar__button--call:active {
-  transform: translateY(0) scale(0.97);
-  transition-duration: 120ms;
+  transform: translateY(1px) scale(0.98);
+  box-shadow:
+    inset 2px 3px 6px rgb(var(--clay-shade) / 0.2),
+    inset -1px -1px 3px rgb(var(--clay-light) / 0.9);
+  transition-duration: 90ms;
 }
 
-/* The rim. A ring drawn on ::before and masked so only its 1.5px edge
-   paints; clicks pass straight through it. */
-.button--primary::before,
-.ticket__call::before,
-.callbar__button--tour::before,
-.button--secondary::before,
-.phone-chip::before,
-.nav-toggle::before,
-.callbar__button--call::before,
-.callbar::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  padding: 1.5px;
-  border-radius: inherit;
-  pointer-events: none;
-  -webkit-mask: linear-gradient(var(--paper) 0 0) content-box, linear-gradient(var(--paper) 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(var(--paper) 0 0) content-box, linear-gradient(var(--paper) 0 0);
-  mask-composite: exclude;
-}
-
-.button--primary::before,
-.ticket__call::before,
-.callbar__button--tour::before {
-  background:
-    radial-gradient(90px circle at var(--mx, 50%) var(--my, 0%), var(--liquid-glint), transparent 70%),
-    linear-gradient(180deg, var(--liquid-lip) 0%, transparent 38%, transparent 72%, var(--liquid-edge) 100%);
-}
-
-.button--secondary::before,
-.phone-chip::before,
-.nav-toggle::before,
-.callbar__button--call::before,
-.callbar::before {
-  background:
-    radial-gradient(90px circle at var(--mx, 50%) var(--my, 0%), var(--glass-rim-hi), transparent 70%),
-    linear-gradient(180deg, var(--glass-rim-hi) 0%, var(--glass-rim-lo) 40%, var(--glass-rim-lo) 65%, var(--glass-rim-hi) 100%);
-}
-
-/* Browsers without backdrop blur get a near-opaque fill instead, so the
-   text contrast never depends on the blur being there. */
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .button--secondary,
-  .phone-chip,
-  .nav-toggle,
-  .callbar__button--call,
-  .callbar {
-    background-color: var(--glass-fill-strong);
-  }
-}
-
-/* The mobile call bar floats as a glass capsule above the page. */
+/* The mobile call bar is a single white clay tray. */
 .callbar {
   left: max(0.75rem, env(safe-area-inset-left, 0px));
   right: max(0.75rem, env(safe-area-inset-right, 0px));
   bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
   gap: 0.375rem;
   padding: 0.375rem;
-  border-radius: var(--radius-pill);
-  background-color: var(--glass-fill-strong);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  box-shadow: var(--shadow-dock);
+  border-radius: var(--clay-radius-pill);
+  background-color: var(--paper);
+  box-shadow:
+    inset 2px 2px 5px rgb(var(--clay-light) / 1),
+    inset -3px -4px 8px rgb(var(--clay-shade) / 0.1),
+    0 2px 6px rgb(var(--clay-shade) / 0.12),
+    0 18px 40px -14px rgb(var(--clay-shade) / 0.4);
 }
 
 .callbar__button--call {
-  background-color: var(--glass-fill);
+  background-color: var(--brand-navy-50);
 }
 
-/* Keep the label and icon above the rim and gloss layers. */
+/* The menu button stays flat: the header is not puffed up. */
+.nav-toggle {
+  background-color: var(--brand-navy-50);
+  box-shadow: none;
+}
+
+/* Photos: rounder frames and a little depth. The images themselves are
+   never filtered or restyled. */
+.home-hero__img,
+.page-hero__img,
+.story__photo img,
+.meals__photo img {
+  box-shadow:
+    0 2px 4px rgb(var(--clay-tint-paper) / 0.1),
+    0 24px 44px -22px rgb(var(--clay-tint-paper) / 0.45);
+  outline: 1px solid rgb(var(--clay-light) / 0.55);
+  outline-offset: -1px;
+}
+
+.story__photo img {
+  box-shadow:
+    0 2px 4px rgb(var(--clay-tint-navy) / 0.3),
+    0 24px 44px -22px rgb(var(--clay-tint-navy) / 0.7);
+}
+
+.story__photo img,
+.meals__photo img {
+  border-radius: var(--photo-radius);
+}
+
+@media (min-width: 58rem) {
+  .story__photo--a img,
+  .home-hero__img,
+  .page-hero__img {
+    border-radius: 999px 999px var(--photo-radius) var(--photo-radius);
+  }
+
+  .meals__photo img {
+    border-radius: var(--photo-radius);
+  }
+}
+
+/* The shapes behind the blush cards become soft clay too. */
+.meals::before,
+.philosophy::before,
+.closings::before,
+.closing::before {
+  box-shadow:
+    inset 4px 5px 10px rgb(var(--clay-light) / 0.5),
+    inset -6px -8px 14px rgb(var(--clay-tint-sky) / 0.22),
+    0 18px 30px -16px rgb(var(--clay-tint-sky) / 0.4);
+}
+
+.meals::after,
+.philosophy::after,
+.closings::after,
+.closing::after {
+  box-shadow:
+    inset 4px 5px 10px rgb(var(--clay-light) / 0.32),
+    inset -6px -8px 14px rgb(var(--clay-tint-magenta) / 0.3),
+    0 18px 30px -16px rgb(var(--clay-tint-magenta) / 0.4);
+}
+
+/* Clay that sits on clay (the cards inside Come see us, a white card on a
+   pale blue band) keeps the same light; the cast shadow just softens. */
+.closing__copy {
+  box-shadow:
+    inset 3px 3px 6px rgb(var(--clay-light) / 1),
+    inset -4px -6px 12px rgb(var(--clay-shade) / 0.1),
+    0 2px 4px rgb(var(--clay-shade) / 0.06),
+    0 18px 34px -18px rgb(var(--clay-tint-blush) / 0.45);
+}
+
+/* Keep label and icon above any layered background. */
 .button > *,
 .ticket__call > *,
 .phone-chip > *,
 .callbar__button > * {
   position: relative;
-  z-index: 2;
 }
 
 /* --- 12. Motion -------------------------------------------------------------
