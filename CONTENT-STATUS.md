@@ -18,13 +18,13 @@ Status key: `OPEN` / `ANSWERED` / `APPLIED`
 
 | # | Item | Answer | Status |
 | --- | --- | --- | --- |
-| 1 | Programs per building | Washington: Infant/Toddler, Room to Bloom, District Pre-K, Before/Aftercare. Arlington: District Pre-K only. Room to Bloom was absent from her November breakdown but named four times in her questionnaire, including as the only programme besides Infant/Toddler offering part-time and drop-in care, so it is published at Washington. | APPLIED |
+| 1 | Programs per building | Washington: Infant/Toddler, Room to Bloom, District Pre-K, Before/Aftercare. Arlington: District Pre-K only. Room to Bloom was absent from her November breakdown but named four times in her questionnaire, including as the only programme besides Infant/Toddler offering part-time and drop-in care, so it is published at Washington. Ask her to confirm Room to Bloom should be listed. | APPLIED, CONFIRM |
 | 2 | Arlington street address | 522 Arlington Avenue. Client chose the shorter form as friendlier than 516-522. | APPLIED |
 | 3 | Phone numbers | Washington 908-755-5005, Arlington 908-222-0029 confirmed. | APPLIED |
 | 4 | Ages served | The **handbook** figures are current: infants 4 weeks to 24 months, toddlers 24 to 36 months. The questionnaire figures were stale. | APPLIED |
 | 5 | Arlington hours | 8:30 to 3:00 is correct. Arlington has **no** before or after care. The handbook's wrap-around text applies to Washington only. | APPLIED |
 | 6 | Calendar | Infant and toddler year round; District Pre-K on the Plainfield Public Schools calendar. Washington carries both, so its calendar line now says so. | APPLIED |
-| 8 | Onsite contacts | Washington: Patricia Joroff. Arlington: Doris Valentin. | APPLIED |
+| 8 | Onsite contacts | Washington: Patricia Joroff. Arlington: Doris Valentin. Shown as "Ask for" on the homepage location cards and the Locations page since 22 Nov 2026 (they were recorded but not displayed before). | APPLIED |
 | 9 | Web address | The centre already owns **preciousstepschildcarecenter.com**. No registration needed. | APPLIED |
 | 12 | Enrollment packet | Confirmed: do not publish. The centre is revamping it. | APPLIED |
 | 7 | Legal entity name | 'PS CC&DC' expands to **Precious Steps Child Care & Development Center**. The brand name is used everywhere a parent reads it; the entity appears only in the footer copyright. | APPLIED |
@@ -55,7 +55,7 @@ Status key: `OPEN` / `ANSWERED` / `APPLIED`
 | # | Item | Note | Status |
 | --- | --- | --- | --- |
 | 21 | **Announcements** | She wants to post them **herself**, with our setup and tech support. That means adding a CMS layer the site does not currently have. This is a scope addition worth pricing. | OPEN |
-| 29 | **Brand standards** | BG received 18 Nov. New palette, new typography, new tagline, real logo artwork, social handles. Not yet applied; the site still carries placeholder brand values. | OPEN |
+| 29 | **Brand standards** | BG applied: official palette, Fredoka and Nunito typography, approved logo artwork, and the primary tagline "Where Every Child Learns, Grows, and Takes Their First Precious Steps!" (Spanish drafted, part of item 22). Social links not yet added: BG gives the handle @preciousstepschildcarecenter but no profile URLs. | APPLIED |
 | 30 | **DNS and hosting** | The domain exists but is not yet pointed at Netlify. Need the registrar and access. | OPEN |
 | 31 | **Launch indexing** | `ALLOW_INDEXING=true` must be set in the Netlify environment on launch day, or the live site stays invisible to Google. | OPEN |
 

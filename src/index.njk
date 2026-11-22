@@ -81,6 +81,12 @@ eleventyComputed:
               <dt>{{ t.common.hours }}</dt>
               <dd>{{ location.hours if lang.code == 'en' else location.hoursEs }}</dd>
             </div>
+            {% if location.contactPerson %}
+              <div class="ticket__fact">
+                <dt>{{ t.common.askFor }}</dt>
+                <dd>{{ location.contactPerson }}</dd>
+              </div>
+            {% endif %}
             <div class="ticket__fact">
               <dt>{{ t.common.programsHere }}</dt>
               <dd>

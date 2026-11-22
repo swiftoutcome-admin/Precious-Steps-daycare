@@ -2,7 +2,7 @@
   "_comment": "All English prose. Language-neutral facts (addresses, phones, ages, ratios) stay in site.json and programs.json so a number is never translated by accident.",
   "htmlLang": "en",
   "siteDescription": "NAEYC accredited child care and early learning in Plainfield, New Jersey. Infants through school age, two locations, serving families since 1998.",
-  "tagline": "Where children learn and grow by taking their first Precious Steps!",
+  "tagline": "Where Every Child Learns, Grows, and Takes Their First Precious Steps!",
   "nav": {
     "skip": "Skip to main content",
     "menu": "Menu",
@@ -48,7 +48,8 @@
     "unconfirmed": "Unconfirmed",
     "careTypes": "Care options",
     "or": "or",
-    "updated": "Last updated"
+    "updated": "Last updated",
+    "askFor": "Ask for"
   },
   "home": {
     "eyebrow": "Plainfield, New Jersey",

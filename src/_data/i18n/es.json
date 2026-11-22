@@ -3,7 +3,7 @@
   "_reviewStatus": "UNREVIEWED",
   "htmlLang": "es",
   "siteDescription": "Cuidado infantil y educación temprana acreditados por NAEYC en Plainfield, Nueva Jersey. Desde bebés hasta edad escolar, dos sedes, sirviendo a las familias desde 1998.",
-  "tagline": "¡Donde los niños aprenden y crecen dando sus primeros Precious Steps!",
+  "tagline": "¡Donde cada niño aprende, crece y da sus primeros Precious Steps!",
   "nav": {
     "skip": "Saltar al contenido principal",
     "menu": "Menú",
@@ -49,7 +49,8 @@
     "unconfirmed": "Sin confirmar",
     "careTypes": "Opciones de cuidado",
     "or": "o",
-    "updated": "Última actualización"
+    "updated": "Última actualización",
+    "askFor": "Pregunte por"
   },
   "home": {
     "eyebrow": "Plainfield, Nueva Jersey",

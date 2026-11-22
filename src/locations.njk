@@ -41,6 +41,12 @@ eleventyComputed:
             <dt>{{ t.common.fax }}</dt>
             <dd>{{ location.fax | phoneDisplay }}</dd>
           </div>
+          {% if location.contactPerson %}
+            <div class="facts__row">
+              <dt>{{ t.common.askFor }}</dt>
+              <dd>{{ location.contactPerson }}</dd>
+            </div>
+          {% endif %}
           <div class="facts__row">
             <dt>{{ t.common.hours }}</dt>
             <dd>{{ location.hours if lang.code == 'en' else location.hoursEs }}{% if location.hoursNote %} {{ location.hoursNote if lang.code == 'en' else location.hoursNoteEs }}{% endif %}</dd>
