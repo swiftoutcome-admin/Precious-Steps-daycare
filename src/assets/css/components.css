@@ -2298,6 +2298,7 @@ body {
 
 .contact__grid {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-lg);
   align-items: start;
 }
@@ -2367,6 +2368,7 @@ textarea.field__control {
 }
 
 .callpanel {
+  overflow-wrap: anywhere;
   padding: var(--space-lg) var(--space-md);
   border-radius: var(--radius-xl);
   background-color: var(--color-navy-surface);
@@ -2564,6 +2566,196 @@ textarea.field__control {
   }
 }
 
+
+/* --- 11c. Cut paper ---------------------------------------------------------------
+   The page is built like layered paper. White is the base sheet; coloured
+   bands are sheets laid under it, so their top and bottom edges are soft
+   waves of White with a faint shadow falling onto the colour. */
+
+/* The navy bar meets the white bar on a wave instead of a straight line. */
+.topbar {
+  padding-bottom: calc(var(--topbar-height) - 2.5rem);
+}
+
+.topbar__inner {
+  min-height: 2.5rem;
+}
+
+.mainbar::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(100% - 1px);
+  height: 1.125rem;
+  background: var(--edge-bottom) center bottom / 100% 100% no-repeat;
+  pointer-events: none;
+}
+
+/* Every coloured band gets a wave along its top and bottom. */
+.desk,
+.story,
+.chapter--navy,
+.chapter--tint,
+.page-hero,
+.section--tint,
+.place--flip,
+.notice {
+  position: relative;
+}
+
+.desk::before,
+.story::before,
+.chapter--navy::before,
+.chapter--tint::before,
+.section--tint::before,
+.place--flip::before,
+.desk::after,
+.story::after,
+.chapter--navy::after,
+.chapter--tint::after,
+.page-hero::after,
+.section--tint::after,
+.place--flip::after,
+.notice::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--edge-height);
+  pointer-events: none;
+}
+
+.desk::before,
+.story::before,
+.chapter--navy::before,
+.chapter--tint::before,
+.section--tint::before,
+.place--flip::before {
+  top: 0;
+  background: var(--edge-top) center top / 100% 100% no-repeat;
+}
+
+.desk::after,
+.story::after,
+.chapter--navy::after,
+.chapter--tint::after,
+.page-hero::after,
+.section--tint::after,
+.place--flip::after,
+.notice::after {
+  bottom: 0;
+  background: var(--edge-bottom) center bottom / 100% 100% no-repeat;
+}
+
+/* Keep the waves clear of the content they frame. */
+.page-hero__inner,
+.notice {
+  padding-bottom: calc(var(--space-xl) + var(--edge-height));
+}
+
+/* Links directly on a pale Royal Blue band. */
+.desk > .desk__inner > .desk__head a,
+.place--flip a:not(.button),
+.section--tint .split__copy a,
+.chapter--tint .chapter__body > p a {
+  color: var(--color-link-on-tint);
+}
+
+/* Blush paper cards. */
+.meals__panel,
+.philosophy__panel,
+.closings__panel,
+.bilingual {
+  background-color: var(--brand-pink-300);
+  background-image: var(--paper-blush);
+  box-shadow: var(--shadow-paper-pink);
+}
+
+.closing__inner {
+  background-color: var(--brand-pink-100);
+  background-image: var(--pattern-url), var(--paper-blush-soft);
+  background-size: var(--pattern-size), auto;
+  box-shadow: var(--shadow-paper-pink);
+}
+
+/* Two organic shapes peek out from behind each blush card: Light Blue at
+   the top right, Hot Pink at the bottom left. They are the section's own
+   pseudo-elements, placed from the card's edges, and sit behind it. */
+.meals,
+.philosophy,
+.closings,
+.closing {
+  position: relative;
+  isolation: isolate;
+  /* The shapes may poke past the card but never past the screen edge;
+     clip only sideways so they can still overlap vertically. */
+  overflow-x: clip;
+  --card-edge: max(var(--gutter), (100% - var(--width-wide)) / 2);
+  --blob-size: clamp(5.5rem, 3rem + 8vw, 10rem);
+  --blob-tuck: calc(var(--blob-size) * 0.32);
+}
+
+.meals { --card-top: var(--space-2xl); --card-bottom: var(--space-xl); }
+.philosophy { --card-top: var(--space-2xl); --card-bottom: var(--space-2xl); }
+.closings { --card-top: var(--space-2xl); --card-bottom: var(--space-lg); padding-bottom: var(--space-lg); }
+.closing { --card-top: var(--space-xl); --card-bottom: var(--space-xl); }
+
+.meals::before,
+.philosophy::before,
+.closings::before,
+.closing::before,
+.meals::after,
+.philosophy::after,
+.closings::after,
+.closing::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: var(--blob-size);
+  aspect-ratio: 1;
+  pointer-events: none;
+}
+
+.meals::before,
+.philosophy::before,
+.closings::before,
+.closing::before {
+  top: calc(var(--card-top) - var(--blob-tuck));
+  right: calc(var(--card-edge) - var(--blob-tuck));
+  border-radius: 58% 42% 55% 45% / 46% 60% 40% 54%;
+  background-color: var(--blob-cool);
+  rotate: 12deg;
+}
+
+.meals::after,
+.philosophy::after,
+.closings::after,
+.closing::after {
+  bottom: calc(var(--card-bottom) - var(--blob-tuck));
+  left: calc(var(--card-edge) - var(--blob-tuck));
+  border-radius: 41% 59% 38% 62% / 57% 43% 57% 43%;
+  background-color: var(--blob-warm);
+  rotate: -18deg;
+}
+
+/* Fine paper grain over everything. It never takes a click. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background-image: var(--grain);
+  background-size: 180px;
+  opacity: var(--grain-opacity);
+  pointer-events: none;
+}
+
+@media print {
+  body::after {
+    display: none;
+  }
+}
 
 /* --- 11b. Liquid and glass materials -----------------------------------------
    Two finishes, one for each kind of action.

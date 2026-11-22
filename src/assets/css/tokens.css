@@ -167,6 +167,39 @@
     0 1px 2px rgb(23 52 94 / 0.08), 0 10px 26px -10px rgb(23 52 94 / 0.28);
   --shadow-glass-hover: inset 0 1px 0 rgb(255 255 255 / 0.95),
     0 2px 4px rgb(23 52 94 / 0.08), 0 18px 34px -12px rgb(23 52 94 / 0.32);
+  /* --- Cut paper ----------------------------------------------------------------
+     Coloured bands read as sheets laid on white paper. Their top and bottom
+     edges are soft waves of White cut over the band, each casting a faint
+     Deep Navy shadow onto it. The SVGs are drawn here because they carry
+     colour; preserveAspectRatio="none" lets one wave span any width. */
+  --edge-height: clamp(0.875rem, 0.55rem + 1.4vw, 1.75rem);
+  --edge-top: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 48' preserveAspectRatio='none'%3E%3Cfilter id='s' x='-5%25' y='-60%25' width='110%25' height='220%25'%3E%3CfeDropShadow dx='0' dy='3' stdDeviation='3' flood-color='%2317345e' flood-opacity='.2'/%3E%3C/filter%3E%3Cpath filter='url(%23s)' fill='%23ffffff' d='M0 0H1440V20C1320 32 1180 34 1040 24S760 4 600 14 300 36 160 28 40 14 0 18Z'/%3E%3C/svg%3E");
+  --edge-bottom: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 48' preserveAspectRatio='none'%3E%3Cfilter id='s' x='-5%25' y='-60%25' width='110%25' height='220%25'%3E%3CfeDropShadow dx='0' dy='-2' stdDeviation='3' flood-color='%2317345e' flood-opacity='.14'/%3E%3C/filter%3E%3Cpath filter='url(%23s)' fill='%23ffffff' d='M0 48H1440V28C1320 16 1180 14 1040 24S760 44 600 34 300 12 160 20 40 34 0 30Z'/%3E%3C/svg%3E");
+
+  /* Blush paper cards: lighter at the top, Blush Pink at the bottom, a 1px
+     White highlight along the top edge and a two-layer shadow tinted with
+     the deepened Hot Pink. Deep Navy text clears 7:1 at both ends. */
+  --paper-blush: linear-gradient(180deg, var(--brand-pink-100) 0%, var(--brand-pink-300) 100%);
+  --paper-blush-soft: linear-gradient(180deg, var(--brand-pink-50) 0%, var(--brand-pink-100) 100%);
+  --shadow-paper-pink: inset 0 1px 0 rgb(255 255 255 / 0.8),
+    0 2px 4px rgb(168 62 127 / 0.16), 0 24px 44px -18px rgb(168 62 127 / 0.42);
+
+  /* Organic shapes peeking from behind the blush cards. Light Blue is a
+     Royal Blue tint; the warm shape is Hot Pink, the brand's warm accent. */
+  --blob-cool: var(--brand-royal-200);
+  --blob-warm: var(--brand-pink-500);
+
+  /* Paper grain over the whole page. Black noise at 4% opacity: it darkens
+     text and background by the same small amount, so contrast is kept. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --grain-opacity: 0.04;
+
+  /* Links that sit directly on a pale Royal Blue band take the next shade
+     of Royal Blue. --brand-royal-700 is 4.67:1 on that band, which leaves
+     no margin once the grain darkens it; this is 6.1:1, and still above
+     5.6:1 with the grain at full strength. */
+  --color-link-on-tint: var(--brand-royal-800);
+
   --shadow-dock: inset 0 1px 0 rgb(255 255 255 / 0.9),
     0 2px 6px rgb(23 52 94 / 0.1), 0 18px 44px -12px rgb(23 52 94 / 0.38);
 
@@ -309,7 +342,7 @@
   --reveal-stagger: 90ms;
 
   /* Header heights, so the sticky header and in-page anchors agree. */
-  --topbar-height: 2.5rem;
+  --topbar-height: 3rem; /* includes the room the wave below it takes */
   --masthead-height: 5.25rem;
   --callbar-height: 5.5rem;
 }
