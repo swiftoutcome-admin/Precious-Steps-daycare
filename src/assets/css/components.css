@@ -625,31 +625,18 @@ body {
   gap: var(--space-sm);
 }
 
-/* The arch: a doorway shape, with a blush block and the brand pattern
-   standing behind it. */
+/* The portrait sits in a warm clay frame (see 11d). */
 .home-hero__media {
-  position: relative;
   margin: 0;
-  isolation: isolate;
-}
-
-.home-hero__media::before {
-  content: "";
-  position: absolute;
-  inset: 6% -1.25rem -1.25rem 1.25rem;
-  z-index: -1;
-  border-radius: var(--radius-xl);
-  background-color: var(--color-blush-surface);
-  background-image: var(--pattern-url);
-  background-size: 260px;
+  justify-self: center;
+  width: min(100%, 24rem);
 }
 
 .home-hero__img {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: 50% 35%;
-  border-radius: var(--radius-xl);
+  object-position: 50% 40%;
 }
 
 @media (min-width: 58rem) {
@@ -664,16 +651,11 @@ body {
   }
 
   .home-hero__media {
-    margin-right: 1.25rem;
-  }
-
-  .home-hero__media::before {
-    border-radius: 999px 999px var(--radius-xl) var(--radius-xl);
+    width: 100%;
   }
 
   .home-hero__img {
     aspect-ratio: 5 / 6;
-    border-radius: 999px 999px var(--radius-xl) var(--radius-xl);
   }
 }
 
@@ -1034,23 +1016,6 @@ body {
   color: var(--color-on-navy-muted);
 }
 
-/* The founding year as architecture. Decorative and hidden from assistive
-   technology; the same fact is in the eyebrow above the story. */
-.story .story__year {
-  position: absolute;
-  top: -0.12em;
-  right: -0.04em;
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: var(--text-mega);
-  font-weight: var(--weight-bold);
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 2px var(--brand-navy-500);
-  pointer-events: none;
-  user-select: none;
-}
-
 .story__inner {
   position: relative;
   display: grid;
@@ -1068,7 +1033,20 @@ body {
   width: 100%;
   aspect-ratio: 3 / 2;
   object-fit: cover;
-  border-radius: var(--radius-xl);
+}
+
+/* The single "Since 1998" label: a small solid blush pill. */
+.story .since-pill {
+  display: inline-block;
+  margin: 0 0 var(--space-sm);
+  padding: 0.3rem 0.9rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--brand-pink-300);
+  color: var(--brand-navy-700);
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  font-weight: var(--weight-extrabold);
+  line-height: 1.3;
 }
 
 .link-on-navy {
@@ -1084,18 +1062,24 @@ body {
 @media (min-width: 58rem) {
   .story__inner {
     grid-template-columns: repeat(12, 1fr);
-    column-gap: var(--space-md);
-    row-gap: var(--space-2xl);
+    column-gap: var(--space-lg);
+    row-gap: var(--space-xl);
   }
 
+  /* Row one: the story beside the bus photo, an arch about as tall as the
+     text beside it, so neither side outweighs the other. */
   .story__block--story { grid-column: 1 / 7; grid-row: 1; align-self: center; }
-  .story__photo--a { grid-column: 8 / 13; grid-row: 1; align-self: end; }
-  .story__photo--b { grid-column: 1 / 6; grid-row: 2; align-self: start; }
+  .story__photo--a { grid-column: 8 / 13; grid-row: 1; align-self: center; }
+
+  /* Row two: the blocks photo takes half the width as a rounded landscape
+     frame, centred against the teachers text so no dead space gathers
+     around it. */
+  .story__photo--b { grid-column: 1 / 7; grid-row: 2; align-self: center; }
   .story__block--team { grid-column: 7 / 13; grid-row: 2; align-self: center; }
 
   .story__photo--a img {
-    border-radius: 999px 999px var(--radius-xl) var(--radius-xl);
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 1 / 1;
+    object-position: 50% 50%;
   }
 }
 
@@ -1482,6 +1466,11 @@ body {
   margin: 0;
 }
 
+.page-hero--photo .page-hero__media {
+  display: block;
+  width: min(100%, 24rem);
+}
+
 .page-hero__art {
   display: none;
 }
@@ -1493,28 +1482,8 @@ body {
     padding-block: var(--space-xl);
   }
 
-  .page-hero__media {
-    display: block;
-    position: relative;
-    isolation: isolate;
-  }
-
-  .page-hero__media::before {
-    content: "";
-    position: absolute;
-    inset: 10% -1rem -1rem 1rem;
-    z-index: -1;
-    border-radius: 999px 999px var(--radius-xl) var(--radius-xl);
-    background-color: var(--color-blush-surface);
-    background-image: var(--pattern-url);
-    background-size: 240px;
-  }
-
-  .page-hero__img {
-    width: calc(100% - 1rem);
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    border-radius: 999px 999px var(--radius-xl) var(--radius-xl);
+  .page-hero--photo .page-hero__media {
+    width: 100%;
   }
 
   /* Without a photo: a blush arch with the brand pattern and three
@@ -1591,21 +1560,6 @@ body {
 
 .chapter__body > p {
   font-size: var(--text-lead);
-}
-
-.chapter .chapter__year {
-  position: absolute;
-  right: -0.04em;
-  bottom: -0.2em;
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: var(--text-mega);
-  font-weight: var(--weight-bold);
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 2px var(--brand-navy-500);
-  pointer-events: none;
-  user-select: none;
 }
 
 .letter {
@@ -3070,40 +3024,15 @@ body::after {
   box-shadow: none;
 }
 
-/* Photos: rounder frames and a little depth. The images themselves are
-   never filtered or restyled. */
-.home-hero__img,
-.page-hero__img,
-.story__photo img,
+/* The meals photo: a rounder frame and a little depth. The image itself
+   is never filtered or restyled. The other photos use the frames in 11d. */
 .meals__photo img {
+  border-radius: var(--photo-radius);
   box-shadow:
     0 2px 4px rgb(var(--clay-tint-paper) / 0.1),
     0 24px 44px -22px rgb(var(--clay-tint-paper) / 0.45);
   outline: 1px solid rgb(var(--clay-light) / 0.55);
   outline-offset: -1px;
-}
-
-.story__photo img {
-  box-shadow:
-    0 2px 4px rgb(var(--clay-tint-navy) / 0.3),
-    0 24px 44px -22px rgb(var(--clay-tint-navy) / 0.7);
-}
-
-.story__photo img,
-.meals__photo img {
-  border-radius: var(--photo-radius);
-}
-
-@media (min-width: 58rem) {
-  .story__photo--a img,
-  .home-hero__img,
-  .page-hero__img {
-    border-radius: 999px 999px var(--photo-radius) var(--photo-radius);
-  }
-
-  .meals__photo img {
-    border-radius: var(--photo-radius);
-  }
 }
 
 /* The shapes behind the blush cards become soft clay too. */
@@ -3145,6 +3074,146 @@ body::after {
   position: relative;
 }
 
+/* --- 11d. Photo frames ---------------------------------------------------------------
+   Photos sit in thick, rounded clay frames. The frame is the figure's own
+   padding and background; the photo inside is never filtered.
+
+     frame    clay light: soft highlight top left, gentle shading lower
+              right, a broad low-opacity shadow beneath
+     seam     a narrow inner shadow where photo meets frame, drawn on
+              ::after over the photo's edge
+
+   Shapes vary with the composition: an arch for the portrait heroes and
+   the bus photo, a rounded landscape for the blocks photo. */
+
+.page-hero--photo .page-hero__media,
+.home-hero__media,
+.story__photo {
+  --frame-radius: var(--photo-radius);
+  --frame-inner-radius: calc(var(--photo-radius) - var(--frame-thickness));
+  position: relative;
+  padding: var(--frame-thickness);
+  border-radius: var(--frame-radius);
+  background-color: var(--frame-color);
+  box-shadow:
+    inset 3px 3px 6px rgb(var(--clay-light) / var(--frame-hi, 0.6)),
+    inset -3px -5px 10px rgb(var(--frame-shade) / 0.14),
+    0 2px 4px rgb(var(--frame-shade) / 0.06),
+    0 30px 52px -26px rgb(var(--frame-shade) / var(--frame-cast, 0.3));
+}
+
+.page-hero--photo .page-hero__media img,
+.home-hero__media img,
+.story__photo img {
+  display: block;
+  width: 100%;
+  border-radius: var(--frame-inner-radius);
+}
+
+.page-hero--photo .page-hero__media::after,
+.home-hero__media::after,
+.story__photo::after {
+  content: "";
+  position: absolute;
+  inset: var(--frame-thickness);
+  border-radius: var(--frame-inner-radius);
+  box-shadow:
+    inset 2px 3px 5px rgb(var(--frame-shade) / 0.3),
+    inset 0 0 0 1px rgb(var(--frame-shade) / 0.1);
+  pointer-events: none;
+}
+
+/* Arches: the top is a half circle at any width. */
+.page-hero--photo .page-hero__media,
+.home-hero__media {
+  --frame-radius: 999px 999px var(--photo-radius) var(--photo-radius);
+  --frame-inner-radius: 999px 999px calc(var(--photo-radius) - var(--frame-thickness))
+    calc(var(--photo-radius) - var(--frame-thickness));
+}
+
+@media (min-width: 58rem) {
+  .story__photo--a {
+    --frame-radius: 999px 999px var(--photo-radius) var(--photo-radius);
+    --frame-inner-radius: 999px 999px calc(var(--photo-radius) - var(--frame-thickness))
+      calc(var(--photo-radius) - var(--frame-thickness));
+  }
+}
+
+/* About hero: a thick blush frame on the pale blush band. The crop keeps
+   the full height of the photo, so the girl's face at the top and her
+   hands and the red bus at the bottom all stay in, trimming only the
+   shelving at the sides. */
+.page-hero--photo .page-hero__media {
+  --frame-color: var(--frame-blush);
+  --frame-shade: var(--clay-tint-blush);
+  justify-self: center;
+}
+
+.page-hero__img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: 46% 50%;
+}
+
+/* Desktop has the room for a square crop: still the full height, and an
+   arch that reads as a doorway rather than a dome. */
+@media (min-width: 58rem) {
+  .page-hero__img {
+    aspect-ratio: 1 / 1;
+    object-position: 50% 50%;
+  }
+}
+
+/* Homepage hero: a warm white frame on white, with one small pink clay
+   shape tucked behind its lower-left corner. */
+.home-hero {
+  position: relative;
+  isolation: isolate;
+}
+
+.home-hero__media {
+  --frame-color: var(--frame-warm);
+  --frame-shade: var(--clay-tint-blush);
+  --frame-hi: 1;
+  --frame-cast: 0.36;
+  box-shadow:
+    inset 3px 3px 6px rgb(var(--clay-light) / 1),
+    inset -3px -5px 10px rgb(var(--frame-shade) / 0.2),
+    0 2px 4px rgb(var(--frame-shade) / 0.08),
+    0 30px 52px -26px rgb(var(--frame-shade) / var(--frame-cast));
+}
+
+.home-hero__media::before {
+  content: "";
+  position: absolute;
+  left: -1.25rem;
+  bottom: -1.25rem;
+  z-index: -1;
+  width: clamp(4.5rem, 3rem + 4vw, 6.5rem);
+  aspect-ratio: 1;
+  border-radius: 46% 54% 42% 58% / 55% 45% 55% 45%;
+  background-color: var(--frame-accent);
+  box-shadow:
+    inset 3px 4px 8px rgb(var(--clay-light) / 0.35),
+    inset -4px -6px 10px rgb(var(--clay-tint-magenta) / 0.3),
+    0 14px 24px -12px rgb(var(--clay-tint-magenta) / 0.4);
+  rotate: -14deg;
+  pointer-events: none;
+}
+
+/* Story band: a lighter navy frame so the photo edges read against the
+   dark background. */
+.story__photo {
+  --frame-color: var(--frame-dusk);
+  --frame-shade: var(--clay-tint-navy);
+  --frame-hi: 0.18;
+  --frame-cast: 0.55;
+}
+
+.story__photo--b img {
+  object-position: 55% 30%;
+}
+
 /* --- 12. Motion -------------------------------------------------------------
    Rules:
      - Nothing that a parent came for (headline, tour button, phone
@@ -3158,10 +3227,6 @@ body::after {
 @media (prefers-reduced-motion: no-preference) {
   .home-hero__img {
     animation: settle 900ms var(--ease-out) both;
-  }
-
-  .home-hero__media::before {
-    animation: rise 900ms var(--ease-out) 120ms both;
   }
 }
 

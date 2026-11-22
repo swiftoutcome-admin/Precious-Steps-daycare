@@ -62,6 +62,7 @@
   --brand-pink-300: #f7b7c9; /* OFFICIAL  Blush Pink */
   --brand-pink-100: #fbd7e1;
   --brand-pink-50: #fde9ef;
+  --brand-pink-25: #fdf1f4; /* White with a fifth of Blush Pink: the palette's warmest white */
 
   /* --- Neutrals ------------------------------------------------------------
      Cool greys carrying a navy cast, so nothing on the page reads as a
@@ -167,6 +168,20 @@
      broad soft shadow, so the photo sits in the page like a pressed print. */
   --photo-radius: 32px;
 
+  /* --- Photo frames ---------------------------------------------------------------
+     Photos sit in thick, rounded clay frames instead of floating on offset
+     backings. One recipe, three finishes, chosen by where the photo sits:
+       blush   About hero (on the pale blush hero band)
+       warm    homepage hero (on white), with one small pink clay accent
+       dusk    the navy story band: a lighter navy so the edges read
+     The frame takes the clay light (soft highlight top left, broad faint
+     shadow beneath); a narrow inner shadow sits where photo meets frame. */
+  --frame-thickness: clamp(0.625rem, 0.45rem + 0.7vw, 1rem);
+  --frame-blush: var(--brand-pink-300);
+  --frame-warm: var(--brand-pink-25);
+  --frame-dusk: var(--brand-navy-500);
+  --frame-accent: var(--brand-pink-500);
+
   /* --- Cut paper ----------------------------------------------------------------
      Coloured bands read as sheets laid on white paper. Their top and bottom
      edges are soft waves of White cut over the band, each casting a faint
@@ -236,9 +251,6 @@
   --text-2xl: var(--text-h2);
   --text-3xl: var(--text-h1);
 
-  /* Decorative numerals only (the founding year on the homepage). Never
-     used for running text, so it sits outside the heading range. */
-  --text-mega: clamp(6rem, 3rem + 14vw, 15rem);
 
   --leading-display: 1.1;
   --leading-tight: 1.2;
