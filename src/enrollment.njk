@@ -16,94 +16,115 @@ eleventyComputed:
 {% set t = i18n[lang.code] %}
 {% set e = t.enrollment %}
 
-<section class="hero">
-  <div class="wrap">
-    <p class="eyebrow">{{ e.eyebrow }}</p>
-    <h1 class="hero__title">{{ e.heroTitle }}</h1>
-    <p class="hero__lead">{{ e.heroLead }}</p>
-  </div>
-</section>
+{% set heroEyebrow = e.eyebrow %}
+{% set heroTitle = e.heroTitle %}
+{% set heroLead = e.heroLead %}
+{% include "partials/page-hero.njk" %}
 
-<section class="section">
-  <div class="wrap wrap--narrow">
-    <h2>{{ e.stepByStep }}</h2>
-    <ol class="steps">
+{# ---------------------------------------------------------- Step by step #}
+{# A real sequence, so the numbers carry information. On wide screens each
+   step sits a little higher than the one before. #}
+<section class="section" aria-labelledby="steps-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 id="steps-title">{{ e.stepByStep }}</h2>
+    </div>
+    <ol class="journey">
       {% for step in e.steps %}
-        <li>
-          <p class="steps__title">{{ step.title }}</p>
-          <p>{{ step.detail }}</p>
+        <li class="journey__step journey__step--{{ loop.index }} reveal">
+          <p class="journey__title">{{ step.title }}</p>
+          <p class="journey__detail">{{ step.detail }}</p>
         </li>
       {% endfor %}
     </ol>
   </div>
 </section>
 
-<section class="section section--subtle">
-  <div class="wrap wrap--narrow">
-    <h2>{{ e.documentsTitle }}</h2>
-    <ul>
+{# -------------------------------------------------------------- Documents #}
+<section class="section section--tint" aria-labelledby="documents-title">
+  <div class="wrap split">
+    <div class="split__copy reveal">
+      <h2 id="documents-title">{{ e.documentsTitle }}</h2>
+      <p>{{ e.documentsNote }}</p>
+      <div class="todo">
+        <strong>Decision needed</strong>
+        {{ enrollment.publishApplicationPdfNote }}
+      </div>
+    </div>
+    <ul class="checklist checklist--card reveal">
       {% for doc in e.documents %}
-        <li>{{ doc }}</li>
+        <li><svg class="icon" aria-hidden="true" focusable="false" width="18" height="18"><use href="#icon-check"></use></svg>{{ doc }}</li>
       {% endfor %}
     </ul>
-    <p>{{ e.documentsNote }}</p>
-    <div class="todo">
-      <strong>Decision needed</strong>
-      {{ enrollment.publishApplicationPdfNote }}
+  </div>
+</section>
+
+{# ---------------------------------- Tuition, subsidies, availability, tours #}
+<div class="section">
+  <div class="wrap">
+    <div class="quad">
+      <section class="quad__item reveal" aria-labelledby="tuition-title">
+        <h2 id="tuition-title">{{ e.tuitionTitle }}</h2>
+        <p>{{ e.pricingMessage }}</p>
+      </section>
+      <section class="quad__item reveal" aria-labelledby="subsidies-title">
+        <h2 id="subsidies-title">{{ e.subsidiesTitle }}</h2>
+        <p>{{ e.subsidiesMessage }} {{ e.subsidiesExtra }}</p>
+      </section>
+      <section class="quad__item reveal" aria-labelledby="availability-title">
+        <h2 id="availability-title">{{ e.availabilityTitle }}</h2>
+        <p>{{ e.openingsStatus }}</p>
+      </section>
+      <section class="quad__item reveal" aria-labelledby="tours-title">
+        <h2 id="tours-title">{{ e.toursTitle }}</h2>
+        <p>{{ e.openHouse }}</p>
+      </section>
+    </div>
+  </div>
+</div>
+
+{# ------------------------------------------------------- Health and safety #}
+<section class="chapter chapter--navy" aria-labelledby="safety-title">
+  <div class="chapter__inner">
+    <h2 class="chapter__title" id="safety-title">{{ e.safetyTitle }}</h2>
+    <div class="chapter__body reveal">
+      <p>{{ e.safetyP1 }}</p>
+      <p>{{ e.safetyP2 }}</p>
+      <div class="todo">
+        <strong>Awaiting file</strong>
+        Link the current Parent Handbook PDF here once the client sends the
+        revised version. Place it in src/assets/docs/. Do not restate handbook
+        policy text on the site: summarize and link, so the handbook stays the
+        single source of truth. A Spanish handbook, if one exists, should be
+        linked from the Spanish page.
+      </div>
     </div>
   </div>
 </section>
 
-<section class="section">
-  <div class="wrap wrap--narrow">
-    <h2>{{ e.tuitionTitle }}</h2>
-    <p>{{ e.pricingMessage }}</p>
-
-    <h2>{{ e.subsidiesTitle }}</h2>
-    <p>{{ e.subsidiesMessage }} {{ e.subsidiesExtra }}</p>
-
-    <h2>{{ e.availabilityTitle }}</h2>
-    <p>{{ e.openingsStatus }}</p>
-
-    <h2>{{ e.toursTitle }}</h2>
-    <p>{{ e.openHouse }}</p>
-  </div>
-</section>
-
-<section class="section section--subtle">
-  <div class="wrap wrap--narrow">
-    <h2>{{ e.safetyTitle }}</h2>
-    <p>{{ e.safetyP1 }}</p>
-    <p>{{ e.safetyP2 }}</p>
-    <div class="todo">
-      <strong>Awaiting file</strong>
-      Link the current Parent Handbook PDF here once the client sends the
-      revised version. Place it in src/assets/docs/. Do not restate handbook
-      policy text on the site: summarize and link, so the handbook stays the
-      single source of truth. A Spanish handbook, if one exists, should be
-      linked from the Spanish page.
+{# -------------------------------------------------------------------- FAQ #}
+<section class="section" aria-labelledby="faq-title">
+  <div class="wrap faq">
+    <div class="faq__head reveal">
+      <h2 id="faq-title">{{ e.faqTitle }}</h2>
     </div>
-  </div>
-</section>
-
-<section class="section section--ruled">
-  <div class="wrap wrap--narrow">
-    <h2>{{ e.faqTitle }}</h2>
-    {% for item in t.faq %}
-      {% if item.a %}
-        <details class="faq__item">
-          <summary>{{ item.q }}</summary>
-          <p>{{ item.a }}</p>
-        </details>
-      {% else %}
-        <div class="todo">
-          <strong>Answer needed: {{ item.q }}</strong>
-          Summarize the handbook's Healthy Child Policy in plain language and
-          link the current handbook PDF. Do not reproduce the full exclusion
-          list on the site.
-        </div>
-      {% endif %}
-    {% endfor %}
+    <div class="faq__list">
+      {% for item in t.faq %}
+        {% if item.a %}
+          <details class="faq__item">
+            <summary class="faq__q">{{ item.q }}</summary>
+            <p class="faq__a">{{ item.a }}</p>
+          </details>
+        {% else %}
+          <div class="todo">
+            <strong>Answer needed: {{ item.q }}</strong>
+            Summarize the handbook's Healthy Child Policy in plain language and
+            link the current handbook PDF. Do not reproduce the full exclusion
+            list on the site.
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 </section>
 

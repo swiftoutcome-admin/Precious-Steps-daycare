@@ -16,21 +16,15 @@ eleventyComputed:
 {% set t = i18n[lang.code] %}
 {% set c = t.contact %}
 
-<section class="hero">
-  <div class="wrap">
-    <p class="eyebrow">{{ c.eyebrow }}</p>
-    <h1 class="hero__title">{{ c.heroTitle }}</h1>
-    <p class="hero__lead">
-      {{ c.heroLead }} {{ site.contact.responseTime if lang.code == 'en' else site.contact.responseTimeEs }}
-    </p>
-  </div>
-</section>
+{% set heroEyebrow = c.eyebrow %}
+{% set heroTitle = c.heroTitle %}
+{% set heroLead = c.heroLead ~ ' ' ~ (site.contact.responseTime if lang.code == 'en' else site.contact.responseTimeEs) %}
+{% include "partials/page-hero.njk" %}
 
-<section class="section">
-  <div class="wrap">
-    <div class="grid grid--2">
-      <div>
-        <h2>{{ c.formTitle }}</h2>
+<div class="section contact">
+  <div class="wrap contact__grid">
+    <div class="contact__form-card">
+      <h2 class="contact__heading">{{ c.formTitle }}</h2>
 
         {#
           Netlify Forms. The data-netlify attribute registers the form at
@@ -67,17 +61,17 @@ eleventyComputed:
           </p>
 
           <div class="field field--required">
-            <label class="field__label" for="parent-name">{{ c.parentName }}</label>
+            <label class="field__label" for="parent-name">{{ c.parentName }} <span class="field__req">{{ c.required }}</span></label>
             <input class="field__control" type="text" id="parent-name" name="parent-name" autocomplete="name" required />
           </div>
 
           <div class="field field--required">
-            <label class="field__label" for="phone">{{ c.phone }}</label>
+            <label class="field__label" for="phone">{{ c.phone }} <span class="field__req">{{ c.required }}</span></label>
             <input class="field__control" type="tel" id="phone" name="phone" autocomplete="tel" required />
           </div>
 
           <div class="field field--required">
-            <label class="field__label" for="email">{{ c.email }}</label>
+            <label class="field__label" for="email">{{ c.email }} <span class="field__req">{{ c.required }}</span></label>
             <input class="field__control" type="email" id="email" name="email" autocomplete="email" required />
           </div>
 
@@ -116,29 +110,34 @@ eleventyComputed:
             {{ c.submit }}
           </button>
         </form>
-      </div>
+    </div>
 
-      <div>
-        <h2>{{ c.callTitle }}</h2>
+    <aside class="contact__aside" aria-labelledby="call-title">
+      <div class="callpanel">
+        <h2 class="contact__heading" id="call-title">{{ c.callTitle }}</h2>
         {% for location in site.locations %}
-          <h3>{{ location.name }}</h3>
-          <address>
-            {{ location.street }}<br />
-            {{ location.city }}, {{ location.state }} {{ location.zip }}<br />
-            <a href="tel:{{ location.phone | phoneHref }}">{{ location.phone | phoneDisplay }}</a>
-          </address>
-          <p>{{ location.hours if lang.code == 'en' else location.hoursEs }}</p>
-          <p><a href="{{ location | mapUrl }}">{{ t.cta.openInMaps }}</a></p>
+          <div class="callpanel__place">
+            <h3 class="callpanel__name">{{ location.name }}</h3>
+            <address class="callpanel__address">
+              {{ location.street }}<br />
+              {{ location.city }}, {{ location.state }} {{ location.zip }}<br />
+              <a class="callpanel__phone" href="tel:{{ location.phone | phoneHref }}"><svg class="icon" aria-hidden="true" focusable="false" width="18" height="18"><use href="#icon-phone"></use></svg>{{ location.phone | phoneDisplay }}</a>
+            </address>
+            <p class="callpanel__hours">{{ location.hours if lang.code == 'en' else location.hoursEs }}</p>
+            <p><a class="link-on-navy" href="{{ location | mapUrl }}">{{ t.cta.openInMaps }}</a></p>
+          </div>
         {% endfor %}
 
-        <h3>{{ t.common.email }}</h3>
-        <p><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></p>
-
-        {% if site.bilingualStaff and lang.code == 'en' %}
-          <h3 lang="es">{{ c.bilingualTitle }}</h3>
-          <p lang="es">{{ c.bilingualBody }}</p>
-        {% endif %}
+        <h3 class="callpanel__name">{{ t.common.email }}</h3>
+        <p><a class="link-on-navy" href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></p>
       </div>
-    </div>
+
+      {% if site.bilingualStaff and lang.code == 'en' %}
+        <div class="bilingual">
+          <h3 class="bilingual__title" lang="es">{{ c.bilingualTitle }}</h3>
+          <p lang="es">{{ c.bilingualBody }}</p>
+        </div>
+      {% endif %}
+    </aside>
   </div>
-</section>
+</div>

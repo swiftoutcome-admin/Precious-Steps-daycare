@@ -17,19 +17,20 @@ eleventyComputed:
 {% set t = i18n[lang.code] %}
 {% set ty = t.thankYou %}
 
-<section class="hero">
-  <div class="wrap wrap--narrow">
-    <h1 class="hero__title">{{ ty.heroTitle }}</h1>
-    <p class="hero__lead">
+<section class="notice" aria-labelledby="page-title">
+  <div class="notice__card">
+    <span class="notice__badge" aria-hidden="true"><svg width="32" height="32" focusable="false"><use href="#icon-check"></use></svg></span>
+    <h1 class="notice__title" id="page-title">{{ ty.heroTitle }}</h1>
+    <p class="notice__lead">
       {{ ty.heroLead }} {{ site.contact.responseTime if lang.code == 'en' else site.contact.responseTimeEs }}
     </p>
-    <p>
+    <p class="notice__call">
       {{ ty.callSooner }}
-      {% for location in site.locations %}
-        <a href="tel:{{ location.phone | phoneHref }}">{{ location.phone | phoneDisplay }}</a>{% if not loop.last %} {{ 'or' if lang.code == 'en' else 'o' }} {% endif %}
-      {% endfor %}.
+      {%- for location in site.locations %}
+        <a href="tel:{{ location.phone | phoneHref }}">{{ location.phone | phoneDisplay }}</a>{% if not loop.last %} {{ t.common.or }}{% endif %}
+      {%- endfor %}.
     </p>
-    <div class="hero__actions">
+    <div class="notice__actions">
       <a class="button button--secondary" href="{{ 'home' | localizedUrl(lang.code) }}">{{ t.cta.backHome }}</a>
       <a class="button button--secondary" href="{{ 'programs' | localizedUrl(lang.code) }}">{{ t.cta.seePrograms }}</a>
     </div>

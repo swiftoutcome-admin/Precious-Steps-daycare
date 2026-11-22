@@ -24,7 +24,7 @@
 
     <link rel="canonical" href="{{ env.baseUrl }}{{ page.url }}" />
 
-    {% if pageKey %}
+    {% if pageKey and not noHreflang %}
       {# Tell search engines the two language versions are the same page,
          so neither is treated as duplicate content. #}
       {% for l in languages %}
@@ -62,13 +62,14 @@
     <link rel="stylesheet" href="/assets/css/tokens.css" />
     <link rel="stylesheet" href="/assets/css/base.css" />
     <link rel="stylesheet" href="/assets/css/components.css" />
-    <link rel="stylesheet" href="/assets/css/site.css" />
 
     <script src="/assets/js/main.js" defer></script>
   </head>
 
   <body>
     <a class="skip-link" href="#main">{{ t.nav.skip }}</a>
+
+    {% include "partials/sprite.njk" %}
 
     {% include "partials/header.njk" %}
 

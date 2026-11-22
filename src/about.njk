@@ -16,67 +16,90 @@ eleventyComputed:
 {% set t = i18n[lang.code] %}
 {% set a = t.about %}
 
-<section class="hero">
-  <div class="wrap">
-    <p class="eyebrow">{{ a.eyebrow }}</p>
-    <h1 class="hero__title">{{ a.heroTitle }}</h1>
-    <p class="hero__lead">{{ a.heroLead }}</p>
+{% set heroEyebrow = a.eyebrow %}
+{% set heroTitle = a.heroTitle %}
+{% set heroLead = a.heroLead %}
+{% set heroImg = "/assets/img/programs/toy-bus.webp" %}
+{% set heroAlt = t.imageAlt.toyBus %}
+{% set heroW = 1086 %}
+{% set heroH = 724 %}
+{% include "partials/page-hero.njk" %}
+
+{# ------------------------------------------------------------ Our story #}
+<section class="chapter chapter--navy" aria-labelledby="story-title">
+  <p class="chapter__year" aria-hidden="true">{{ site.foundedYear }}</p>
+  <div class="chapter__inner">
+    <h2 class="chapter__title" id="story-title">{{ a.storyTitle }}</h2>
+    <div class="chapter__body reveal">
+      <p>{{ a.storyP1 }}</p>
+      <p>{{ a.storyP2 }}</p>
+      <p>{{ a.storyP3 }}</p>
+    </div>
   </div>
 </section>
 
-<section class="section">
-  <div class="wrap wrap--narrow">
-    <h2>{{ a.storyTitle }}</h2>
-    <p>{{ a.storyP1 }}</p>
-    <p>{{ a.storyP2 }}</p>
-    <p>{{ a.storyP3 }}</p>
-  </div>
-</section>
-
-<section class="section section--subtle">
-  <div class="wrap wrap--narrow">
-    <h2>{{ a.philosophyTitle }}</h2>
-    <blockquote>
+{# ----------------------------------------------------------- Philosophy #}
+<section class="philosophy" aria-labelledby="philosophy-title">
+  <div class="philosophy__panel reveal">
+    <h2 id="philosophy-title">{{ a.philosophyTitle }}</h2>
+    <blockquote class="philosophy__quote">
       <p>{{ a.philosophyQuote }}</p>
     </blockquote>
-    <p>{{ a.philosophyP1 }}</p>
-    <p>{{ a.philosophyP2 }}</p>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap wrap--narrow">
-    <h2>{{ a.antibiasTitle }}</h2>
-    <p>{{ a.antibiasP1 }}</p>
-  </div>
-</section>
-
-<section class="section section--ruled">
-  <div class="wrap wrap--narrow">
-    <h2>{{ a.directorTitle }}</h2>
-    <div class="todo">
-      <strong>Draft pending client review</strong>
-      {{ a.directorTodo }}
+    <div class="philosophy__body">
+      <p>{{ a.philosophyP1 }}</p>
+      <p>{{ a.philosophyP2 }}</p>
     </div>
-    <p>{{ a.directorP1 }}</p>
-    <p>{{ a.directorP2 }}</p>
-    <p>{{ a.directorP3 }}</p>
   </div>
 </section>
 
-<section class="section section--subtle" id="our-teachers">
-  <div class="wrap wrap--narrow">
-    <h2>{{ a.teachersTitle }}</h2>
-    <p>{{ a.teachersIntro }}</p>
-    <dl class="spec">
-      <dt>{{ a.teachersLeadLabel }}</dt>
-      <dd>{{ a.teachersLeadDetail }}</dd>
-      <dt>{{ a.teachersAssocLabel }}</dt>
-      <dd>{{ a.teachersAssocDetail }}</dd>
-      <dt>{{ a.teachersInfantLabel }}</dt>
-      <dd>{{ a.teachersInfantDetail }}</dd>
+{# ------------------------------------------------------------ Anti-bias #}
+<section class="chapter" aria-labelledby="antibias-title">
+  <div class="chapter__inner">
+    <h2 class="chapter__title" id="antibias-title">{{ a.antibiasTitle }}</h2>
+    <div class="chapter__body reveal">
+      <p>{{ a.antibiasP1 }}</p>
+    </div>
+  </div>
+</section>
+
+{# ------------------------------------------------------------- Director #}
+<section class="chapter chapter--tint" aria-labelledby="director-title">
+  <div class="chapter__inner">
+    <h2 class="chapter__title" id="director-title">{{ a.directorTitle }}</h2>
+    <div class="chapter__body letter reveal">
+      <div class="todo">
+        <strong>Draft pending client review</strong>
+        {{ a.directorTodo }}
+      </div>
+      <p>{{ a.directorP1 }}</p>
+      <p>{{ a.directorP2 }}</p>
+      <p>{{ a.directorP3 }}</p>
+    </div>
+  </div>
+</section>
+
+{# ------------------------------------------------------------- Teachers #}
+<section class="section" id="our-teachers" aria-labelledby="teachers-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 id="teachers-title">{{ a.teachersTitle }}</h2>
+      <p class="section-head__lead">{{ a.teachersIntro }}</p>
+    </div>
+    <dl class="creds">
+      <div class="creds__item reveal">
+        <dt>{{ a.teachersLeadLabel }}</dt>
+        <dd>{{ a.teachersLeadDetail }}</dd>
+      </div>
+      <div class="creds__item reveal">
+        <dt>{{ a.teachersAssocLabel }}</dt>
+        <dd>{{ a.teachersAssocDetail }}</dd>
+      </div>
+      <div class="creds__item reveal">
+        <dt>{{ a.teachersInfantLabel }}</dt>
+        <dd>{{ a.teachersInfantDetail }}</dd>
+      </div>
     </dl>
-    <p>{{ a.teachersOutro }}</p>
+    <p class="creds__outro">{{ a.teachersOutro }}</p>
     <div class="todo">
       <strong>{{ t.common.contentNeeded }}</strong>
       {{ a.teachersTodo }}

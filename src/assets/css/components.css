@@ -1,574 +1,2320 @@
 /* ===========================================================================
-   COMPONENTS
+   COMPONENTS: the site's layout system and every component.
+
+   Every colour, font and size comes from tokens.css. This file holds no
+   raw colour values.
+
+   Contents
+     1. Layout primitives and section heads
+     2. Buttons, pills, chips
+     3. Masthead: topbar, main bar, navigation
+     4. Mobile call bar
+     5. Home: hero
+     6. Home: front desk and trust row
+     7. Home: programme staircase
+     8. Home: story and teachers
+     9. Home: meals and photo band
+    10. Closing call to action
+    11. Footer
+    13. Shared sections, notes and checklists
+    14. Inner-page hero
+    15. Chapters (About, Enrollment)
+    16. About: philosophy and credentials
+    17. Programs: ladder and programme sections
+    18. Locations
+    19. Enrollment
+    20. Gallery
+    21. Contact and forms
+    22. Long-form document
+    23. Notices (thank you, not found)
+    11b. Liquid and glass materials (after every component, so it wins)
+    12. Motion
    =========================================================================== */
 
-/* --- Layout primitives ----------------------------------------------------- */
+/* --- 1. Layout primitives --------------------------------------------------- */
 
 .wrap {
   width: 100%;
-  max-width: var(--width-wide);
+  max-width: calc(var(--width-wide) + 2 * var(--gutter));
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
 
-.wrap--narrow {
-  max-width: var(--width-content);
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }
 
-.section {
-  padding-block: var(--space-2xl);
-}
-
-.section--tight {
-  padding-block: var(--space-xl);
-}
-
-.section--subtle {
-  background-color: var(--color-bg-subtle);
-}
-
-.section--ruled {
-  border-top: var(--rule-faint);
-}
-
-.section__lead {
-  max-width: var(--measure);
-  font-size: var(--text-lg);
-  line-height: var(--leading-relaxed);
-  color: var(--color-text-muted);
+.icon {
+  flex: none;
+  fill: currentColor;
 }
 
 .eyebrow {
-  margin: 0 0 var(--space-2xs);
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  font-weight: var(--weight-semibold);
+  margin: 0 0 var(--space-xs);
   color: var(--color-highlight);
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  font-weight: var(--weight-extrabold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-.grid {
-  display: grid;
-  gap: var(--space-lg);
+.eyebrow--on-navy {
+  color: var(--color-on-navy-accent);
 }
 
-@media (min-width: 40rem) {
-  .grid--2 {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.section-head {
+  max-width: 44rem;
+  margin-bottom: var(--space-xl);
 }
 
-@media (min-width: 58rem) {
-  .grid--3 {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.section-head h2 {
+  margin-bottom: var(--space-sm);
 }
 
-/* A grid built from a real <ul>, so the list semantics survive without
-   a role attribute. */
-.grid--list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+.section-head__lead {
+  color: var(--color-text-muted);
+  font-size: var(--text-lead);
+  line-height: var(--leading-snug);
 }
 
-.grid--list > li {
-  display: flex;
-  margin: 0;
-}
-
-.grid--list > li > * {
-  width: 100%;
-}
-
-/* --- Buttons -----------------------------------------------------------------
-   Depth comes from three stacked shadow layers plus a one-pixel lift, not
-   from a colour swap. The ambient shadow is tinted with the button's own
-   hue; a grey shadow under a coloured button is what makes a button look
-   like a default. Borders are drawn with inset box-shadow rather than
-   border, so hover can thicken the edge without shifting layout.
-   ----------------------------------------------------------------------- */
+/* --- 2. Buttons, pills, chips ----------------------------------------------- */
 
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.85em 1.75em;
+  gap: var(--space-2xs);
+  min-height: 3rem;
+  padding: 0.75rem 1.5rem;
   border: 0;
   border-radius: var(--radius-pill);
   font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  font-weight: var(--weight-semibold);
-  letter-spacing: 0.005em;
-  line-height: 1.35;
+  font-size: var(--text-button);
+  font-weight: var(--weight-bold);
+  line-height: 1.2;
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
-  /* Paint the gradient against its own stacking context so the inset
-     highlight never bleeds over neighbouring content. */
-  isolation: isolate;
-  transition:
-    transform var(--transition),
-    box-shadow var(--transition),
-    background-color var(--transition),
-    color var(--transition);
+  transition: transform var(--transition), box-shadow var(--transition),
+    background-color var(--transition), color var(--transition);
 }
 
-.button:focus-visible {
-  outline: 2px solid var(--brand-pink-500);
-  outline-offset: 3px;
+.button--lg {
+  min-height: 3.5rem;
+  padding: 0.95rem 1.85rem;
+  font-size: 1.125rem;
 }
 
-/* Primary: a lit surface. The gradient is deliberately shallow, about one
-   step of the royal blue ramp, so it reads as light falling on the button rather
-   than as a gradient. */
 .button--primary {
-  background-color: var(--brand-royal-600);
-  background-image: linear-gradient(
-    180deg,
-    var(--brand-royal-600) 0%,
-    var(--brand-royal-700) 100%
-  );
-  color: var(--paper-pure);
+  background-color: var(--brand-royal-700);
+  color: var(--paper);
   box-shadow: var(--shadow-btn);
 }
 
 .button--primary:hover {
-  color: var(--paper-pure);
-  background-image: linear-gradient(
-    180deg,
-    var(--brand-royal-700) 0%,
-    var(--brand-royal-800) 100%
-  );
+  background-color: var(--brand-royal-800);
+  color: var(--paper);
   box-shadow: var(--shadow-btn-hover);
   transform: translateY(-1px);
 }
 
-/* Press returns the button to the page and inverts the highlight, so the
-   click is felt rather than just seen. */
 .button--primary:active {
   box-shadow: var(--shadow-btn-active);
-  transform: translateY(1px);
+  transform: translateY(0) scale(0.98);
 }
 
-/* Secondary: a quiet surface with a hairline that strengthens on hover. */
 .button--secondary {
-  background-color: var(--color-surface);
-  color: var(--color-accent);
+  background-color: var(--paper);
+  color: var(--brand-royal-700);
   box-shadow: var(--shadow-btn-ghost);
 }
 
 .button--secondary:hover {
-  color: var(--color-accent-hover);
+  color: var(--brand-royal-800);
   box-shadow: var(--shadow-btn-ghost-hover);
   transform: translateY(-1px);
 }
 
-.button--secondary:active {
-  box-shadow: inset 0 0 0 1.5px var(--brand-royal-500),
-    inset 0 2px 3px rgb(23 52 94 / 0.12);
-  transform: translateY(1px);
+.button:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  border-radius: var(--radius-pill);
 }
 
-.button--lg {
-  padding: 1em 2.25em;
-  font-size: var(--text-base);
-}
-
-/* A disabled submit, used by the form guard while a request is sending. */
 .button[disabled] {
-  background-image: none;
-  background-color: var(--ink-300);
-  color: var(--paper-pure);
-  box-shadow: none;
-  transform: none;
   cursor: progress;
+  opacity: 0.7;
+  transform: none;
 }
 
-/* Motion is decoration here; the shadow change alone carries the state. */
-@media (prefers-reduced-motion: reduce) {
-  .button,
-  .button:hover,
-  .button:active {
-    transform: none;
-  }
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  margin: 0 0 var(--space-md);
+  padding: 0.4rem 0.9rem 0.4rem 0.7rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-highlight-soft);
+  color: var(--color-highlight);
+  font-size: var(--text-label);
+  font-weight: var(--weight-extrabold);
 }
 
-/* --- Header and navigation --------------------------------------------------- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
-.site-header {
+.chip {
+  margin: 0;
+  padding: 0.2rem 0.7rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--brand-royal-50);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+}
+
+/* --- 3. Masthead ------------------------------------------------------------- */
+
+/* The whole masthead sticks, offset by the topbar's height, so the navy
+   phone bar scrolls away and the white bar with the tour button stays. */
+.masthead {
   position: sticky;
-  top: 0;
+  top: calc(-1 * var(--topbar-height));
   z-index: 50;
-  background-color: var(--color-bg);
-  border-bottom: var(--rule-faint);
 }
 
-.site-header__inner > * {
-  min-width: 0;
+.topbar {
+  background-color: var(--color-navy-surface);
+  color: var(--color-on-navy);
+  font-size: var(--text-sm);
 }
 
-.site-header__inner {
+.topbar__inner,
+.mainbar__inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: var(--space-md);
-  width: 100%;
-  max-width: var(--width-wide);
+  max-width: calc(var(--width-wide) + 2 * var(--gutter));
   margin-inline: auto;
-  /* Vertical padding is set against the CTA button's height, not a fixed
-     value, so the header never looks pinched around it. */
-  padding: var(--space-sm) var(--gutter);
+  padding-inline: var(--gutter);
 }
 
-.site-header__brand {
-  display: block;
-  flex-shrink: 0;
+.topbar__inner {
+  min-height: var(--topbar-height);
+  justify-content: flex-end;
+}
+
+.topbar__phones {
+  display: none;
+  gap: var(--space-lg);
+  margin: 0 auto 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.topbar__phones li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2xs);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.topbar__place {
+  color: var(--color-on-navy-muted);
+}
+
+.topbar__phone {
+  color: var(--color-on-navy);
+  font-weight: var(--weight-extrabold);
   text-decoration: none;
 }
 
-/* The approved logo artwork.
-
-   Sized by height so the lockup scales as one piece and the proportions
-   the client approved are never altered. The source file is trimmed to
-   its own content, which matters: the placeholder this replaced had a
-   third of its canvas as empty padding, so setting a height scaled the
-   padding along with the artwork and it always looked small at the size
-   it was given. */
-.site-header__logo {
-  display: block;
-  width: auto;
-  height: clamp(3rem, 2.4rem + 2.4vw, 3.75rem);
-  transition: opacity var(--transition);
+.topbar__phone:hover {
+  color: var(--color-on-navy);
+  text-decoration: underline;
+  text-decoration-color: var(--color-on-navy-accent);
 }
 
-/* A link needs to answer the pointer. Opacity rather than a filter or a
-   colour shift, so the artwork itself is never altered. */
-.site-header__brand:hover .site-header__logo {
-  opacity: 0.86;
+.langs__list {
+  display: flex;
+  gap: var(--space-3xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.langs__list li {
+  margin: 0;
+}
+
+.langs__link {
+  display: inline-block;
+  padding: 0.15rem 0.75rem;
+  border-radius: var(--radius-pill);
+  color: var(--color-on-navy);
+  font-weight: var(--weight-bold);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.langs__link:hover {
+  color: var(--color-on-navy);
+  text-decoration: underline;
+  text-decoration-color: var(--color-on-navy-accent);
+}
+
+.langs__link[aria-current="true"] {
+  background-color: var(--color-on-navy);
+  color: var(--color-navy-surface);
+}
+
+.mainbar {
+  position: relative;
+  background-color: var(--paper);
+  box-shadow: 0 1px 0 var(--ink-200);
+}
+
+.mainbar__inner {
+  min-height: var(--masthead-height);
+  justify-content: space-between;
+  gap: var(--space-xs);
+}
+
+.mainbar__brand {
+  flex: none;
+  display: block;
+  border-radius: var(--radius-sm);
+}
+
+/* Size and placement only. The artwork is never cropped or recoloured. */
+.mainbar__logo {
+  width: auto;
+  height: clamp(2.5rem, 1.9rem + 2.4vw, 4rem);
 }
 
 .nav-toggle {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2xs);
-  padding: var(--space-2xs) var(--space-xs);
-  background: none;
-  border: var(--rule);
-  border-radius: var(--radius-sm);
-  font-size: var(--text-sm);
+  min-height: 2.75rem;
+  padding: 0.5rem 0.85rem;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background-color: var(--brand-navy-50);
+  color: var(--color-text);
+  font-weight: var(--weight-bold);
   cursor: pointer;
 }
 
-.nav-toggle__bar,
-.nav-toggle__bar::before,
-.nav-toggle__bar::after {
+.nav-toggle__icon,
+.nav-toggle__icon span,
+.nav-toggle__icon::before,
+.nav-toggle__icon::after {
   display: block;
-  width: 1rem;
-  height: 1px;
+  width: 1.125rem;
+  height: 2px;
+  border-radius: 2px;
   background-color: currentColor;
 }
 
-.nav-toggle__bar {
+.nav-toggle__icon {
   position: relative;
+  height: 0.875rem;
+  background-color: transparent;
 }
 
-.nav-toggle__bar::before,
-.nav-toggle__bar::after {
+.nav-toggle__icon::before,
+.nav-toggle__icon::after,
+.nav-toggle__icon span {
   content: "";
   position: absolute;
   left: 0;
+  transition: transform var(--transition), opacity var(--transition);
 }
 
-.nav-toggle__bar::before {
-  top: -5px;
+.nav-toggle__icon::before {
+  top: 0;
+}
+.nav-toggle__icon span {
+  top: calc(50% - 1px);
+}
+.nav-toggle__icon::after {
+  bottom: 0;
 }
 
-.nav-toggle__bar::after {
-  top: 5px;
+.nav-toggle[aria-expanded="true"] .nav-toggle__icon::before {
+  transform: translateY(6px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle__icon span {
+  opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle__icon::after {
+  transform: translateY(-6px) rotate(-45deg);
 }
 
-.primary-nav__list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--nav-gap);
+.mainnav__list {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.primary-nav__list li {
+.mainnav__list li {
   margin: 0;
 }
 
-.primary-nav a {
-  font-size: var(--text-sm);
-  text-decoration: none;
+.mainnav__link {
+  display: block;
   color: var(--color-text);
+  font-weight: var(--weight-bold);
+  text-decoration: none;
+  white-space: nowrap;
 }
 
-.primary-nav a:hover {
+.mainnav__link:hover {
   color: var(--color-accent);
 }
 
-.primary-nav a[aria-current="page"] {
+.mainnav__link[aria-current="page"] {
   color: var(--color-accent);
-  box-shadow: inset 0 -1px 0 0 currentColor;
 }
 
-/* The nav CTA is an <a> inside .primary-nav, so the link colour rule above
-   (specificity 0,1,1) was beating .button--primary (0,1,0) and painting
-   dark text on the dark teal fill. Restate the button's own colours at
-   matching specificity. */
-.primary-nav .button--primary,
-.primary-nav .button--primary:hover,
-.primary-nav .button--primary:active {
-  color: var(--paper-pure);
-}
-
-/* Below the desktop breakpoint the nav collapses behind the toggle.
-   The breakpoint is 75rem rather than a conventional 58rem because this
-   header carries a lot: the logo, six links, a CTA button and the language
-   switch. The header's inner row is capped at the page's content width so
-   it stays aligned with everything below it, which means widening the
-   window past that point adds no room. Spanish is the binding case: its
-   labels run about 40px longer than the English ones. Below 75rem they do
-   not fit on one line, and a nav that wraps to two rows looks broken. */
+/* Small screens: the nav is a panel under the main bar. Without
+   JavaScript it stays open, so the links are never unreachable. */
 @media (max-width: 74.99rem) {
-  .primary-nav {
+  .mainnav {
     display: none;
-    width: 100%;
-    padding-block: var(--space-sm);
-    border-top: var(--rule-faint);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: var(--space-xs) var(--gutter) var(--space-lg);
+    background-color: var(--paper);
+    box-shadow: var(--shadow-lg);
   }
 
-  .site-header__inner {
-    flex-wrap: wrap;
-  }
-
-  .primary-nav.is-open {
+  .no-js .mainnav,
+  .mainnav.is-open {
     display: block;
   }
 
-  .primary-nav__list {
-    flex-direction: column;
-    gap: var(--space-sm);
+  .no-js .mainnav {
+    position: static;
+    box-shadow: none;
   }
 
-  .primary-nav__cta {
-    margin-top: var(--space-sm);
+  .mainnav__link {
+    padding: 0.85rem 0;
+    border-bottom: var(--rule-faint);
+    font-size: var(--text-base);
+  }
+
+  .mainnav__link[aria-current="page"] {
+    box-shadow: inset 4px 0 0 var(--brand-pink-500);
+    padding-left: var(--space-sm);
+  }
+
+  .mainnav__cta {
+    width: 100%;
+    margin-top: var(--space-md);
   }
 }
 
+/* Wide screens: one row. The breakpoint is set where the Spanish labels,
+   the longer of the two languages, fit with room to spare. */
 @media (min-width: 75rem) {
+  .topbar__phones {
+    display: flex;
+  }
+
   .nav-toggle {
     display: none;
   }
 
-  .primary-nav {
+  .mainnav {
     display: flex;
     align-items: center;
-    gap: var(--space-md);
+    gap: var(--space-lg);
+  }
+
+  .mainnav__list {
+    display: flex;
+    gap: var(--nav-gap);
+  }
+
+  .mainnav__link {
+    position: relative;
+    padding: 0.5rem 0;
+    font-size: var(--text-sm);
+  }
+
+  .mainnav__link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.15rem;
+    height: 3px;
+    border-radius: 3px;
+    background-color: var(--brand-pink-500);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition);
+  }
+
+  .mainnav__link:hover::after,
+  .mainnav__link[aria-current="page"]::after {
+    transform: scaleX(1);
   }
 }
 
-/* --- Hero --------------------------------------------------------------------- */
+/* --- 4. Mobile call bar ----------------------------------------------------- */
 
-.hero {
-  padding-block: var(--space-2xl) var(--space-xl);
-  border-bottom: var(--rule-faint);
-}
-
-.hero__title {
-  margin-bottom: var(--space-md);
-  font-size: var(--text-3xl);
-}
-
-.hero__lead {
-  max-width: 54ch;
-  font-size: var(--text-lg);
-  line-height: var(--leading-relaxed);
-  color: var(--color-text-muted);
-}
-
-.hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
-  margin-top: var(--space-lg);
-}
-
-/* --- Cards --------------------------------------------------------------------- */
-
-.card {
-  display: flex;
-  flex-direction: column;
-  padding: var(--space-lg);
-  background-color: var(--color-surface);
-  border: 0;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-}
-
-.card__title {
-  margin-bottom: var(--space-3xs);
-  font-size: var(--text-lg);
-}
-
-.card__meta {
-  margin-bottom: var(--space-sm);
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  color: var(--color-highlight);
-}
-
-.card__body {
-  flex-grow: 1;
-}
-
-.card__link {
-  margin-top: var(--space-sm);
-  font-size: var(--text-sm);
-}
-
-/* Definition rows inside a card: ages, ratio, curriculum. */
-.spec {
+.callbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: var(--space-3xs) var(--space-sm);
-  margin: 0 0 var(--space-sm);
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xs);
+  padding: var(--space-2xs) var(--space-sm)
+    calc(var(--space-2xs) + env(safe-area-inset-bottom, 0px));
+  background-color: var(--paper);
+  box-shadow: var(--shadow-callbar);
+}
+
+.callbar__call {
+  position: relative;
+}
+
+.callbar__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  min-height: 3rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-pill);
   font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
-.spec dt {
-  color: var(--color-text-muted);
+.callbar__button--call {
+  list-style: none;
+  color: var(--color-text);
 }
 
-.spec dd {
+.callbar__button--call::-webkit-details-marker {
+  display: none;
+}
+
+.callbar__button--tour {
+  background-color: var(--brand-royal-700);
+  color: var(--paper);
+}
+
+.callbar__button--tour:hover {
+  background-color: var(--brand-royal-800);
+  color: var(--paper);
+}
+
+.callbar__sheet {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + var(--space-xs));
+  width: max-content;
+  min-width: 100%;
+  margin: 0;
+  padding: var(--space-2xs);
+  border-radius: var(--radius-lg);
+  background-color: var(--paper);
+  box-shadow: var(--shadow-lg);
+  list-style: none;
+}
+
+.callbar__sheet li {
   margin: 0;
 }
 
-/* --- Announcement band ----------------------------------------------------------- */
+.callbar__number {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.callbar__number:hover {
+  background-color: var(--brand-royal-50);
+  color: var(--color-text);
+}
+
+.callbar__place {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.callbar__digits {
+  font-size: var(--text-h4);
+  font-weight: var(--weight-extrabold);
+  color: var(--color-accent);
+}
+
+body {
+  padding-bottom: var(--callbar-height);
+}
+
+@media (min-width: 75rem) {
+  .callbar {
+    display: none;
+  }
+
+  body {
+    padding-bottom: 0;
+  }
+}
+
+/* --- 5. Home: hero ----------------------------------------------------------- */
+
+.home-hero {
+  padding-block: var(--space-lg);
+}
+
+.home-hero__inner {
+  display: grid;
+  gap: var(--space-lg);
+  max-width: calc(var(--width-wide) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.home-hero__title {
+  max-width: 19ch;
+  margin-bottom: var(--space-md);
+  color: var(--color-text);
+}
+
+.home-hero__lead {
+  max-width: 34rem;
+  margin-bottom: var(--space-lg);
+  color: var(--color-text-muted);
+  font-size: var(--text-lead);
+  line-height: var(--leading-snug);
+}
+
+.home-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+/* The arch: a doorway shape, with a blush block and the brand pattern
+   standing behind it. */
+.home-hero__media {
+  position: relative;
+  margin: 0;
+  isolation: isolate;
+}
+
+.home-hero__media::before {
+  content: "";
+  position: absolute;
+  inset: 6% -1.25rem -1.25rem 1.25rem;
+  z-index: -1;
+  border-radius: var(--radius-xl);
+  background-color: var(--color-blush-surface);
+  background-image: var(--pattern-url);
+  background-size: 260px;
+}
+
+.home-hero__img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: 50% 35%;
+  border-radius: var(--radius-xl);
+}
+
+@media (min-width: 58rem) {
+  .home-hero {
+    padding-block: var(--space-lg) var(--space-xl);
+  }
+
+  .home-hero__inner {
+    grid-template-columns: 1fr minmax(0, 25rem);
+    align-items: center;
+    gap: var(--space-2xl);
+  }
+
+  .home-hero__media {
+    margin-right: 1.25rem;
+  }
+
+  .home-hero__media::before {
+    border-radius: 999px 999px var(--radius-xl) var(--radius-xl);
+  }
+
+  .home-hero__img {
+    aspect-ratio: 5 / 6;
+    border-radius: 999px 999px var(--radius-xl) var(--radius-xl);
+  }
+}
+
+/* --- 6. Home: front desk ----------------------------------------------------- */
+
+.desk {
+  padding-block: var(--space-xl);
+  background-color: var(--brand-royal-50);
+}
+
+.desk__inner {
+  display: grid;
+  gap: var(--space-lg);
+  max-width: calc(var(--width-wide) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.desk__title {
+  margin-bottom: var(--space-xs);
+}
+
+.desk__lead {
+  color: var(--color-text-muted);
+}
+
+.desk__list {
+  display: grid;
+  gap: var(--space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ticket {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: var(--space-lg) var(--space-md) var(--space-md);
+  border-radius: var(--radius-xl);
+  background-color: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+
+.ticket__name {
+  margin-bottom: var(--space-2xs);
+  font-size: var(--text-h4);
+}
+
+.ticket__address {
+  margin-bottom: var(--space-md);
+  color: var(--color-text-muted);
+}
+
+.ticket__facts {
+  display: grid;
+  gap: var(--space-sm);
+  margin: 0 0 var(--space-md);
+}
+
+.ticket__fact dt {
+  margin-bottom: var(--space-3xs);
+  color: var(--color-highlight);
+  font-size: var(--text-label);
+  font-weight: var(--weight-extrabold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ticket__fact dd {
+  margin: 0;
+  font-weight: var(--weight-bold);
+}
+
+.ticket__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs) var(--space-md);
+  margin-top: auto;
+  padding-top: var(--space-md);
+  border-top: var(--rule-faint);
+}
+
+.ticket__call {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  width: 100%;
+  min-height: 3.25rem;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  background-color: var(--brand-royal-700);
+  color: var(--paper);
+  font-size: var(--text-h4);
+  font-weight: var(--weight-extrabold);
+  text-decoration: none;
+  box-shadow: var(--shadow-btn);
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.ticket__call:hover {
+  background-color: var(--brand-royal-800);
+  color: var(--paper);
+  transform: translateY(-1px);
+}
+
+.ticket__call:focus-visible {
+  border-radius: var(--radius-pill);
+}
+
+.ticket__link {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+}
+
+.assure {
+  display: grid;
+  gap: var(--space-md);
+  margin: var(--space-md) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.assure__item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--space-sm);
+  margin: 0;
+}
+
+.assure__icon {
+  grid-row: span 2;
+  fill: var(--brand-royal-500);
+}
+
+.assure__name {
+  font-weight: var(--weight-extrabold);
+}
+
+.assure__detail {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+@media (min-width: 46rem) {
+  .desk__list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .assure {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 64rem) {
+  .desk__inner {
+    grid-template-columns: 17rem 1fr;
+    column-gap: var(--space-xl);
+  }
+
+  .desk__head {
+    padding-top: var(--space-md);
+  }
+
+  .assure {
+    grid-column: 1 / -1;
+  }
+
+  .ticket__call {
+    width: auto;
+    padding-inline: var(--space-md);
+  }
+}
+
+/* --- 7. Home: programme staircase --------------------------------------------- */
+
+.stairs-section {
+  padding-block: var(--space-2xl);
+  overflow: hidden;
+}
+
+.stairs {
+  display: grid;
+  gap: var(--space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stair {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  margin: 0;
+}
+
+.stair__card {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-md);
+  border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+  background-color: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+
+.stair__name {
+  margin-bottom: var(--space-3xs);
+  font-size: var(--text-h4);
+}
+
+.stair__ratio {
+  margin-bottom: var(--space-xs);
+  color: var(--color-highlight);
+  font-weight: var(--weight-extrabold);
+}
+
+.stair__summary {
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.stair__link {
+  margin-top: auto;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+}
+
+.stair__card .todo {
+  font-size: var(--text-xs);
+}
+
+.stair__riser {
+  grid-column: 1;
+  grid-row: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-2xs);
+  border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+}
+
+.stair__print {
+  width: 1.25rem;
+  height: 2.5rem;
+  fill: currentColor;
+  opacity: 0.55;
+  transform: rotate(-12deg);
+}
+
+.stair:nth-child(even) .stair__print {
+  transform: rotate(12deg) scaleX(-1);
+}
+
+.stair__ages {
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-extrabold);
+  line-height: var(--leading-tight);
+  text-align: center;
+}
+
+.stair--1 .stair__riser { background-color: var(--riser-1-bg); color: var(--riser-1-fg); }
+.stair--2 .stair__riser { background-color: var(--riser-2-bg); color: var(--riser-2-fg); }
+.stair--3 .stair__riser { background-color: var(--riser-3-bg); color: var(--riser-3-fg); }
+.stair--4 .stair__riser { background-color: var(--riser-4-bg); color: var(--riser-4-fg); }
+.stair--5 .stair__riser { background-color: var(--riser-5-bg); color: var(--riser-5-fg); }
+
+/* Narrow screens: a ladder, each rung stepped in a little further. */
+@media (min-width: 30rem) and (max-width: 63.99rem) {
+  .stair--2 { margin-left: var(--space-sm); }
+  .stair--3 { margin-left: var(--space-lg); }
+  .stair--4 { margin-left: calc(var(--space-lg) + var(--space-sm)); }
+  .stair--5 { margin-left: var(--space-xl); }
+}
+
+/* Wide screens: real stairs. Each riser is one step taller than the last,
+   and every column sits on the same floor. */
+@media (min-width: 64rem) {
+  .stairs {
+    grid-template-columns: repeat(5, 1fr);
+    align-items: end;
+    gap: var(--space-sm);
+  }
+
+  /* Every card is the same height (subgrid shares the card row across all
+     five columns) and is then dropped onto its own riser, so the card tops
+     form one clean diagonal. */
+  .stairs {
+    grid-template-rows: auto auto;
+    row-gap: 0;
+  }
+
+  .stair {
+    display: grid;
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+    grid-template-columns: 1fr;
+  }
+
+  .stair__card {
+    grid-column: 1;
+    grid-row: 1;
+    margin-bottom: var(--space-sm);
+    border-radius: var(--radius-xl);
+  }
+
+  .stair__riser {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: end;
+  }
+
+  .stair--1 .stair__card { translate: 0 14rem; }
+  .stair--2 .stair__card { translate: 0 10.5rem; }
+  .stair--3 .stair__card { translate: 0 7rem; }
+  .stair--4 .stair__card { translate: 0 3.5rem; }
+
+  .stair__riser {
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  .stair__ages {
+    text-align: left;
+    font-size: var(--text-base);
+  }
+
+  .stair__print {
+    width: 1.5rem;
+    height: 3rem;
+  }
+
+  .stair--1 .stair__riser { height: 5rem; }
+  .stair--2 .stair__riser { height: 8.5rem; }
+  .stair--3 .stair__riser { height: 12rem; }
+  .stair--4 .stair__riser { height: 15.5rem; }
+  .stair--5 .stair__riser { height: 19rem; }
+
+  /* Ages sit on the first step's riser, which is too short for the print. */
+  .stair--1 .stair__print { display: none; }
+}
+
+/* --- 8. Home: story and teachers (Deep Navy) -------------------------------- */
+
+.story {
+  position: relative;
+  overflow: hidden;
+  padding-block: var(--space-2xl);
+  background-color: var(--color-navy-surface);
+  color: var(--color-on-navy);
+}
+
+.story h2 {
+  color: var(--color-on-navy);
+}
+
+.story p {
+  color: var(--color-on-navy-muted);
+}
+
+/* The founding year as architecture. Decorative and hidden from assistive
+   technology; the same fact is in the eyebrow above the story. */
+.story .story__year {
+  position: absolute;
+  top: -0.12em;
+  right: -0.04em;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-mega);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--brand-navy-500);
+  pointer-events: none;
+  user-select: none;
+}
+
+.story__inner {
+  position: relative;
+  display: grid;
+  gap: var(--space-xl);
+  max-width: calc(var(--width-wide) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.story__photo {
+  margin: 0;
+}
+
+.story__photo img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius-xl);
+}
+
+.link-on-navy {
+  color: var(--color-on-navy-accent);
+  font-weight: var(--weight-bold);
+  text-decoration-color: currentColor;
+}
+
+.link-on-navy:hover {
+  color: var(--color-on-navy);
+}
+
+@media (min-width: 58rem) {
+  .story__inner {
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--space-md);
+    row-gap: var(--space-2xl);
+  }
+
+  .story__block--story { grid-column: 1 / 7; grid-row: 1; align-self: center; }
+  .story__photo--a { grid-column: 8 / 13; grid-row: 1; align-self: end; }
+  .story__photo--b { grid-column: 1 / 6; grid-row: 2; align-self: start; }
+  .story__block--team { grid-column: 7 / 13; grid-row: 2; align-self: center; }
+
+  .story__photo--a img {
+    border-radius: 999px 999px var(--radius-xl) var(--radius-xl);
+    aspect-ratio: 4 / 5;
+  }
+}
+
+/* --- 9. Home: meals and photo band ---------------------------------------------- */
+
+.meals {
+  padding: var(--space-2xl) var(--gutter) var(--space-xl);
+}
+
+.meals__panel {
+  display: grid;
+  gap: var(--space-lg);
+  max-width: var(--width-wide);
+  margin-inline: auto;
+  padding: var(--space-lg) var(--space-md);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-blush-surface);
+}
+
+/* Blush Pink is light enough that only Deep Navy text clears AA on it,
+   so the eyebrow switches from pink to navy here. */
+.meals__panel .eyebrow,
+.meals__panel p,
+.meals__panel h2 {
+  color: var(--color-text);
+}
+
+.meals__photo {
+  margin: 0;
+}
+
+.meals__photo img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+@media (min-width: 58rem) {
+  .meals__panel {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: var(--space-xl);
+    padding: var(--space-xl);
+  }
+
+  /* The photo breaks out of the panel's top edge. */
+  .meals__photo {
+    margin-top: calc(-1 * var(--space-2xl));
+  }
+
+  .meals__photo img {
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-card);
+  }
+}
+
+.band {
+  max-width: calc(var(--width-wide) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+.band img {
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  object-fit: cover;
+  border-radius: var(--radius-xl);
+}
+
+/* --- 10. Closing call to action -------------------------------------------- */
+
+.closing {
+  padding: var(--space-xl) var(--gutter);
+}
+
+.closing__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-lg);
+  max-width: var(--width-wide);
+  margin-inline: auto;
+  padding: var(--space-xl) var(--space-md);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-blush-surface-soft);
+  background-image: var(--pattern-url);
+  background-size: var(--pattern-size);
+}
+
+.closing__copy {
+  padding: var(--space-lg) var(--space-md);
+  border-radius: var(--radius-lg);
+  background-color: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+
+.closing__title {
+  margin-bottom: var(--space-xs);
+}
+
+.closing__text {
+  margin: 0;
+}
+
+.closing__actions {
+  min-width: 0;
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-blush-surface-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.closing__phones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.closing__phones li {
+  margin: 0;
+}
+
+.phone-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  min-height: 3rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--paper);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  flex-wrap: wrap;
+  column-gap: var(--space-2xs);
+  row-gap: 0;
+}
+
+.phone-chip__digits {
+  white-space: nowrap;
+}
+
+.phone-chip .icon {
+  fill: var(--brand-royal-500);
+}
+
+.phone-chip__digits {
+  font-weight: var(--weight-extrabold);
+  color: var(--color-accent);
+}
+
+.phone-chip:hover {
+  color: var(--color-text);
+  box-shadow: var(--shadow-md);
+}
+
+@media (min-width: 58rem) {
+  .closing__actions {
+    justify-self: start;
+  }
+
+  .closing__inner {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+    padding: var(--space-xl);
+  }
+}
+
+/* --- 11. Footer -------------------------------------------------------------- */
+
+.footer {
+  border-top: 4px solid var(--brand-pink-300);
+  background-color: var(--paper);
+  font-size: var(--text-sm);
+}
+
+.footer__inner {
+  display: grid;
+  gap: var(--space-lg);
+  max-width: calc(var(--width-wide) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: var(--space-xl) var(--gutter) var(--space-lg);
+}
+
+.footer__logo {
+  width: 14rem;
+  height: auto;
+  margin-bottom: var(--space-sm);
+}
+
+.footer__tagline {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-snug);
+}
+
+.footer__since,
+.footer__address,
+.footer__hours {
+  color: var(--color-text-muted);
+}
+
+.footer__heading {
+  margin-bottom: var(--space-xs);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--weight-extrabold);
+  letter-spacing: 0;
+}
+
+.footer__address {
+  margin-bottom: var(--space-2xs);
+}
+
+.footer__phone a {
+  font-weight: var(--weight-extrabold);
+}
+
+.footer__links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__links li {
+  margin-bottom: var(--space-2xs);
+}
+
+.footer__bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2xs) var(--space-lg);
+  max-width: calc(var(--width-wide) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: var(--space-md) var(--gutter) var(--space-lg);
+  border-top: var(--rule-faint);
+}
+
+.footer__legal {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+}
+
+@media (min-width: 46rem) {
+  .footer__inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 64rem) {
+  .footer__inner {
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  }
+}
+
+/* --- 13. Shared sections and editorial elements -------------------------------- */
+
+.section {
+  padding-block: var(--space-2xl);
+}
+
+.section--tint {
+  background-color: var(--brand-royal-50);
+}
 
 .announcement {
   padding-block: var(--space-sm);
   background-color: var(--color-highlight-soft);
-  border-bottom: var(--rule-faint);
   font-size: var(--text-sm);
 }
 
 .announcement__title {
   margin: 0;
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  font-weight: var(--weight-semibold);
+  font-weight: var(--weight-extrabold);
 }
 
 .announcement p {
   margin: 0;
 }
 
-/* --- Accreditation strip ---------------------------------------------------------- */
+/* Internal notes for content still awaiting the client. Deliberately
+   unlike any brand surface so nobody mistakes one for site copy. */
+.todo {
+  margin-block: var(--space-sm);
+  padding: var(--space-xs) var(--space-sm);
+  border: 2px dashed var(--color-note-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-note-bg);
+  color: var(--color-note-fg);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
 
-.accred {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-md) var(--space-xl);
-  margin: 0;
+.todo strong {
+  display: block;
+  margin-bottom: var(--space-3xs);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.checklist {
+  display: grid;
+  gap: var(--space-2xs);
+  margin: 0 0 var(--space-md);
   padding: 0;
   list-style: none;
 }
 
-.accred li {
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2xs);
   margin: 0;
-  max-width: 22rem;
 }
 
-.accred__name {
-  display: block;
+.checklist .icon {
+  margin-top: 0.3em;
+  fill: var(--brand-royal-500);
+}
+
+@media (min-width: 40rem) {
+  .program .checklist {
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--space-lg);
+  }
+}
+
+.checklist--card {
+  padding: var(--space-lg) var(--space-md);
+  border-radius: var(--radius-xl);
+  background-color: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+
+/* --- 14. Inner-page hero ---------------------------------------------------------- */
+
+.page-hero {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-blush-surface-soft);
+}
+
+.page-hero__inner {
+  display: grid;
+  gap: var(--space-lg);
+  align-items: center;
+  max-width: calc(var(--width-wide) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: var(--space-lg) var(--gutter);
+}
+
+.page-hero .pill {
+  background-color: var(--paper);
+}
+
+.page-hero__title {
+  max-width: 20ch;
+  margin-bottom: var(--space-sm);
+}
+
+.page-hero__lead {
+  max-width: 40rem;
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-lead);
+  line-height: var(--leading-snug);
+}
+
+.page-hero__media {
+  display: none;
+  margin: 0;
+}
+
+.page-hero__art {
+  display: none;
+}
+
+@media (min-width: 58rem) {
+  .page-hero__inner {
+    grid-template-columns: 1fr 22rem;
+    gap: var(--space-2xl);
+    padding-block: var(--space-xl);
+  }
+
+  .page-hero__media {
+    display: block;
+    position: relative;
+    isolation: isolate;
+  }
+
+  .page-hero__media::before {
+    content: "";
+    position: absolute;
+    inset: 10% -1rem -1rem 1rem;
+    z-index: -1;
+    border-radius: 999px 999px var(--radius-xl) var(--radius-xl);
+    background-color: var(--color-blush-surface);
+    background-image: var(--pattern-url);
+    background-size: 240px;
+  }
+
+  .page-hero__img {
+    width: calc(100% - 1rem);
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 999px 999px var(--radius-xl) var(--radius-xl);
+  }
+
+  /* Without a photo: a blush arch with the brand pattern and three
+     sneaker prints climbing past it. Purely decorative. */
+  .page-hero__art {
+    display: block;
+    position: relative;
+    height: 14rem;
+  }
+
+  .page-hero__art::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: calc(-1 * var(--space-xl));
+    width: 15rem;
+    height: 17rem;
+    border-radius: 999px 999px 0 0;
+    background-color: var(--color-blush-surface);
+    background-image: var(--pattern-url);
+    background-size: 220px;
+  }
+
+  .page-hero__print {
+    position: absolute;
+    width: 1.75rem;
+    height: 3.5rem;
+    fill: var(--brand-navy-700);
+    opacity: 0.85;
+  }
+
+  .page-hero__print--1 { left: 0.5rem; bottom: 0.5rem; transform: rotate(-14deg); }
+  .page-hero__print--2 { left: 3.5rem; bottom: 4.5rem; transform: rotate(10deg) scaleX(-1); }
+  .page-hero__print--3 { left: 6.5rem; bottom: 8.5rem; transform: rotate(-14deg); }
+}
+
+/* --- 15. Chapters: heading left, text right ---------------------------------------- */
+
+.chapter {
+  position: relative;
+  overflow: hidden;
+  padding-block: var(--space-2xl);
+}
+
+.chapter--tint {
+  background-color: var(--brand-royal-50);
+}
+
+.chapter--navy {
+  background-color: var(--color-navy-surface);
+  color: var(--color-on-navy);
+}
+
+.chapter--navy h2 {
+  color: var(--color-on-navy);
+}
+
+.chapter--navy .chapter__body > p {
+  color: var(--color-on-navy-muted);
+}
+
+.chapter__inner {
+  position: relative;
+  display: grid;
+  gap: var(--space-md);
+  max-width: calc(var(--width-wide) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.chapter__body {
+  max-width: var(--measure);
+}
+
+.chapter__body > p {
+  font-size: var(--text-lead);
+}
+
+.chapter .chapter__year {
+  position: absolute;
+  right: -0.04em;
+  bottom: -0.2em;
+  margin: 0;
   font-family: var(--font-display);
-  font-size: var(--text-lg);
-  color: var(--color-accent);
+  font-size: var(--text-mega);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--brand-navy-500);
+  pointer-events: none;
+  user-select: none;
 }
 
-.accred__detail {
-  font-size: var(--text-sm);
+.letter {
+  padding: var(--space-lg) var(--space-md);
+  border-radius: var(--radius-xl);
+  background-color: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+
+.letter > p {
+  font-size: var(--text-base);
+}
+
+@media (min-width: 58rem) {
+  .chapter__inner {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  .chapter__title {
+    position: sticky;
+    top: calc(var(--masthead-height) + var(--space-lg));
+  }
+
+  .letter {
+    padding: var(--space-xl);
+  }
+}
+
+/* --- 16. About: philosophy and credentials ----------------------------------------- */
+
+.philosophy {
+  padding: var(--space-2xl) var(--gutter);
+}
+
+.philosophy__panel {
+  max-width: var(--width-wide);
+  margin-inline: auto;
+  padding: var(--space-xl) var(--space-md);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-blush-surface);
+}
+
+.philosophy__panel h2,
+.philosophy__panel p {
+  color: var(--color-text);
+}
+
+.philosophy__quote {
+  position: relative;
+  margin: var(--space-md) 0 var(--space-lg);
+  padding: 0 0 0 var(--space-md);
+  border-left: 4px solid var(--brand-navy-700);
+}
+
+.philosophy__quote p {
+  max-width: 34ch;
+  font-size: var(--text-h3);
+  font-weight: var(--weight-extrabold);
+  line-height: var(--leading-snug);
+}
+
+@media (min-width: 58rem) {
+  .philosophy__panel {
+    padding: var(--space-2xl) var(--space-xl);
+  }
+
+  .philosophy__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+  }
+}
+
+.creds {
+  display: grid;
+  gap: var(--space-md);
+  margin: 0 0 var(--space-lg);
+}
+
+.creds__item {
+  padding: var(--space-lg) var(--space-md);
+  border-radius: var(--radius-xl);
+  background-color: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+
+.creds__item dt {
+  margin-bottom: var(--space-2xs);
+  font-size: var(--text-h4);
+  font-weight: var(--weight-extrabold);
+  line-height: var(--leading-tight);
+}
+
+.creds__item dd {
+  margin: 0;
   color: var(--color-text-muted);
 }
 
-/* --- Steps list --------------------------------------------------------------------- */
+.creds__outro {
+  max-width: var(--measure);
+}
 
-.steps {
-  counter-reset: step;
-  margin: 0;
+@media (min-width: 58rem) {
+  .creds {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --- 17. Programs: ladder and programme sections ------------------------------------- */
+
+.ladder {
+  padding: var(--space-lg) var(--gutter) 0;
+}
+
+.ladder__list {
+  display: grid;
+  gap: var(--space-2xs);
+  max-width: var(--width-wide);
+  margin: 0 auto;
   padding: 0;
   list-style: none;
 }
 
-.steps li {
+.ladder__step {
+  margin: 0;
+}
+
+.ladder__link {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0 var(--space-sm);
+  height: 100%;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.ladder__link:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.ladder__name {
+  font-weight: var(--weight-extrabold);
+}
+
+.ladder__ages {
+  font-size: var(--text-sm);
+}
+
+.ladder .stair--1 .ladder__link { background-color: var(--riser-1-bg); color: var(--riser-1-fg); }
+.ladder .stair--2 .ladder__link { background-color: var(--riser-2-bg); color: var(--riser-2-fg); }
+.ladder .stair--3 .ladder__link { background-color: var(--riser-3-bg); color: var(--riser-3-fg); }
+.ladder .stair--4 .ladder__link { background-color: var(--riser-4-bg); color: var(--riser-4-fg); }
+.ladder .stair--5 .ladder__link { background-color: var(--riser-5-bg); color: var(--riser-5-fg); }
+
+/* Wide screens: the five links stand as steps, each a little taller. */
+@media (min-width: 64rem) {
+  .ladder__list {
+    grid-template-columns: repeat(5, 1fr);
+    align-items: end;
+  }
+
+  .ladder__link {
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-lg) var(--radius-lg) var(--radius-sm) var(--radius-sm);
+  }
+
+  .ladder .stair--1 .ladder__link { min-height: 4.5rem; }
+  .ladder .stair--2 .ladder__link { min-height: 6rem; }
+  .ladder .stair--3 .ladder__link { min-height: 7.5rem; }
+  .ladder .stair--4 .ladder__link { min-height: 9rem; }
+  .ladder .stair--5 .ladder__link { min-height: 10.5rem; }
+}
+
+.program {
+  padding-block: var(--space-xl);
+  scroll-margin-top: var(--masthead-height);
+}
+
+.program + .program {
+  border-top: var(--rule-faint);
+}
+
+.program__inner {
+  display: grid;
+  gap: var(--space-lg);
+  max-width: calc(var(--width-wide) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.program__facts {
   position: relative;
-  padding: 0 0 var(--space-md) var(--space-xl);
-  counter-increment: step;
-  border-left: var(--rule-accent);
+  padding: var(--space-lg) var(--space-md);
+  border-radius: var(--radius-xl);
 }
 
-.steps li:last-child {
-  padding-bottom: 0;
-  border-left-color: transparent;
-}
+.program.stair--1 .program__facts { background-color: var(--riser-1-bg); color: var(--riser-1-fg); }
+.program.stair--2 .program__facts { background-color: var(--riser-2-bg); color: var(--riser-2-fg); }
+.program.stair--3 .program__facts { background-color: var(--riser-3-bg); color: var(--riser-3-fg); }
+.program.stair--4 .program__facts { background-color: var(--riser-4-bg); color: var(--riser-4-fg); }
+.program.stair--5 .program__facts { background-color: var(--riser-5-bg); color: var(--riser-5-fg); }
 
-.steps li::before {
-  content: counter(step);
+.program__print {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: var(--space-md);
+  right: var(--space-md);
+  width: 1.5rem;
+  height: 3rem;
+  fill: currentColor;
+  opacity: 0.5;
+  transform: rotate(14deg);
+}
+
+.program__spec {
+  display: grid;
+  gap: var(--space-sm);
+  margin: 0;
+}
+
+.program__spec dt {
+  font-size: var(--text-label);
+  font-weight: var(--weight-extrabold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.program__spec dd {
+  margin: 0;
+  font-weight: var(--weight-bold);
+}
+
+.program__spec .program__ages {
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  line-height: var(--leading-display);
+}
+
+.program__name {
+  margin-bottom: var(--space-sm);
+}
+
+.program__summary {
+  font-size: var(--text-lead);
+  line-height: var(--leading-snug);
+}
+
+.program__sub {
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-xs);
+  font-size: var(--text-h4);
+}
+
+@media (min-width: 58rem) {
+  .program__inner {
+    grid-template-columns: 19rem 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  .program__facts {
+    position: sticky;
+    top: calc(var(--masthead-height) + var(--space-md));
+  }
+
+  .program__body {
+    max-width: 44rem;
+  }
+}
+
+.trio {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.trio__item {
+  padding: var(--space-lg) var(--space-md);
+  border-radius: var(--radius-xl);
+  background-color: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+
+@media (min-width: 64rem) {
+  .trio {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --- 18. Locations ---------------------------------------------------------------- */
+
+.place {
+  padding-block: var(--space-2xl);
+  scroll-margin-top: var(--masthead-height);
+}
+
+.place--flip {
+  background-color: var(--brand-royal-50);
+}
+
+.place__inner {
+  display: grid;
+  gap: var(--space-lg);
+  max-width: calc(var(--width-wide) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.place__name {
+  margin-bottom: var(--space-xs);
+}
+
+.place__address {
+  margin-bottom: var(--space-md);
+  color: var(--color-text-muted);
+  font-size: var(--text-lead);
+}
+
+.facts {
+  display: grid;
+  margin: 0;
+  border-top: var(--rule);
+}
+
+.facts__row {
+  display: grid;
+  gap: var(--space-3xs) var(--space-md);
+  padding-block: var(--space-sm);
+  border-bottom: var(--rule);
+}
+
+.facts__row dt {
+  color: var(--color-highlight);
+  font-size: var(--text-label);
+  font-weight: var(--weight-extrabold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.facts__row dd {
+  margin: 0;
+}
+
+.facts__phone {
+  font-size: var(--text-h4);
+  font-weight: var(--weight-extrabold);
+}
+
+@media (min-width: 40rem) {
+  .facts__row {
+    grid-template-columns: 9rem 1fr;
+    align-items: baseline;
+  }
+}
+
+.map {
+  margin: 0;
+}
+
+.map__frame {
+  display: block;
+  width: 100%;
+  height: 18rem;
+  border: 0;
+  border-radius: var(--radius-xl);
+  background-color: var(--ink-100);
+  box-shadow: var(--shadow-card);
+}
+
+.map__caption {
+  margin: var(--space-sm) 0 0;
+  font-weight: var(--weight-bold);
+}
+
+@media (min-width: 58rem) {
+  .place__inner {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  .place--flip .place__map {
+    order: -1;
+  }
+
+  .map__frame {
+    height: 28rem;
+  }
+
+  .place__map {
+    position: sticky;
+    top: calc(var(--masthead-height) + var(--space-md));
+  }
+}
+
+.closings {
+  padding: var(--space-2xl) var(--gutter) 0;
+}
+
+.closings__panel {
+  max-width: var(--width-wide);
+  margin-inline: auto;
+  padding: var(--space-xl) var(--space-md);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-blush-surface);
+}
+
+.closings__panel h2,
+.closings__panel p {
+  color: var(--color-text);
+}
+
+.closings__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin: var(--space-md) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.closings__list li {
+  margin: 0;
+  padding: 0.35rem 1rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--paper);
+  font-weight: var(--weight-bold);
+}
+
+@media (min-width: 58rem) {
+  .closings__panel {
+    padding: var(--space-xl);
+  }
+}
+
+/* --- 19. Enrollment ------------------------------------------------------------- */
+
+.journey {
+  display: grid;
+  gap: var(--space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: journey;
+}
+
+.journey__step {
+  position: relative;
+  margin: 0;
+  padding: var(--space-md) var(--space-md) var(--space-md) 4.25rem;
+  border-radius: var(--radius-xl);
+  background-color: var(--paper);
+  box-shadow: var(--shadow-card);
+  counter-increment: journey;
+}
+
+.journey__step::before {
+  content: counter(journey);
+  position: absolute;
+  top: var(--space-md);
+  left: var(--space-md);
   display: grid;
   place-items: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  margin-left: calc(-0.875rem - 1px);
-  background-color: var(--color-bg);
-  border: var(--rule-accent);
+  width: 2.25rem;
+  height: 2.25rem;
   border-radius: 50%;
-  font-family: var(--font-sans);
-  font-size: var(--text-xs);
-  color: var(--color-accent);
-}
-
-.steps__title {
-  margin-bottom: var(--space-3xs);
-  font-family: var(--font-sans);
+  background-color: var(--brand-royal-700);
+  color: var(--paper);
+  font-family: var(--font-display);
   font-size: var(--text-base);
-  font-weight: var(--weight-semibold);
-  letter-spacing: var(--tracking-normal);
+  font-weight: var(--weight-bold);
 }
 
-/* --- FAQ ------------------------------------------------------------------------------- */
+.journey__title {
+  margin-bottom: var(--space-3xs);
+  font-size: var(--text-h4);
+  font-weight: var(--weight-extrabold);
+  line-height: var(--leading-tight);
+}
+
+.journey__detail {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+/* Wide screens: three per row, each one standing a step higher than the
+   last, so the path to enrolment reads as a climb. */
+@media (min-width: 64rem) {
+  .journey {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
+    column-gap: var(--space-md);
+    row-gap: calc(var(--space-xl) + 3rem);
+    padding-top: 3rem;
+  }
+
+  .journey__step {
+    padding: 4rem var(--space-md) var(--space-lg);
+  }
+
+  /* Fixed offsets on equal-height cards, so the rise is the same at every
+     step whatever the length of the text. translate, not transform, so the
+     reveal animation does not cancel it. */
+  .journey__step--1,
+  .journey__step--4 { translate: 0 3rem; }
+  .journey__step--2,
+  .journey__step--5 { translate: 0 1.5rem; }
+}
+
+.split {
+  display: grid;
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.split__copy > p {
+  max-width: var(--measure);
+}
+
+@media (min-width: 58rem) {
+  .split {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+  }
+}
+
+.quad {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.quad__item {
+  padding: var(--space-lg) var(--space-md);
+  border-radius: var(--radius-xl);
+  background-color: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+
+.quad__item p {
+  margin: 0;
+}
+
+@media (min-width: 46rem) {
+  .quad {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.faq {
+  display: grid;
+  gap: var(--space-lg);
+}
 
 .faq__item {
-  padding-block: var(--space-sm);
-  border-bottom: var(--rule-faint);
+  border-bottom: var(--rule);
 }
 
-.faq__item summary {
-  font-weight: var(--weight-medium);
+.faq__q {
+  position: relative;
+  display: block;
+  padding: var(--space-sm) var(--space-xl) var(--space-sm) 0;
+  font-size: var(--text-base);
+  font-weight: var(--weight-extrabold);
+  list-style: none;
   cursor: pointer;
 }
 
-.faq__item summary::marker {
-  color: var(--color-accent);
+.faq__q::-webkit-details-marker {
+  display: none;
 }
 
-.faq__item p {
-  margin-top: var(--space-2xs);
-  margin-bottom: 0;
+/* A plus that turns into a minus. Two bars drawn in CSS; no glyphs. */
+.faq__q::before,
+.faq__q::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: var(--space-2xs);
+  width: 1rem;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--brand-royal-700);
+  transition: transform var(--transition);
+}
+
+.faq__q::after {
+  transform: rotate(90deg);
+}
+
+.faq__item[open] .faq__q::after {
+  transform: rotate(0deg);
+}
+
+.faq__a {
+  max-width: var(--measure);
+  margin: 0;
+  padding-bottom: var(--space-md);
   color: var(--color-text-muted);
 }
 
-/* --- Forms ------------------------------------------------------------------------------ */
+@media (min-width: 58rem) {
+  .faq {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: var(--space-2xl);
+  }
+
+  .faq__head {
+    position: sticky;
+    top: calc(var(--masthead-height) + var(--space-lg));
+    align-self: start;
+  }
+}
+
+/* --- 20. Gallery ------------------------------------------------------------------ */
+
+.wall {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+  margin: var(--space-lg) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wall__item {
+  margin: 0;
+}
+
+.wall__frame {
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+}
+
+.wall__item--1 .wall__frame,
+.wall__item--5 .wall__frame {
+  border-radius: 999px 999px var(--radius-xl) var(--radius-xl);
+}
+
+.wall__img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  transition: transform 600ms var(--ease-out);
+}
+
+@media (hover: hover) {
+  .wall__frame:hover .wall__img {
+    transform: scale(1.04);
+  }
+}
+
+@media (min-width: 58rem) {
+  .wall {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+
+  /* The middle column hangs lower, so the six frames read as a wall. */
+  .wall__item--2,
+  .wall__item--5 {
+    translate: 0 var(--space-2xl);
+  }
+
+  .gallery-section {
+    padding-bottom: calc(var(--space-2xl) * 2);
+  }
+}
+
+/* --- 21. Contact ------------------------------------------------------------------- */
+
+.contact__grid {
+  display: grid;
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.contact__heading {
+  margin-bottom: var(--space-md);
+}
+
+.contact__form-card {
+  padding: var(--space-lg) var(--space-md);
+  border-radius: var(--radius-xl);
+  background-color: var(--paper);
+  box-shadow: var(--shadow-card);
+}
 
 .form {
-  max-width: 34rem;
+  max-width: none;
 }
 
 .field {
@@ -579,38 +2325,39 @@
   display: block;
   margin-bottom: var(--space-3xs);
   font-size: var(--text-sm);
-  font-weight: var(--weight-medium);
+  font-weight: var(--weight-bold);
+}
+
+.field__req {
+  color: var(--color-text-muted);
+  font-weight: var(--weight-regular);
 }
 
 .field__hint {
   display: block;
   margin-bottom: var(--space-2xs);
-  font-size: var(--text-xs);
   color: var(--color-text-muted);
+  font-size: var(--text-xs);
 }
 
 .field__control {
   width: 100%;
+  min-height: 3rem;
   padding: var(--space-xs) var(--space-sm);
-  background-color: var(--color-surface);
-  border: 2px solid var(--ink-200);
+  border: 2px solid var(--color-field-border);
   border-radius: var(--radius-md);
+  background-color: var(--paper);
   font-size: var(--text-base);
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
 
 .field__control:focus {
-  border-color: var(--color-accent);
+  border-color: var(--color-field-border-focus);
 }
 
 textarea.field__control {
   min-height: 8rem;
   resize: vertical;
-}
-
-.field--required .field__label::after {
-  content: " (required)";
-  font-weight: var(--weight-regular);
-  color: var(--color-text-muted);
 }
 
 /* Honeypot: hidden from people, visible to naive bots. */
@@ -619,523 +2366,463 @@ textarea.field__control {
   left: -9999px;
 }
 
-/* --- CTA band ------------------------------------------------------------------------------ */
-
-.cta-band {
-  padding-block: var(--space-2xl);
-  background-color: var(--color-bg-warm);
-  border-top: 0;
+.callpanel {
+  padding: var(--space-lg) var(--space-md);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-navy-surface);
+  color: var(--color-on-navy);
 }
 
-.cta-band__inner {
-  width: 100%;
-  max-width: var(--width-content);
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-  text-align: center;
+.callpanel h2,
+.callpanel h3 {
+  color: var(--color-on-navy);
 }
 
-.cta-band__text {
-  max-width: none;
-  margin-inline: auto;
-  color: var(--color-text-muted);
+.callpanel p,
+.callpanel__address {
+  color: var(--color-on-navy-muted);
 }
 
-/* --- Footer --------------------------------------------------------------------------------- */
-
-.site-footer {
-  margin-top: var(--space-2xl);
-  background-color: var(--ink-50);
-  border-top: 0;
-  font-size: var(--text-sm);
+.callpanel__place {
+  padding-bottom: var(--space-md);
+  margin-bottom: var(--space-md);
+  border-bottom: 1px solid var(--brand-navy-500);
 }
 
-.site-footer__inner {
-  display: grid;
-  gap: var(--space-lg);
-  width: 100%;
-  max-width: var(--width-wide);
-  margin-inline: auto;
-  padding: var(--space-xl) var(--gutter);
+.callpanel__name {
+  margin-bottom: var(--space-2xs);
+  font-size: var(--text-h4);
 }
 
-@media (min-width: 46rem) {
-  .site-footer__inner {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 64rem) {
-  .site-footer__inner {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.site-footer__logo {
-  display: block;
-  width: auto;
-  height: 2.875rem;
+.callpanel__address {
   margin-bottom: var(--space-xs);
 }
 
-.site-footer__tagline,
-.site-footer__since,
-.site-footer__hours {
-  color: var(--color-text-muted);
+.callpanel__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  margin-top: var(--space-2xs);
+  color: var(--color-on-navy);
+  font-size: var(--text-h4);
+  font-weight: var(--weight-extrabold);
+  text-decoration: none;
 }
 
-.site-footer__heading {
+.callpanel__phone .icon {
+  fill: var(--color-on-navy-accent);
+}
+
+.callpanel__phone:hover {
+  color: var(--color-on-navy);
+  text-decoration: underline;
+  text-decoration-color: var(--color-on-navy-accent);
+}
+
+.callpanel__hours {
   margin-bottom: var(--space-2xs);
-  font-family: var(--font-display);
-  font-size: var(--text-base);
-  font-weight: var(--weight-semibold);
+}
+
+.bilingual {
+  margin-top: var(--space-md);
+  padding: var(--space-lg) var(--space-md);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-blush-surface);
+}
+
+.bilingual__title,
+.bilingual p {
   color: var(--color-text);
 }
 
-.site-footer__links {
+.bilingual p {
   margin: 0;
-  padding: 0;
-  list-style: none;
 }
 
-.site-footer__bar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: var(--space-2xs) var(--space-md);
-  width: 100%;
+@media (min-width: 58rem) {
+  .contact__grid {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-xl);
+  }
+
+  .contact__form-card {
+    padding: var(--space-xl);
+  }
+
+  /* Fields pair up in two columns, aligned on their inputs rather than
+     their labels, since one label carries a hint line. The message box and
+     the button take the full width. */
+  .form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--space-md);
+    align-items: end;
+  }
+
+  .form > .field:has(textarea),
+  .form > button {
+    grid-column: 1 / -1;
+  }
+
+  .form > button {
+    justify-self: start;
+  }
+
+  .contact__aside {
+    position: sticky;
+    top: calc(var(--masthead-height) + var(--space-md));
+  }
+}
+
+/* --- 22. Long-form document (privacy) ----------------------------------------------- */
+
+.doc {
+  max-width: calc(var(--measure) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.doc h2 {
+  margin-top: var(--space-xl);
+}
+
+.doc h2:first-of-type {
+  margin-top: var(--space-lg);
+}
+
+/* --- 23. Notices (thank you, not found) ----------------------------------------------- */
+
+.notice {
+  padding: var(--space-2xl) var(--gutter);
+  background-color: var(--color-blush-surface-soft);
+  background-image: var(--pattern-url);
+  background-size: var(--pattern-size);
+}
+
+.notice__pair {
+  display: grid;
+  gap: var(--space-md);
   max-width: var(--width-wide);
   margin-inline: auto;
-  padding: var(--space-sm) var(--gutter) var(--space-lg);
-  border-top: var(--rule-faint);
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
 }
 
-.site-footer__legal,
-.site-footer__accred {
-  margin: 0;
-}
-
-/* --- Editorial note ----------------------------------------------------------------------------
-   Visible marker for content that is not yet confirmed by the client.
-   Remove the markup, not the style, when a section is signed off. */
-
-.todo {
-  margin-block: var(--space-sm);
-  padding: var(--space-xs) var(--space-sm);
-  background-color: #fff8e1;
-  border-left: 3px solid #c9951b;
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  color: #6b4e00;
-}
-
-.todo strong {
-  display: block;
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-}
-
-/* ===========================================================================
-   HOMEPAGE: split hero, trust strip, alternating feature bands,
-   media slots, photo dividers, location cards with maps
-   =========================================================================== */
-
-/* --- Section heading block --------------------------------------------------- */
-
-.section__head {
-  max-width: var(--measure);
-  margin-bottom: var(--space-lg);
-}
-
-.section__head h2 {
-  margin-bottom: var(--space-2xs);
-}
-
-/* --- Split hero ---------------------------------------------------------------- */
-
-.hero--split {
-  padding-block: var(--space-xl) var(--space-2xl);
-  border-bottom: 0;
-}
-
-.hero__grid {
-  display: grid;
-  gap: var(--space-xl);
-  align-items: center;
-}
-
-@media (min-width: 58rem) {
-  .hero__grid {
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: var(--space-2xl);
-  }
-}
-
-.hero--split .hero__title {
-  margin-bottom: var(--space-md);
-}
-
-/* --- Trust strip ------------------------------------------------------------------ */
-
-.trust {
-  padding-block: var(--space-lg);
-  background-color: var(--color-bg-subtle);
-  border-radius: var(--radius-lg);
-  margin-inline: var(--gutter);
-}
-
-.trust__list {
-  display: grid;
-  gap: var(--space-md) var(--space-xl);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-@media (min-width: 46rem) {
-  .trust__list {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.trust__item {
-  margin: 0;
-  padding-left: var(--space-md);
-  border-left: 3px solid var(--brand-pink-300);
-}
-
-.trust__name {
-  display: block;
-  margin-bottom: var(--space-3xs);
-  font-family: var(--font-display);
-  font-size: var(--text-lg);
-  font-weight: var(--weight-semibold);
-  color: var(--color-accent);
-}
-
-.trust__detail {
-  display: block;
-  font-size: var(--text-sm);
-  line-height: var(--leading-snug);
-  color: var(--color-text-muted);
-}
-
-/* --- Alternating feature bands -------------------------------------------------------- */
-
-.feature {
-  display: grid;
-  gap: var(--space-lg);
-  align-items: center;
-}
-
-@media (min-width: 58rem) {
-  .feature {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-2xl);
-  }
-
-  /* Reversed band: media first on screen, text first in the DOM, so the
-     reading order stays correct for screen readers and keyboard users. */
-  .feature--reverse .feature__text {
-    order: 2;
-  }
-
-  .feature--reverse .feature__media {
-    order: 1;
-  }
-}
-
-.feature__text h2 {
-  margin-bottom: var(--space-sm);
-}
-
-.feature__text > p:last-child {
-  margin-bottom: 0;
-}
-
-/* --- Media slots ------------------------------------------------------------------------ */
-
-.media {
-  margin: 0;
-}
-
-.media__img,
-.media__placeholder {
-  width: 100%;
-  border-radius: var(--radius-lg);
-}
-
-.media__img {
-  object-fit: cover;
-  aspect-ratio: var(--media-ratio, 3 / 2);
-}
-
-.media--landscape {
-  --media-ratio: 3 / 2;
-}
-
-.media--portrait {
-  --media-ratio: 4 / 5;
-}
-
-.media--wide {
-  --media-ratio: 16 / 7;
-}
-
-/* Placeholder reads as an intentional empty slot, not a broken image. */
-.media__placeholder {
-  display: grid;
-  place-content: center;
-  gap: var(--space-3xs);
-  aspect-ratio: var(--media-ratio, 3 / 2);
-  padding: var(--space-md);
+.notice__card {
+  max-width: 40rem;
+  margin-inline: auto;
+  padding: var(--space-xl) var(--space-md);
+  border-radius: var(--radius-xl);
+  background-color: var(--paper);
+  box-shadow: var(--shadow-card);
   text-align: center;
-  background-color: var(--brand-royal-50);
-  border: 1px dashed var(--brand-royal-100);
 }
 
-.media__placeholder-label {
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  color: var(--color-accent);
+.notice__pair .notice__card {
+  max-width: none;
+  margin: 0;
 }
 
-.media__placeholder-note {
-  font-family: var(--font-sans);
-  font-size: var(--text-xs);
-  color: var(--ink-400);
+.notice__badge {
+  display: inline-grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: var(--space-md);
+  border-radius: 50%;
+  background-color: var(--brand-royal-700);
+  fill: var(--paper);
 }
 
-.media__caption {
-  margin-top: var(--space-2xs);
-  font-size: var(--text-xs);
+.notice__title {
+  font-size: var(--text-h1);
+}
+
+.notice__lead,
+.notice__call {
+  margin-inline: auto;
+}
+
+.notice__lead {
   color: var(--color-text-muted);
+  font-size: var(--text-lead);
 }
 
-/* --- Full-width photo divider -------------------------------------------------------------- */
-
-.divider {
-  margin-block: var(--space-2xl);
-}
-
-.divider .media__img,
-.divider .media__placeholder {
-  border-radius: 0;
-}
-
-.divider .media__placeholder {
-  border-inline: 0;
-}
-
-/* --- Location card with map ------------------------------------------------------------------ */
-
-.location {
+.notice__actions {
   display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  background-color: var(--color-surface);
-  border: 0;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
 }
 
-.location__body {
-  flex-grow: 1;
-  padding: var(--space-lg);
-}
-
-.location__name {
-  margin-bottom: var(--space-3xs);
-  font-size: var(--text-lg);
-}
-
-.location__address {
-  margin-bottom: var(--space-sm);
-  color: var(--color-text-muted);
-}
-
-.location__body > p:last-child {
-  margin-bottom: 0;
-}
-
-.map {
-  margin: 0;
-}
-
-.map__frame {
-  display: block;
-  width: 100%;
-  height: 260px;
-  border: 0;
-  border-bottom: var(--rule-faint);
-  /* Keeps the embed from tinting the page; Google's own chrome is bright. */
-  background-color: var(--ink-100);
-}
-
-.map__caption {
-  margin: 0;
-  padding: var(--space-2xs) var(--space-md);
-  border-bottom: var(--rule-faint);
-  font-size: var(--text-xs);
-}
-
-/* The maps page shows standalone maps outside a location card. */
-.map--standalone .map__frame {
-  height: 320px;
-  border: var(--rule);
-  border-radius: var(--radius-lg);
-}
-
-.map--standalone .map__caption {
-  padding-inline: 0;
-  border-bottom: 0;
-}
-
-/* --- Language switch --------------------------------------------------------
-   Plain links rather than a scripted toggle, so it works with JavaScript
-   off and each language has a real crawlable URL. */
-
-.lang-switch {
-  margin-left: auto;
-}
-
-.lang-switch__list {
-  display: flex;
-  gap: 0;
-  margin: 0;
-  padding: 2px;
-  list-style: none;
-  background-color: var(--ink-100);
-  border-radius: var(--radius-pill);
-}
-
-.lang-switch__list li {
-  margin: 0;
-}
-
-.lang-switch__link {
-  display: block;
-  padding: var(--space-3xs) var(--space-xs);
-  border-radius: var(--radius-pill);
-  font-family: var(--font-sans);
-  font-size: var(--text-xs);
-  font-weight: var(--weight-semibold);
-  line-height: 1.6;
-  color: var(--color-text-muted);
-  text-decoration: none;
-  transition: background-color var(--transition), color var(--transition);
-}
-
-.lang-switch__link:hover {
-  color: var(--color-text);
-}
-
-.lang-switch__link[aria-current="true"] {
-  background-color: var(--color-surface);
-  color: var(--color-accent);
-  box-shadow: var(--shadow-sm);
-}
-
-@media (min-width: 75rem) {
-  .lang-switch {
-    order: 3;
-    margin-left: 0;
+@media (min-width: 58rem) {
+  .notice__pair {
+    grid-template-columns: 1fr 1fr;
   }
 
-  .primary-nav {
-    order: 2;
+  .notice__card {
+    padding: var(--space-2xl) var(--space-xl);
   }
 }
 
 
-/* --- Wallpaper pattern -------------------------------------------------------
-   Reusable: add .pattern-bg to any section.
+/* --- 11b. Liquid and glass materials -----------------------------------------
+   Two finishes, one for each kind of action.
 
-   The tile is transparent, so it takes on whatever background the section
-   already has rather than pasting a cream rectangle over it. It is painted
-   on a pseudo-element behind the content so opacity can be tuned without
-   fading the text, and so it never intercepts clicks.
+   Liquid: primary actions. A solid Royal Blue body graded from 600 at the
+   top to 800 at the bottom, a glossy lip in the top third only (so it never
+   sits behind the white label), a rim that catches light, a darker lower
+   edge for thickness, and a float shadow tinted with the button's own blue.
 
-   Tune density and strength with --pattern-size and --pattern-opacity,
-   either globally in tokens.css or per section.
-   ----------------------------------------------------------------------- */
+   Glass: secondary actions. Translucent white over a blurred backdrop, a
+   hairline rim bright at the top and bottom, and a soft navy float shadow.
 
-/* The utility, plus the sections that always carry the pattern. Applying
-   it here rather than in markup keeps it consistent across all 19 pages
-   without touching nine templates. */
-.pattern-bg,
-.hero,
-.trust {
+   On devices with a fine pointer, main.js moves --mx and --my with the
+   cursor, so the rim brightens nearest the pointer as if light were
+   catching the edge of a lens. Without it the glint rests at the top. */
+
+.button--primary,
+.ticket__call,
+.callbar__button--tour {
   position: relative;
   isolation: isolate;
+  background-color: var(--brand-royal-700);
+  background-image:
+    linear-gradient(180deg, var(--liquid-gloss) 0%, var(--liquid-gloss-soft) 30%, transparent 44%),
+    linear-gradient(180deg, var(--brand-royal-600) 0%, var(--brand-royal-700) 55%, var(--brand-royal-800) 100%);
+  color: var(--paper);
+  box-shadow: var(--shadow-liquid);
+  transition: transform 520ms var(--ease-spring), box-shadow 320ms var(--ease-out);
 }
 
-.pattern-bg::before,
-.hero::before,
-.trust::before {
+.button--primary:hover,
+.ticket__call:hover,
+.callbar__button--tour:hover {
+  background-image:
+    linear-gradient(180deg, var(--liquid-gloss) 0%, var(--liquid-gloss-soft) 30%, transparent 44%),
+    linear-gradient(180deg, var(--brand-royal-600) 0%, var(--brand-royal-700) 45%, var(--brand-royal-800) 100%);
+  color: var(--paper);
+  box-shadow: var(--shadow-liquid-hover);
+  transform: translateY(-2px);
+}
+
+.button--primary:active,
+.ticket__call:active,
+.callbar__button--tour:active {
+  box-shadow: var(--shadow-liquid-press);
+  transform: translateY(0) scale(0.97);
+  transition-duration: 120ms;
+}
+
+.button--secondary,
+.phone-chip,
+.nav-toggle,
+.callbar__button--call {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-glass);
+  transition: transform 520ms var(--ease-spring), box-shadow 320ms var(--ease-out);
+}
+
+.button--secondary:hover,
+.phone-chip:hover,
+.nav-toggle:hover,
+.callbar__button--call:hover {
+  box-shadow: var(--shadow-glass-hover);
+  transform: translateY(-2px);
+}
+
+.button--secondary:active,
+.phone-chip:active,
+.nav-toggle:active,
+.callbar__button--call:active {
+  transform: translateY(0) scale(0.97);
+  transition-duration: 120ms;
+}
+
+/* The rim. A ring drawn on ::before and masked so only its 1.5px edge
+   paints; clicks pass straight through it. */
+.button--primary::before,
+.ticket__call::before,
+.callbar__button--tour::before,
+.button--secondary::before,
+.phone-chip::before,
+.nav-toggle::before,
+.callbar__button--call::before,
+.callbar::before {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: -1;
-  background-image: var(--pattern-url);
-  background-repeat: repeat;
-  background-size: var(--pattern-size) auto;
-  opacity: var(--pattern-opacity);
+  z-index: 1;
+  padding: 1.5px;
+  border-radius: inherit;
   pointer-events: none;
+  -webkit-mask: linear-gradient(var(--paper) 0 0) content-box, linear-gradient(var(--paper) 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(var(--paper) 0 0) content-box, linear-gradient(var(--paper) 0 0);
+  mask-composite: exclude;
 }
 
-/* The pattern is decorative. Anyone who has asked for less visual noise
-   should not have motifs behind their text. */
-@media (prefers-reduced-transparency: reduce) {
-  .pattern-bg::before {
-    opacity: 0.25;
+.button--primary::before,
+.ticket__call::before,
+.callbar__button--tour::before {
+  background:
+    radial-gradient(90px circle at var(--mx, 50%) var(--my, 0%), var(--liquid-glint), transparent 70%),
+    linear-gradient(180deg, var(--liquid-lip) 0%, transparent 38%, transparent 72%, var(--liquid-edge) 100%);
+}
+
+.button--secondary::before,
+.phone-chip::before,
+.nav-toggle::before,
+.callbar__button--call::before,
+.callbar::before {
+  background:
+    radial-gradient(90px circle at var(--mx, 50%) var(--my, 0%), var(--glass-rim-hi), transparent 70%),
+    linear-gradient(180deg, var(--glass-rim-hi) 0%, var(--glass-rim-lo) 40%, var(--glass-rim-lo) 65%, var(--glass-rim-hi) 100%);
+}
+
+/* Browsers without backdrop blur get a near-opaque fill instead, so the
+   text contrast never depends on the blur being there. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .button--secondary,
+  .phone-chip,
+  .nav-toggle,
+  .callbar__button--call,
+  .callbar {
+    background-color: var(--glass-fill-strong);
   }
 }
 
-/* Page heroes: the lightest setting on the site. A headline sits on top
-   of it, so this is texture at the threshold of noticeable, not decoration.
-   It also fades out downward so the lead paragraph sits on clean paper. */
-.hero {
-  --pattern-opacity: 0.3;
+/* The mobile call bar floats as a glass capsule above the page. */
+.callbar {
+  left: max(0.75rem, env(safe-area-inset-left, 0px));
+  right: max(0.75rem, env(safe-area-inset-right, 0px));
+  bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  gap: 0.375rem;
+  padding: 0.375rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--glass-fill-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-dock);
 }
 
-.hero::before {
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
-  mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
+.callbar__button--call {
+  background-color: var(--glass-fill);
 }
 
-/* Accreditation strip: three short labels, no running copy, so it can
-   take more. */
-.trust {
-  --pattern-opacity: 0.45;
+/* Keep the label and icon above the rim and gloss layers. */
+.button > *,
+.ticket__call > *,
+.phone-chip > *,
+.callbar__button > * {
+  position: relative;
+  z-index: 2;
 }
 
-/* The CTA band carries the pattern, but body copy sits on top of it, so
-   the motifs are faded out of the middle with a radial mask. Texture at
-   the edges, clear paper behind the words. */
-.cta-band {
-  --pattern-opacity: 0.42;
+/* --- 12. Motion -------------------------------------------------------------
+   Rules:
+     - Nothing that a parent came for (headline, tour button, phone
+       numbers, hours) is ever hidden or delayed by an animation.
+     - Everything below is gated on .motion-ok, which main.js adds only
+       when the visitor has not asked for reduced motion. With JavaScript
+       off or failed, every element is simply visible.
+     - All durations read tokens that collapse to zero under
+       prefers-reduced-motion as a second line of defence. */
+
+@media (prefers-reduced-motion: no-preference) {
+  .home-hero__img {
+    animation: settle 900ms var(--ease-out) both;
+  }
+
+  .home-hero__media::before {
+    animation: rise 900ms var(--ease-out) 120ms both;
+  }
 }
 
-.cta-band::before {
-  -webkit-mask-image: radial-gradient(
-    ellipse 58% 72% at 50% 50%,
-    transparent 12%,
-    #000 82%
-  );
-  mask-image: radial-gradient(
-    ellipse 58% 72% at 50% 50%,
-    transparent 12%,
-    #000 82%
-  );
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
 }
 
-/* Footer runs it as texture, not decoration. Four columns of text sit on
-   top of it, so it stays near the threshold of noticeable. */
-.site-footer {
-  --pattern-size: 300px;
-  --pattern-opacity: 0.18;
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+.motion-ok .reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-distance));
+  transition: opacity var(--reveal-duration) var(--ease-out),
+    transform var(--reveal-duration) var(--ease-out);
+}
+
+.motion-ok .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* The staircase builds itself: risers grow from the floor one after
+   another, then a sneaker print lands on each step. */
+@media (min-width: 64rem) {
+  .motion-ok .stair__riser {
+    transform: scaleY(0.18);
+    transform-origin: bottom;
+    transition: transform 700ms var(--ease-out);
+  }
+
+  .motion-ok .stair__card {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity var(--reveal-duration) var(--ease-out),
+      transform var(--reveal-duration) var(--ease-out);
+  }
+
+  .motion-ok .stair__print {
+    opacity: 0;
+    translate: 0 -10px;
+    transition: opacity 300ms var(--ease-out), translate 300ms var(--ease-out);
+  }
+
+  .motion-ok .stairs.is-in .stair__riser {
+    transform: none;
+  }
+
+  .motion-ok .stairs.is-in .stair__card {
+    opacity: 1;
+    transform: none;
+  }
+
+  .motion-ok .stairs.is-in .stair__print {
+    opacity: 0.55;
+    translate: 0 0;
+  }
+
+  .stair--2 .stair__riser, .stair--2 .stair__card { transition-delay: calc(1 * var(--reveal-stagger)); }
+  .stair--3 .stair__riser, .stair--3 .stair__card { transition-delay: calc(2 * var(--reveal-stagger)); }
+  .stair--4 .stair__riser, .stair--4 .stair__card { transition-delay: calc(3 * var(--reveal-stagger)); }
+  .stair--5 .stair__riser, .stair--5 .stair__card { transition-delay: calc(4 * var(--reveal-stagger)); }
+
+  .stair--2 .stair__print { transition-delay: calc(8 * var(--reveal-stagger)); }
+  .stair--3 .stair__print { transition-delay: calc(10 * var(--reveal-stagger)); }
+  .stair--4 .stair__print { transition-delay: calc(12 * var(--reveal-stagger)); }
+  .stair--5 .stair__print { transition-delay: calc(14 * var(--reveal-stagger)); }
+}
+
+.ticket,
+.stair__card {
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+@media (hover: hover) {
+  .ticket:hover,
+  .stair__card:hover {
+    box-shadow: var(--shadow-card-hover);
+  }
 }

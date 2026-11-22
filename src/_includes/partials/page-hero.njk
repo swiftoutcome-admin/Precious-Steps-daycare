@@ -1,0 +1,32 @@
+{#
+  Inner-page hero. Short by design: on every page below the homepage the
+  heading, lead and first real content sit inside the first phone screen.
+
+  Set before including:
+    heroEyebrow   optional pill label
+    heroTitle     the page's h1
+    heroLead      optional lead paragraph
+    heroImg       optional photo path; without one a decorative arch shows
+    heroAlt       alt text for heroImg, from the i18n bundle
+    heroW, heroH  the photo's intrinsic size
+#}
+<section class="page-hero{% if heroImg %} page-hero--photo{% endif %}" aria-labelledby="page-title">
+  <div class="page-hero__inner">
+    <div class="page-hero__copy">
+      {% if heroEyebrow %}<p class="pill">{{ heroEyebrow }}</p>{% endif %}
+      <h1 class="page-hero__title" id="page-title">{{ heroTitle }}</h1>
+      {% if heroLead %}<p class="page-hero__lead">{{ heroLead }}</p>{% endif %}
+    </div>
+    {% if heroImg %}
+      <figure class="page-hero__media">
+        <img class="page-hero__img" src="{{ heroImg }}" alt="{{ heroAlt }}" width="{{ heroW }}" height="{{ heroH }}" fetchpriority="high" decoding="async" />
+      </figure>
+    {% else %}
+      <div class="page-hero__art" aria-hidden="true">
+        <svg class="page-hero__print page-hero__print--1" width="24" height="48" focusable="false"><use href="#print"></use></svg>
+        <svg class="page-hero__print page-hero__print--2" width="24" height="48" focusable="false"><use href="#print"></use></svg>
+        <svg class="page-hero__print page-hero__print--3" width="24" height="48" focusable="false"><use href="#print"></use></svg>
+      </div>
+    {% endif %}
+  </div>
+</section>

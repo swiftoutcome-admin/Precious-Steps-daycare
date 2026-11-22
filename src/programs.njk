@@ -16,78 +16,110 @@ eleventyComputed:
 {% set t = i18n[lang.code] %}
 {% set pg = t.programs %}
 
-<section class="hero">
-  <div class="wrap">
-    <p class="eyebrow">{{ pg.eyebrow }}</p>
-    <h1 class="hero__title">{{ pg.heroTitle }}</h1>
-    <p class="hero__lead">{{ pg.heroLead }}</p>
-  </div>
-</section>
+{% set heroEyebrow = pg.eyebrow %}
+{% set heroTitle = pg.heroTitle %}
+{% set heroLead = pg.heroLead %}
+{% include "partials/page-hero.njk" %}
+
+{# The staircase in miniature: one step per classroom, youngest to oldest,
+   each a link to that programme below. #}
+<nav class="ladder" aria-label="{{ t.nav.programs }}">
+  <ol class="ladder__list">
+    {% for program in programs %}
+      <li class="ladder__step stair--{{ loop.index }}">
+        <a class="ladder__link" href="#{{ program.id }}">
+          <span class="ladder__name">{{ t.programContent[program.id].name }}</span>
+          <span class="ladder__ages">{{ program.ages if lang.code == 'en' else program.agesEs }}</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ol>
+</nav>
 
 {% for program in programs %}
   {% set pc = t.programContent[program.id] %}
-  <section class="section{% if loop.index0 % 2 == 1 %} section--subtle{% endif %}" id="{{ program.id }}">
-    <div class="wrap wrap--narrow">
-      <h2>{{ pc.name }}</h2>
+  <section class="program stair--{{ loop.index }}" id="{{ program.id }}" aria-labelledby="{{ program.id }}-title">
+    <div class="program__inner">
+      <div class="program__facts reveal">
+        <svg class="program__print" aria-hidden="true" focusable="false" width="24" height="48"><use href="#print"></use></svg>
+        <dl class="program__spec">
+          <div>
+            <dt>{{ t.common.ages }}</dt>
+            <dd class="program__ages">{{ program.ages if lang.code == 'en' else program.agesEs }}</dd>
+          </div>
+          <div>
+            <dt>{{ t.common.ratio }}</dt>
+            <dd>{{ program.ratio }}</dd>
+          </div>
+          <div>
+            <dt>{{ t.common.curriculum }}</dt>
+            <dd>{{ program.curriculum }}</dd>
+          </div>
+          {% if program.careTypes %}
+            <div>
+              <dt>{{ t.common.careTypes }}</dt>
+              <dd>{{ (program.careTypes if lang.code == 'en' else program.careTypesEs) | join(', ') }}</dd>
+            </div>
+          {% endif %}
+        </dl>
+      </div>
 
-      <dl class="spec">
-        <dt>{{ t.common.ages }}</dt>
-        <dd>{{ program.ages if lang.code == 'en' else program.agesEs }}</dd>
-        <dt>{{ t.common.ratio }}</dt>
-        <dd>{{ program.ratio }}</dd>
-        <dt>{{ t.common.curriculum }}</dt>
-        <dd>{{ program.curriculum }}</dd>
-        {% if program.careTypes %}
-          <dt>{{ t.common.careTypes }}</dt>
-          <dd>{{ (program.careTypes if lang.code == 'en' else program.careTypesEs) | join(', ') }}</dd>
+      <div class="program__body">
+        <h2 class="program__name" id="{{ program.id }}-title">{{ pc.name }}</h2>
+
+        {% if not program.agesConfirmed %}
+          <div class="todo">
+            <strong>{{ pg.unconfirmedAges }}</strong>
+            {{ program.agesNote }}
+          </div>
         {% endif %}
-      </dl>
 
-      {% if not program.agesConfirmed %}
-        <div class="todo">
-          <strong>{{ pg.unconfirmedAges }}</strong>
-          {{ program.agesNote }}
-        </div>
-      {% endif %}
+        {% if pc.summary %}
+          <p class="program__summary">{{ pc.summary }}</p>
+        {% else %}
+          <div class="todo">
+            <strong>{{ t.common.contentNeeded }}</strong>
+            {{ program.sourceNote }}
+          </div>
+        {% endif %}
 
-      {% if pc.summary %}
-        <p>{{ pc.summary }}</p>
-      {% else %}
-        <div class="todo">
-          <strong>{{ t.common.contentNeeded }}</strong>
-          {{ program.sourceNote }}
-        </div>
-      {% endif %}
+        {% if pc.schedule %}
+          <h3 class="program__sub">{{ pg.typicalDay }}</h3>
+          <p>{{ pc.schedule }}</p>
+        {% endif %}
 
-      {% if pc.schedule %}
-        <h3>{{ pg.typicalDay }}</h3>
-        <p>{{ pc.schedule }}</p>
-      {% endif %}
-
-      {% if pc.bring.length %}
-        <h3>{{ pg.whatToBring }}</h3>
-        <ul>
-          {% for item in pc.bring %}
-            <li>{{ item }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
+        {% if pc.bring.length %}
+          <h3 class="program__sub">{{ pg.whatToBring }}</h3>
+          <ul class="checklist">
+            {% for item in pc.bring %}
+              <li><svg class="icon" aria-hidden="true" focusable="false" width="18" height="18"><use href="#icon-check"></use></svg>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
     </div>
   </section>
 {% endfor %}
 
-<section class="section section--ruled">
-  <div class="wrap wrap--narrow">
-    <h2>{{ pg.mealsTitle }}</h2>
-    <p>{{ pg.mealsP1 }}</p>
-    <p>{{ pg.mealsP2 }}</p>
-
-    <h2>{{ pg.tripsTitle }}</h2>
-    <p>{{ pg.tripsP1 }}</p>
-
-    <h2>{{ pg.touchTitle }}</h2>
-    <p>{{ pg.touchP1 }}</p>
+{# --------------------------------------------- Meals, trips, staying in touch #}
+<div class="section section--tint">
+  <div class="wrap">
+    <div class="trio">
+      <div class="trio__item reveal">
+        <h2>{{ pg.mealsTitle }}</h2>
+        <p>{{ pg.mealsP1 }}</p>
+        <p>{{ pg.mealsP2 }}</p>
+      </div>
+      <div class="trio__item reveal">
+        <h2>{{ pg.tripsTitle }}</h2>
+        <p>{{ pg.tripsP1 }}</p>
+      </div>
+      <div class="trio__item reveal">
+        <h2>{{ pg.touchTitle }}</h2>
+        <p>{{ pg.touchP1 }}</p>
+      </div>
+    </div>
   </div>
-</section>
+</div>
 
 {% include "partials/cta-band.njk" %}

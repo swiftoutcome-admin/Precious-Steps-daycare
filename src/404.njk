@@ -2,6 +2,12 @@
 layout: layouts/base.njk
 permalink: /404.html
 eleventyExcludeFromCollections: true
+# pageKey ties a page's language versions together. A missing URL has no
+# page in either language, so the 404 points the language switch at the two
+# homepages, the nearest pages that exist in both. hreflang is switched off:
+# a not-found page must not advertise alternates to search engines.
+pageKey: home
+noHreflang: true
 lang:
   code: en
   htmlLang: en
@@ -16,22 +22,26 @@ title: Page Not Found
 #}
 {% set t = i18n.en %}
 
-<section class="hero">
-  <div class="wrap wrap--narrow">
-    <h1 class="hero__title">{{ i18n.en.notFound.heroTitle }}</h1>
-    <p class="hero__lead">{{ i18n.en.notFound.heroLead }}</p>
-    <div class="hero__actions">
-      <a class="button button--primary" href="/">{{ i18n.en.cta.backHome }}</a>
-      <a class="button button--secondary" href="/contact/">{{ i18n.en.notFound.contactUs }}</a>
+<section class="notice" aria-labelledby="page-title">
+  <div class="notice__pair">
+    <div class="notice__card">
+      <span class="notice__badge" aria-hidden="true"><svg width="24" height="48" focusable="false"><use href="#print"></use></svg></span>
+      <h1 class="notice__title" id="page-title">{{ i18n.en.notFound.heroTitle }}</h1>
+      <p class="notice__lead">{{ i18n.en.notFound.heroLead }}</p>
+      <div class="notice__actions">
+        <a class="button button--primary" href="/">{{ i18n.en.cta.backHome }}</a>
+        <a class="button button--secondary" href="/contact/">{{ i18n.en.notFound.contactUs }}</a>
+      </div>
     </div>
 
-    <hr />
-
-    <h2 lang="es">{{ i18n.es.notFound.heroTitle }}</h2>
-    <p lang="es">{{ i18n.es.notFound.heroLead }}</p>
-    <div class="hero__actions">
-      <a class="button button--primary" href="/es/" lang="es">{{ i18n.es.cta.backHome }}</a>
-      <a class="button button--secondary" href="/es/contact/" lang="es">{{ i18n.es.notFound.contactUs }}</a>
+    <div class="notice__card" lang="es">
+      <span class="notice__badge" aria-hidden="true"><svg width="24" height="48" focusable="false"><use href="#print"></use></svg></span>
+      <h2 class="notice__title">{{ i18n.es.notFound.heroTitle }}</h2>
+      <p class="notice__lead">{{ i18n.es.notFound.heroLead }}</p>
+      <div class="notice__actions">
+        <a class="button button--primary" href="/es/">{{ i18n.es.cta.backHome }}</a>
+        <a class="button button--secondary" href="/es/contact/">{{ i18n.es.notFound.contactUs }}</a>
+      </div>
     </div>
   </div>
 </section>

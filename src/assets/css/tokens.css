@@ -120,6 +120,18 @@
 
   --color-scrim: rgb(23 52 94 / 0.55);
 
+  /* Internal editorial notes (.todo). These mark content still awaiting the
+     client and must never be mistaken for site copy, so they use a dashed
+     Royal Blue edge on a pale navy ground rather than any brand surface. */
+  --color-note-bg: var(--brand-navy-50);
+  --color-note-border: var(--brand-royal-500);
+  --color-note-fg: var(--brand-navy-700);
+
+  /* Form controls. The border clears the 3:1 that WCAG asks of the edge of
+     an input, which the pale greys used before did not. */
+  --color-field-border: var(--brand-navy-300);
+  --color-field-border-focus: var(--brand-royal-700);
+
   /* --- Liquid and glass materials -------------------------------------------
      Built only from White, Deep Navy and Royal Blue at varying opacity, so
      the finish adds depth without adding a colour.

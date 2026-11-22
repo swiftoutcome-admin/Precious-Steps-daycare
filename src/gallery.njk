@@ -14,15 +14,12 @@ eleventyComputed:
 {% set t = i18n[lang.code] %}
 {% set g = t.gallery %}
 
-<section class="hero">
-  <div class="wrap">
-    <p class="eyebrow">{{ g.eyebrow }}</p>
-    <h1 class="hero__title">{{ g.heroTitle }}</h1>
-    <p class="hero__lead">{{ g.heroLead }}</p>
-  </div>
-</section>
+{% set heroEyebrow = g.eyebrow %}
+{% set heroTitle = g.heroTitle %}
+{% set heroLead = g.heroLead %}
+{% include "partials/page-hero.njk" %}
 
-<section class="section">
+<div class="section gallery-section">
   <div class="wrap">
     <div class="todo">
       <strong>Temporary stock photography</strong>
@@ -44,12 +41,14 @@ eleventyComputed:
       { file: "water-table.webp",   alt: t.imageAlt.waterTable }
     ] %}
 
-    <ul class="grid grid--3 grid--list">
+    {# Six frames in two shapes, the arch from the homepage and a soft
+       rectangle, offset so the wall reads as hung rather than gridded. #}
+    <ul class="wall">
       {% for shot in shots %}
-        <li>
-          <figure class="media media--portrait">
+        <li class="wall__item wall__item--{{ loop.index }} reveal">
+          <figure class="wall__frame">
             <img
-              class="media__img"
+              class="wall__img"
               src="/assets/img/gallery/{{ shot.file }}"
               alt="{{ shot.alt }}"
               width="760"
@@ -62,6 +61,6 @@ eleventyComputed:
       {% endfor %}
     </ul>
   </div>
-</section>
+</div>
 
 {% include "partials/cta-band.njk" %}

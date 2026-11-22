@@ -16,83 +16,93 @@ eleventyComputed:
 {% set t = i18n[lang.code] %}
 {% set lc = t.locations %}
 
-<section class="hero">
-  <div class="wrap">
-    <p class="eyebrow">{{ lc.eyebrow }}</p>
-    <h1 class="hero__title">{{ lc.heroTitle }}</h1>
-    <p class="hero__lead">{{ lc.heroLead }}</p>
-  </div>
-</section>
+{% set heroEyebrow = lc.eyebrow %}
+{% set heroTitle = lc.heroTitle %}
+{% set heroLead = lc.heroLead %}
+{% include "partials/page-hero.njk" %}
 
 {% for location in site.locations %}
-  <section class="section{% if loop.index0 % 2 == 1 %} section--subtle{% endif %}" id="{{ location.id }}">
-    <div class="wrap wrap--narrow">
-      <h2>{{ location.name }}</h2>
+  <section class="place{% if loop.index0 % 2 == 1 %} place--flip{% endif %}" id="{{ location.id }}" aria-labelledby="{{ location.id }}-title">
+    <div class="place__inner">
+      <div class="place__info reveal">
+        <h2 class="place__name" id="{{ location.id }}-title">{{ location.name }}</h2>
 
-      <address>
-        {{ location.street }}<br />
-        {{ location.city }}, {{ location.state }} {{ location.zip }}
-      </address>
+        <address class="place__address">
+          {{ location.street }}<br />
+          {{ location.city }}, {{ location.state }} {{ location.zip }}
+        </address>
 
-      <div class="map map--standalone">
-        {% include "partials/location-map.njk" %}
+        <dl class="facts">
+          <div class="facts__row">
+            <dt>{{ t.common.phone }}</dt>
+            <dd><a class="facts__phone" href="tel:{{ location.phone | phoneHref }}">{{ location.phone | phoneDisplay }}</a></dd>
+          </div>
+          <div class="facts__row">
+            <dt>{{ t.common.fax }}</dt>
+            <dd>{{ location.fax | phoneDisplay }}</dd>
+          </div>
+          <div class="facts__row">
+            <dt>{{ t.common.hours }}</dt>
+            <dd>{{ location.hours if lang.code == 'en' else location.hoursEs }}{% if location.hoursNote %} {{ location.hoursNote if lang.code == 'en' else location.hoursNoteEs }}{% endif %}</dd>
+          </div>
+          <div class="facts__row">
+            <dt>{{ t.common.calendar }}</dt>
+            <dd>{{ location.calendar if lang.code == 'en' else location.calendarEs }}</dd>
+          </div>
+          <div class="facts__row">
+            <dt>{{ t.common.programsHere }}</dt>
+            <dd>
+              {%- for id in location.programs -%}
+                {#- loop.last inside the inner loop refers to the full programs
+                    list, not this location's, which printed a trailing comma
+                    whenever the matched programme was not last overall. Hold the
+                    outer loop so the separator tracks the right list. -#}
+                {%- set outer = loop -%}
+                {%- for program in programs -%}
+                  {%- if program.id == id -%}
+                    <a href="{{ 'programs' | localizedUrl(lang.code) }}#{{ program.id }}">{{ t.programContent[program.id].name }}</a>{%- if not outer.last %}, {% endif -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endfor -%}
+            </dd>
+          </div>
+        </dl>
+
+        {% if not location.programsConfirmed %}
+          <div class="todo">
+            <strong>{{ t.common.unconfirmed }}</strong>
+            {{ lc.unconfirmedPrograms }}
+          </div>
+        {% endif %}
+
+        {% if not location.addressConfirmed %}
+          <div class="todo">
+            <strong>{{ lc.unconfirmedAddress }}</strong>
+            {{ location.addressNote }}
+          </div>
+        {% endif %}
+
+        {% if not location.contactPerson %}
+          <div class="todo">
+            <strong>{{ t.common.contentNeeded }}</strong>
+            {{ lc.contactPersonNeeded }}
+          </div>
+        {% endif %}
       </div>
 
-      <dl class="spec">
-        <dt>{{ t.common.phone }}</dt>
-        <dd><a href="tel:{{ location.phone | phoneHref }}">{{ location.phone | phoneDisplay }}</a></dd>
-        <dt>{{ t.common.fax }}</dt>
-        <dd>{{ location.fax | phoneDisplay }}</dd>
-        <dt>{{ t.common.hours }}</dt>
-        <dd>{{ location.hours if lang.code == 'en' else location.hoursEs }}{% if location.hoursNote %} {{ location.hoursNote if lang.code == 'en' else location.hoursNoteEs }}{% endif %}</dd>
-        <dt>{{ t.common.calendar }}</dt>
-        <dd>{{ location.calendar if lang.code == 'en' else location.calendarEs }}</dd>
-        <dt>{{ t.common.programsHere }}</dt>
-        <dd>
-          {%- for id in location.programs -%}
-            {#- loop.last inside the inner loop refers to the full programs
-                list, not this location's, which printed a trailing comma
-                whenever the matched programme was not last overall. Hold the
-                outer loop so the separator tracks the right list. -#}
-            {%- set outer = loop -%}
-            {%- for program in programs -%}
-              {%- if program.id == id -%}
-                <a href="{{ 'programs' | localizedUrl(lang.code) }}#{{ program.id }}">{{ t.programContent[program.id].name }}</a>{%- if not outer.last %}, {% endif -%}
-              {%- endif -%}
-            {%- endfor -%}
-          {%- endfor -%}
-        </dd>
-      </dl>
-
-      {% if not location.programsConfirmed %}
-        <div class="todo">
-          <strong>{{ t.common.unconfirmed }}</strong>
-          {{ lc.unconfirmedPrograms }}
-        </div>
-      {% endif %}
-
-      {% if not location.addressConfirmed %}
-        <div class="todo">
-          <strong>{{ lc.unconfirmedAddress }}</strong>
-          {{ location.addressNote }}
-        </div>
-      {% endif %}
-
-      {% if not location.contactPerson %}
-        <div class="todo">
-          <strong>{{ t.common.contentNeeded }}</strong>
-          {{ lc.contactPersonNeeded }}
-        </div>
-      {% endif %}
+      <div class="place__map reveal">
+        {% include "partials/location-map.njk" %}
+      </div>
     </div>
   </section>
 {% endfor %}
 
-<section class="section section--ruled">
-  <div class="wrap wrap--narrow">
-    <h2>{{ lc.closingsTitle }}</h2>
+{# --------------------------------------------------------------- Closings #}
+<section class="closings" aria-labelledby="closings-title">
+  <div class="closings__panel reveal">
+    <h2 id="closings-title">{{ lc.closingsTitle }}</h2>
     <p>{{ site.closuresNote if lang.code == 'en' else site.closuresNoteEs }}</p>
-    <ul>
+    <ul class="closings__list">
       {% for closure in (site.closures if lang.code == 'en' else site.closuresEs) %}
         <li>{{ closure }}</li>
       {% endfor %}
