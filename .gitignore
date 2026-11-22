@@ -35,3 +35,6 @@ npm-debug.log*
 
 # Unprocessed source images. Derivatives live in src/assets/img/.
 /images/
+
+# Local assistant instructions. Never published.
+/CLAUDE.md
