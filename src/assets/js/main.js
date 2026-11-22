@@ -117,12 +117,53 @@
     });
   }
 
+  /**
+   * Liquid buttons: the rim brightens nearest the pointer, as light would
+   * catch the edge of a lens. Only on devices with a fine pointer and only
+   * when the visitor has not asked for reduced motion. Positions are set as
+   * custom properties through style.setProperty, never as a style string,
+   * so the strict CSP holds.
+   */
+  function initLiquid() {
+    var fine = window.matchMedia("(hover: hover) and (pointer: fine)");
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (!fine.matches || reduce.matches) return;
+
+    var selector = ".button, .ticket__call, .phone-chip, .callbar__button, .nav-toggle";
+    var frame = 0;
+
+    document.addEventListener(
+      "pointermove",
+      function (event) {
+        var el = event.target.closest ? event.target.closest(selector) : null;
+        if (!el) return;
+        var rect = el.getBoundingClientRect();
+        var x = event.clientX - rect.left;
+        var y = event.clientY - rect.top;
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(function () {
+          el.style.setProperty("--mx", x + "px");
+          el.style.setProperty("--my", y + "px");
+        });
+      },
+      { passive: true }
+    );
+
+    document.addEventListener("pointerout", function (event) {
+      var el = event.target.closest ? event.target.closest(selector) : null;
+      if (!el || el.contains(event.relatedTarget)) return;
+      el.style.removeProperty("--mx");
+      el.style.removeProperty("--my");
+    });
+  }
+
   function init() {
     document.documentElement.classList.remove("no-js");
     initNavToggle();
     initFormGuard();
     initReveals();
     initCallSheet();
+    initLiquid();
   }
 
   if (document.readyState === "loading") {

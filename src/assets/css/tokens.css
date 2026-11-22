@@ -120,6 +120,44 @@
 
   --color-scrim: rgb(23 52 94 / 0.55);
 
+  /* --- Liquid and glass materials -------------------------------------------
+     Built only from White, Deep Navy and Royal Blue at varying opacity, so
+     the finish adds depth without adding a colour.
+
+     Liquid (primary actions): a solid Royal Blue body, a glossy lip confined
+     to the top third so it never sits behind the label, a light-catching
+     rim, a darker lower edge for thickness, and a blue-tinted float shadow.
+     The label is white on Royal 600 to 800, never below 4.84:1.
+
+     Glass (secondary actions, call bar): translucent White over a blurred
+     backdrop with a hairline rim. Deep Navy text on it stays above 7:1 even
+     with the darkest section of the site behind it. */
+  --liquid-gloss: rgb(255 255 255 / 0.24);
+  --liquid-gloss-soft: rgb(255 255 255 / 0.06);
+  --liquid-lip: rgb(255 255 255 / 0.55);
+  --liquid-glint: rgb(255 255 255 / 0.95);
+  --liquid-edge: rgb(16 35 64 / 0.35);
+  --glass-fill: rgb(255 255 255 / 0.66);
+  --glass-fill-strong: rgb(255 255 255 / 0.8);
+  --glass-rim-hi: rgb(255 255 255 / 0.95);
+  --glass-rim-lo: rgb(169 201 239 / 0.6);
+  --glass-blur: blur(16px) saturate(1.6);
+
+  --shadow-liquid: inset 0 -2px 3px rgb(16 35 64 / 0.28),
+    0 1px 1px rgb(23 52 94 / 0.16), 0 4px 10px -3px rgb(31 90 163 / 0.35),
+    0 16px 30px -12px rgb(35 106 189 / 0.6);
+  --shadow-liquid-hover: inset 0 -2px 3px rgb(16 35 64 / 0.28),
+    0 2px 2px rgb(23 52 94 / 0.14), 0 8px 16px -4px rgb(31 90 163 / 0.35),
+    0 26px 40px -14px rgb(35 106 189 / 0.62);
+  --shadow-liquid-press: inset 0 2px 5px rgb(16 35 64 / 0.35),
+    0 1px 1px rgb(23 52 94 / 0.2), 0 4px 8px -4px rgb(31 90 163 / 0.35);
+  --shadow-glass: inset 0 1px 0 rgb(255 255 255 / 0.9),
+    0 1px 2px rgb(23 52 94 / 0.08), 0 10px 26px -10px rgb(23 52 94 / 0.28);
+  --shadow-glass-hover: inset 0 1px 0 rgb(255 255 255 / 0.95),
+    0 2px 4px rgb(23 52 94 / 0.08), 0 18px 34px -12px rgb(23 52 94 / 0.32);
+  --shadow-dock: inset 0 1px 0 rgb(255 255 255 / 0.9),
+    0 2px 6px rgb(23 52 94 / 0.1), 0 18px 44px -12px rgb(23 52 94 / 0.38);
+
   --rule: 1px solid var(--ink-200);
   --rule-faint: 1px solid var(--ink-100);
   --rule-accent: 2px solid var(--brand-royal-200);
@@ -251,6 +289,9 @@
   /* Entrance and reveal motion. Every animation on the site reads these,
      and all of them collapse to zero under prefers-reduced-motion. */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Overshoots slightly on release, which is what makes a press read as
+     liquid rather than mechanical. */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --reveal-duration: 600ms;
   --reveal-distance: 24px;
   --reveal-stagger: 90ms;
@@ -258,7 +299,7 @@
   /* Header heights, so the sticky header and in-page anchors agree. */
   --topbar-height: 2.5rem;
   --masthead-height: 5.25rem;
-  --callbar-height: 4.25rem;
+  --callbar-height: 5.5rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
