@@ -487,7 +487,6 @@
 .accred__name {
   display: block;
   font-family: var(--font-display);
-  font-variation-settings: var(--display-variation);
   font-size: var(--text-lg);
   color: var(--color-accent);
 }
@@ -688,7 +687,6 @@ textarea.field__control {
 .site-footer__heading {
   margin-bottom: var(--space-2xs);
   font-family: var(--font-display);
-  font-variation-settings: var(--display-variation);
   font-size: var(--text-base);
   font-weight: var(--weight-semibold);
   color: var(--color-text);
@@ -813,7 +811,6 @@ textarea.field__control {
   display: block;
   margin-bottom: var(--space-3xs);
   font-family: var(--font-display);
-  font-variation-settings: var(--display-variation);
   font-size: var(--text-lg);
   font-weight: var(--weight-semibold);
   color: var(--color-accent);

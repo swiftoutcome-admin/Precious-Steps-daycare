@@ -95,6 +95,31 @@
   --color-highlight: var(--brand-pink-700);
   --color-highlight-soft: var(--brand-pink-50);
 
+  /* Deep Navy blocks. White text on Deep Navy is 12.4:1; Blush Pink on
+     Deep Navy is 7.9:1, so blush carries links and small accents there. */
+  --color-navy-surface: var(--brand-navy-700);
+  --color-navy-surface-deep: var(--brand-navy-800);
+  --color-on-navy: var(--paper);
+  --color-on-navy-muted: var(--brand-navy-100);
+  --color-on-navy-accent: var(--brand-pink-300);
+  --color-blush-surface: var(--brand-pink-300); /* OFFICIAL Blush Pink */
+  --color-blush-surface-soft: var(--brand-pink-50);
+
+  /* Programme staircase risers, lowest to highest. Each pairs with a text
+     colour that clears 4.5:1 on it. */
+  --riser-1-bg: var(--brand-pink-300);
+  --riser-1-fg: var(--brand-navy-700);
+  --riser-2-bg: var(--brand-royal-100);
+  --riser-2-fg: var(--brand-navy-700);
+  --riser-3-bg: var(--brand-royal-700);
+  --riser-3-fg: var(--paper);
+  --riser-4-bg: var(--brand-pink-700);
+  --riser-4-fg: var(--paper);
+  --riser-5-bg: var(--brand-navy-700);
+  --riser-5-fg: var(--paper);
+
+  --color-scrim: rgb(23 52 94 / 0.55);
+
   --rule: 1px solid var(--ink-200);
   --rule-faint: 1px solid var(--ink-100);
   --rule-accent: 2px solid var(--brand-royal-200);
@@ -105,26 +130,43 @@
   --focus-offset: 3px;
 
   /* --- Type -----------------------------------------------------------------
-     Fraunces for display and Nunito Sans for text. The standards specify
-     Fredoka Bold for headings and Nunito for everything else; that swap is
-     a separate change and is not in this file yet. Both current faces are
-     self-hosted; see fonts.css. */
-  --font-display: "Fraunces", ui-serif, Georgia, serif;
-  --font-sans: "Nunito Sans", ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto, sans-serif;
+     Per the brand standards: Fredoka Bold for headings, Nunito for
+     everything else. Both are self-hosted; see fonts.css.
 
-  --display-variation: "SOFT" 60, "WONK" 1;
+       Headings   Fredoka 700      36 to 48px  (--text-h1, --text-h2)
+       Subheads   Nunito 800       24 to 32px  (--text-h3)
+       Body       Nunito 400       16 to 20px  (--text-sm .. --text-lead)
+       Buttons    Nunito 700       14 to 18px  (--text-button)
 
-  /* Slightly larger base than a typical marketing site. Parents read this
-     on a phone, often one-handed, often tired. */
+     Body sits at 18px rather than 16px. Parents read this on a phone,
+     often one-handed, often tired. */
+  --font-display: "Fredoka", ui-rounded, "Arial Rounded MT Bold", system-ui,
+    sans-serif;
+  --font-sans: "Nunito", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, sans-serif;
+
   --text-xs: 0.875rem;
   --text-sm: 1rem;
   --text-base: 1.125rem;
-  --text-lg: clamp(1.25rem, 1.15rem + 0.45vw, 1.4375rem);
-  --text-xl: clamp(1.5rem, 1.35rem + 0.75vw, 1.875rem);
-  --text-2xl: clamp(1.875rem, 1.6rem + 1.3vw, 2.625rem);
-  --text-3xl: clamp(2.25rem, 1.8rem + 2.2vw, 3.5rem);
+  --text-lead: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem);
+  --text-button: clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);
+  --text-label: 0.9375rem;
+  --text-h4: clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem);
+  --text-h3: clamp(1.5rem, 1.3rem + 0.8vw, 2rem);
+  --text-h2: clamp(2.25rem, 1.95rem + 1.1vw, 2.75rem);
+  --text-h1: clamp(2.25rem, 1.8rem + 1.7vw, 3rem);
 
+  /* Legacy names, kept so inner-page rules resolve to the new scale. */
+  --text-lg: var(--text-h4);
+  --text-xl: var(--text-h3);
+  --text-2xl: var(--text-h2);
+  --text-3xl: var(--text-h1);
+
+  /* Decorative numerals only (the founding year on the homepage). Never
+     used for running text, so it sits outside the heading range. */
+  --text-mega: clamp(6rem, 3rem + 14vw, 15rem);
+
+  --leading-display: 1.1;
   --leading-tight: 1.2;
   --leading-snug: 1.4;
   --leading-normal: 1.7;
@@ -138,6 +180,7 @@
   --weight-medium: 500;
   --weight-semibold: 600;
   --weight-bold: 700;
+  --weight-extrabold: 800;
 
   /* --- Space ----------------------------------------------------------------- */
   --space-3xs: 0.25rem;
@@ -165,6 +208,7 @@
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 22px;
+  --radius-xl: 28px;
   --radius-pill: 999px;
 
   /* Shadows tinted with Deep Navy rather than grey, so they read as the
@@ -172,6 +216,9 @@
   --shadow-sm: 0 1px 2px rgb(23 52 94 / 0.06);
   --shadow-md: 0 4px 16px rgb(23 52 94 / 0.09);
   --shadow-lg: 0 10px 34px rgb(23 52 94 / 0.12);
+  --shadow-card: 0 1px 2px rgb(23 52 94 / 0.08), 0 12px 32px -12px rgb(23 52 94 / 0.22);
+  --shadow-card-hover: 0 2px 4px rgb(23 52 94 / 0.08), 0 22px 40px -14px rgb(23 52 94 / 0.3);
+  --shadow-callbar: 0 -6px 24px rgb(23 52 94 / 0.14);
 
   /* Button depth.
      Three stacked layers, not one drop shadow:
@@ -200,10 +247,25 @@
   --pattern-opacity: 0.55;
 
   --transition: 180ms cubic-bezier(0.2, 0.8, 0.3, 1);
+
+  /* Entrance and reveal motion. Every animation on the site reads these,
+     and all of them collapse to zero under prefers-reduced-motion. */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --reveal-duration: 600ms;
+  --reveal-distance: 24px;
+  --reveal-stagger: 90ms;
+
+  /* Header heights, so the sticky header and in-page anchors agree. */
+  --topbar-height: 2.5rem;
+  --masthead-height: 5.25rem;
+  --callbar-height: 4.25rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
   :root {
     --transition: 0ms;
+    --reveal-duration: 0ms;
+    --reveal-distance: 0px;
+    --reveal-stagger: 0ms;
   }
 }

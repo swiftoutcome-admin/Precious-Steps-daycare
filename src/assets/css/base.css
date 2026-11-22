@@ -9,7 +9,10 @@
 }
 
 html {
+  background-color: var(--color-bg);
+  overflow-x: clip;
   -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--masthead-height) + var(--space-sm));
   scroll-behavior: smooth;
 }
 
@@ -35,6 +38,7 @@ body {
   line-height: var(--leading-normal);
   font-weight: var(--weight-regular);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
@@ -44,26 +48,32 @@ h3,
 h4 {
   margin: 0 0 var(--space-sm);
   font-family: var(--font-display);
-  /* SOFT rounds the terminals, WONK tilts the occasional letter. This is
-     what stops the headings reading as a corporate serif. */
-  font-variation-settings: var(--display-variation);
-  font-weight: var(--weight-semibold);
-  line-height: var(--leading-tight);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-display);
   letter-spacing: var(--tracking-tight);
   text-wrap: balance;
 }
 
 h1 {
-  font-size: var(--text-3xl);
+  font-size: var(--text-h1);
 }
 h2 {
-  font-size: var(--text-2xl);
+  font-size: var(--text-h2);
+}
+
+/* Subheads are Nunito ExtraBold, not Fredoka, per the brand standards. */
+h3,
+h4 {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-extrabold);
+  letter-spacing: 0;
+  line-height: var(--leading-tight);
 }
 h3 {
-  font-size: var(--text-xl);
+  font-size: var(--text-h3);
 }
 h4 {
-  font-size: var(--text-lg);
+  font-size: var(--text-h4);
 }
 
 p,
@@ -129,7 +139,7 @@ hr {
 
 strong,
 b {
-  font-weight: var(--weight-semibold);
+  font-weight: var(--weight-bold);
 }
 
 abbr[title] {

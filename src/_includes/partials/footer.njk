@@ -1,10 +1,13 @@
-<footer class="site-footer pattern-bg">
-  <div class="site-footer__inner">
-    <div class="site-footer__col">
-      {# Same artwork as the header, smaller. The footer sits on white, so
-         the transparent source needs no variant of its own. #}
+{#
+  Footer. It stays on a light ground on purpose: the logo's "Precious"
+  lettering is Deep Navy and would disappear on a navy footer, and the
+  artwork may not be recoloured.
+#}
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
       <img
-        class="site-footer__logo"
+        class="footer__logo"
         src="/assets/img/brand/logo-horizontal.webp"
         alt="{{ site.name }}"
         width="900"
@@ -12,29 +15,29 @@
         loading="lazy"
         decoding="async"
       />
-      <p class="site-footer__tagline">{{ t.tagline }}</p>
-      <p class="site-footer__since">{{ t.common.servingSince }} {{ site.foundedYear }}.</p>
+      <p class="footer__tagline">{{ t.tagline }}</p>
+      <p class="footer__since">{{ t.common.servingSince }} {{ site.foundedYear }}.</p>
     </div>
 
     {% for location in site.locations %}
-      <div class="site-footer__col">
-        <h2 class="site-footer__heading">{{ location.name }}</h2>
-        <address>
+      <div class="footer__col">
+        <h2 class="footer__heading">{{ location.name }}</h2>
+        <address class="footer__address">
           {{ location.street }}<br />
-          {{ location.city }}, {{ location.state }} {{ location.zip }}<br />
-          <a href="tel:{{ location.phone | phoneHref }}">{{ location.phone | phoneDisplay }}</a>
+          {{ location.city }}, {{ location.state }} {{ location.zip }}
         </address>
-        <p class="site-footer__hours">{{ location.hours if lang.code == 'en' else location.hoursEs }}</p>
+        <p class="footer__phone"><a href="tel:{{ location.phone | phoneHref }}">{{ location.phone | phoneDisplay }}</a></p>
+        <p class="footer__hours">{{ location.hours if lang.code == 'en' else location.hoursEs }}</p>
       </div>
     {% endfor %}
 
-    <div class="site-footer__col">
-      <h2 class="site-footer__heading">{{ t.common.contactHeading }}</h2>
-      <p>
+    <div class="footer__col">
+      <h2 class="footer__heading">{{ t.common.contactHeading }}</h2>
+      <p class="footer__email">
         <a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a>
       </p>
       <nav aria-label="{{ t.nav.footerLabel }}">
-        <ul class="site-footer__links">
+        <ul class="footer__links">
           <li><a href="{{ 'programs' | localizedUrl(lang.code) }}">{{ t.nav.programs }}</a></li>
           <li><a href="{{ 'enrollment' | localizedUrl(lang.code) }}">{{ t.nav.enrollment }}</a></li>
           <li><a href="{{ 'contact' | localizedUrl(lang.code) }}">{{ t.cta.requestTour }}</a></li>
@@ -44,11 +47,11 @@
     </div>
   </div>
 
-  <div class="site-footer__bar">
-    <p class="site-footer__legal">
+  <div class="footer__bar">
+    <p class="footer__legal">
       &copy; {{ "" | year }} {{ site.legalName | period }} {{ t.common.allRights }}
     </p>
-    <p class="site-footer__accred">
+    <p class="footer__legal">
       {{ t.common.licensedBy }}
     </p>
   </div>

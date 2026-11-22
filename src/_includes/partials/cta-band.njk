@@ -1,11 +1,30 @@
-<section class="cta-band pattern-bg">
-  <div class="cta-band__inner">
-    <h2 class="cta-band__title">{{ t.cta.bandTitle }}</h2>
-    <p class="cta-band__text">
-      {{ t.cta.bandText }} {{ site.contact.responseTime if lang.code == 'en' else site.contact.responseTimeEs }}
-    </p>
-    <a class="button button--primary button--lg" href="{{ 'contact' | localizedUrl(lang.code) }}">
-      {{ t.cta.requestTour }}
-    </a>
+{#
+  Closing call to action on every page: the tour button and both phone
+  numbers, so a parent who scrolled to the end never has to scroll back.
+#}
+<section class="closing" aria-labelledby="closing-title">
+  <div class="closing__inner">
+    <div class="closing__copy">
+      <h2 class="closing__title" id="closing-title">{{ t.cta.bandTitle }}</h2>
+      <p class="closing__text">
+        {{ t.cta.bandText }} {{ site.contact.responseTime if lang.code == 'en' else site.contact.responseTimeEs }}
+      </p>
+    </div>
+    <div class="closing__actions">
+      <a class="button button--primary button--lg" href="{{ 'contact' | localizedUrl(lang.code) }}">
+        {{ t.cta.requestTour }}
+      </a>
+      <ul class="closing__phones">
+        {% for location in site.locations %}
+          <li>
+            <a class="phone-chip" href="tel:{{ location.phone | phoneHref }}">
+              <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+              <span class="phone-chip__place">{{ location.name }}</span>
+              <span class="phone-chip__digits">{{ location.phone | phoneDisplay }}</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
 </section>
