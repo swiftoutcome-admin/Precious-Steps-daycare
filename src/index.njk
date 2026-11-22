@@ -219,20 +219,9 @@ eleventyComputed:
   <img src="/assets/img/programs/sandbox-wide.webp" alt="{{ t.imageAlt.sandbox }}" width="1086" height="475" loading="lazy" decoding="async" />
 </figure>
 
-{# ---------------------------------------------------------- Testimonials #}
-<section class="section" aria-labelledby="families-title">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">{{ t.home.familiesEyebrow }}</p>
-      <h2 id="families-title">{{ t.home.familiesTitle }}</h2>
-    </div>
-    <div class="todo">
-      <strong>{{ t.common.contentNeeded }}</strong>
-      The client is approaching parents for testimonials. Each one needs the
-      parent's written permission to publish, along with a first name or
-      initials. Until then this section stays out of the launch build.
-    </div>
-  </div>
-</section>
+{# Testimonials return here once the client has parents' written
+   permission to publish (CONTENT-STATUS.md item 20). The heading strings
+   are kept in both language files as home.familiesEyebrow and
+   home.familiesTitle. #}
 
 {% include "partials/cta-band.njk" %}
