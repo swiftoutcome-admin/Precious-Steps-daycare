@@ -37,8 +37,9 @@ Status key: `OPEN` / `ANSWERED` / `APPLIED`
 | 13 | **Photo releases** | **The client did not answer this.** No photograph showing a child's face can publish without a signed release on file and her written confirmation. This is the single highest-risk open item. | OPEN |
 | 14 | **NAEYC accreditation currency** | **The client did not answer this.** The site currently claims NAEYC accreditation since 2006 in the trust strip on every page. Confirm it is active and obtain the permitted logo file, or the claim comes down. | OPEN |
 | 27 | **"After 3 Program" public name** | She calls it "Before/Aftercare"; Q called it the "After 3 Program" for ages 3 to 8. The site still shows the Q name. Confirm the public name and whether it covers mornings as well as afternoons. | OPEN |
-| 15 | Privacy notice accuracy | Not addressed in her answers. She still needs to read and confirm it. | OPEN |
+| 15 | Privacy notice accuracy | Not addressed in her answers. She still needs to read and confirm it. Updated 22 Nov 2026: the map line now names the Locations page only (the homepage no longer embeds a map), the host and the Gmail inbox are named, and a "Changes to this notice" section and last-updated date were added. | OPEN |
 | 22 | Spanish review | Still marked UNREVIEWED. Her bilingual staff must check it, the privacy page above all. Hours, calendars and ages are now translated too, so there is more to review than before. | OPEN |
+| 36 | **Terms of Use** | New page at /terms/ and /es/terms/, linked from the footer. Plain-language draft covering accuracy of site information, tour requests not reserving a place, not using the form for urgent matters, ownership of photos and content, outside links, limits on liability and New Jersey law. The client should read it and ideally have counsel review it; the Spanish needs the same bilingual review as item 22. | OPEN |
 
 ## Awaiting client content (she confirmed she will send)
 

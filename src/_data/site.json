@@ -121,5 +121,7 @@
     "La mayoría de los días feriados"
   ],
   "closuresNoteEs": "El centro sigue los cierres de las Escuelas Públicas de Plainfield. En caso de mal tiempo, llame al centro entre las 6:00 AM y las 7:00 AM para escuchar un mensaje grabado.",
-  "_nameNote": "`name` is the brand, used everywhere a parent reads it. `legalName` is the registered entity and appears only in the footer copyright line. The client asked to brand as 'Precious Steps Child Care Center'; the entity is 'PS CC&DC', which expands to the value in legalName."
+  "_nameNote": "`name` is the brand, used everywhere a parent reads it. `legalName` is the registered entity and appears only in the footer copyright line. The client asked to brand as 'Precious Steps Child Care Center'; the entity is 'PS CC&DC', which expands to the value in legalName.",
+  "legalUpdated": "2026-11-22",
+  "_legalUpdatedNote": "Date the Privacy and Terms pages were last revised. Change it whenever either page’s wording changes; both pages show it at the top."
 }

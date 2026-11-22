@@ -2434,6 +2434,13 @@ textarea.field__control {
   margin-top: var(--space-xl);
 }
 
+.doc__updated {
+  margin: 0 0 var(--space-md);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+}
+
 .doc h2:first-of-type {
   margin-top: var(--space-lg);
 }

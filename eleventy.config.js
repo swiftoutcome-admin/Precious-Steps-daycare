@@ -96,6 +96,18 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("year", () => new Date().getFullYear());
 
   /**
+   * A calendar date written out in the page's language:
+   * "2026-11-22" -> "November 22, 2026" or "22 de noviembre de 2026".
+   * Read as UTC so the day never shifts with the build server's time zone.
+   */
+  eleventyConfig.addFilter("longDate", (value, langCode) =>
+    new Date(`${value}T00:00:00Z`).toLocaleDateString(
+      langCode === "es" ? "es-US" : "en-US",
+      { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" }
+    )
+  );
+
+  /**
    * Only announcements that are published and not past their expiry date.
    */
   eleventyConfig.addFilter("activeAnnouncements", (items = []) => {

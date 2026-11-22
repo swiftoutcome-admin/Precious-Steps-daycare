@@ -16,7 +16,8 @@
     "enrollment": "Enrollment",
     "gallery": "Gallery",
     "contact": "Contact",
-    "privacy": "Privacy"
+    "privacy": "Privacy",
+    "terms": "Terms of Use"
   },
   "cta": {
     "requestTour": "Request a Tour",
@@ -46,7 +47,8 @@
     "contentNeeded": "Content needed",
     "unconfirmed": "Unconfirmed",
     "careTypes": "Care options",
-    "or": "or"
+    "or": "or",
+    "updated": "Last updated"
   },
   "home": {
     "eyebrow": "Plainfield, New Jersey",
@@ -260,19 +262,50 @@
     "useTitle": "How we use it",
     "useBody": "We use it to answer your enquiry and arrange a visit. We do not sell it, rent it, or share it with anyone outside the center for marketing.",
     "whereTitle": "Where it goes",
-    "whereBody": "Form submissions are delivered by our website host to the center's email inbox and are retained in the host's submission records. The site is served over an encrypted connection.",
+    "whereBody": "Our website is hosted by Netlify, which receives each tour request, keeps a copy in its submission records, and emails it to the center’s inbox. That inbox is a Gmail account provided by Google. The site is served over an encrypted connection.",
     "cookiesTitle": "Cookies and tracking",
     "cookiesP1": "This website sets no advertising or analytics cookies of its own and loads no analytics trackers.",
-    "cookiesP2Before": "Our Locations and Home pages embed maps from Google Maps so you can see where each center is. Google may set cookies and record your IP address when one of those maps loads, under",
+    "cookiesP2Before": "Our Locations page embeds maps from Google Maps so you can see where each center is. Google may set cookies and record your IP address when one of those maps loads, under",
     "cookiesP2Link": "Google's privacy policy",
     "cookiesP2After": ". Everything the maps show is also written out as plain text on the page, so you never need to interact with them.",
     "childrenTitle": "Children",
     "childrenBody": "This website is written for parents and guardians. It is not directed at children, and we do not knowingly collect information submitted by a child.",
     "photosTitle": "Photographs",
     "photosBody": "Photographs of enrolled children appear on this site only where a signed publicity release is on file. If you would like your child's image removed, contact us and we will take it down.",
+    "changesTitle": "Changes to this notice",
+    "changesBody": "If we change how this website handles information, we will update this page and the date at the top of it.",
     "contactTitle": "Contacting us",
     "contactBefore": "Write to",
     "contactAfter": "or call either location with any question about this notice, or to ask us to delete an enquiry you have sent."
+  },
+  "terms": {
+    "title": "Terms of Use",
+    "description": "The terms for using the Precious Steps Child Care Center website.",
+    "heroTitle": "Terms of Use",
+    "heroLead": "The ground rules for using this website.",
+    "reviewTodo": "Plain-language starting point drafted to match how the site works. Have the client read it, and ideally have counsel review it, before launch.",
+    "useTitle": "Using this website",
+    "useBody": "By using this website you agree to these terms. If you do not agree, please do not use the site. These terms cover the website only; enrollment and care are governed by the enrollment paperwork and the Parent Handbook you receive from the center.",
+    "infoTitle": "Information on this site",
+    "infoP1": "We work to keep this site accurate, but hours, programs, availability, tuition and policies can change. Please confirm anything important with the center directly before you rely on it.",
+    "infoP2": "Nothing on this site is medical, developmental or legal advice, and nothing on it is an offer of enrollment or a guarantee of a place.",
+    "requestsTitle": "Tour requests",
+    "requestsBody": "Sending a tour request does not reserve a place. We reply to requests as described on our contact page.",
+    "urgentTitle": "Do not use this website for urgent matters",
+    "urgentBody": "The tour request form is not monitored around the clock. For anything about a child already in our care, call the center directly. In an emergency, call 911.",
+    "contentTitle": "Photographs and content",
+    "contentBody": "The text, photographs, logo and design of this site are owned by or licensed to the center. Please do not copy or reuse them without our written permission.",
+    "linksTitle": "Links to other websites",
+    "linksBody": "This site links to other websites, such as Google Maps. We do not control those sites and are not responsible for their content or how they handle your information.",
+    "liabilityTitle": "Limits on our responsibility",
+    "liabilityBody": "This site is provided as it is, without promises that it will always be available or free of errors. To the extent the law allows, the center is not liable for any loss that comes from using this website or relying on its information.",
+    "lawTitle": "Governing law",
+    "lawBody": "These terms are governed by the laws of the State of New Jersey.",
+    "changesTitle": "Changes to these terms",
+    "changesBody": "We may update these terms from time to time. The date at the top of this page shows when they last changed.",
+    "contactTitle": "Contacting us",
+    "contactBefore": "Questions about these terms? Write to",
+    "contactAfter": "or call either location."
   },
   "programContent": {
     "infant": {

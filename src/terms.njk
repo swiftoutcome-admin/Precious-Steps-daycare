@@ -1,0 +1,67 @@
+---
+layout: layouts/base.njk
+pageKey: terms
+pagination:
+  data: languages
+  size: 1
+  alias: lang
+  # Without this Eleventy puts only the FIRST paginated output into
+  # collections, so the Spanish pages would be missing from the sitemap.
+  addAllPagesToCollections: true
+permalink: "{{ pageKey | localizedUrl(lang.code) }}"
+eleventyComputed:
+  title: "{{ i18n[lang.code].terms.title }}"
+  description: "{{ i18n[lang.code].terms.description }}"
+---
+{% set t = i18n[lang.code] %}
+{% set tm = t.terms %}
+
+{% set heroTitle = tm.heroTitle %}
+{% set heroLead = tm.heroLead %}
+{% include "partials/page-hero.njk" %}
+
+<div class="section">
+  <article class="doc">
+    <p class="doc__updated">{{ t.common.updated }}: <time datetime="{{ site.legalUpdated }}">{{ site.legalUpdated | longDate(lang.code) }}</time></p>
+
+    <div class="todo">
+      <strong>Legal review recommended</strong>
+      {{ tm.reviewTodo }}
+    </div>
+
+    <h2>{{ tm.useTitle }}</h2>
+    <p>{{ tm.useBody }}</p>
+
+    <h2>{{ tm.infoTitle }}</h2>
+    <p>{{ tm.infoP1 }}</p>
+    <p>{{ tm.infoP2 }}</p>
+
+    <h2>{{ tm.requestsTitle }}</h2>
+    <p>{{ tm.requestsBody }}</p>
+
+    <h2>{{ tm.urgentTitle }}</h2>
+    <p>{{ tm.urgentBody }}</p>
+
+    <h2>{{ tm.contentTitle }}</h2>
+    <p>{{ tm.contentBody }}</p>
+
+    <h2>{{ tm.linksTitle }}</h2>
+    <p>{{ tm.linksBody }}</p>
+
+    <h2>{{ tm.liabilityTitle }}</h2>
+    <p>{{ tm.liabilityBody }}</p>
+
+    <h2>{{ tm.lawTitle }}</h2>
+    <p>{{ tm.lawBody }}</p>
+
+    <h2>{{ tm.changesTitle }}</h2>
+    <p>{{ tm.changesBody }}</p>
+
+    <h2>{{ tm.contactTitle }}</h2>
+    <p>
+      {{ tm.contactBefore }}
+      <a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a>
+      {{ tm.contactAfter }}
+    </p>
+  </article>
+</div>

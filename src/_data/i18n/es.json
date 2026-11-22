@@ -17,7 +17,8 @@
     "enrollment": "Inscripción",
     "gallery": "Galería",
     "contact": "Contacto",
-    "privacy": "Privacidad"
+    "privacy": "Privacidad",
+    "terms": "Términos de uso"
   },
   "cta": {
     "requestTour": "Solicite una visita",
@@ -47,7 +48,8 @@
     "contentNeeded": "Falta contenido",
     "unconfirmed": "Sin confirmar",
     "careTypes": "Opciones de cuidado",
-    "or": "o"
+    "or": "o",
+    "updated": "Última actualización"
   },
   "home": {
     "eyebrow": "Plainfield, Nueva Jersey",
@@ -261,19 +263,50 @@
     "useTitle": "Cómo la usamos",
     "useBody": "La usamos para responder a su consulta y coordinar una visita. No la vendemos, no la alquilamos y no la compartimos con nadie fuera del centro con fines de mercadeo.",
     "whereTitle": "A dónde va",
-    "whereBody": "El proveedor de nuestro sitio web entrega los mensajes del formulario al correo electrónico del centro y los conserva en sus registros. El sitio web usa una conexión cifrada.",
+    "whereBody": "Nuestro sitio web está alojado por Netlify, que recibe cada solicitud de visita, conserva una copia en sus registros y la envía por correo electrónico a la bandeja de entrada del centro. Esa bandeja de entrada es una cuenta de Gmail proporcionada por Google. El sitio web usa una conexión cifrada.",
     "cookiesTitle": "Cookies y rastreo",
     "cookiesP1": "Este sitio web no coloca cookies propias de publicidad ni de analítica, y no carga rastreadores de analítica.",
-    "cookiesP2Before": "Nuestras páginas de Sedes e Inicio incorporan mapas de Google Maps para que usted pueda ver dónde está cada centro. Google puede colocar cookies y registrar su dirección IP cuando uno de esos mapas se carga, según la",
+    "cookiesP2Before": "Nuestra página de Sedes incorpora mapas de Google Maps para que usted pueda ver dónde está cada centro. Google puede colocar cookies y registrar su dirección IP cuando uno de esos mapas se carga, según la",
     "cookiesP2Link": "política de privacidad de Google",
     "cookiesP2After": ". Todo lo que muestran los mapas aparece también escrito como texto en la página, de modo que nunca necesita interactuar con ellos.",
     "childrenTitle": "Niños",
     "childrenBody": "Este sitio web está dirigido a padres y tutores. No está dirigido a niños, y no recogemos a sabiendas información enviada por un niño.",
     "photosTitle": "Fotografías",
     "photosBody": "Las fotografías de niños inscritos aparecen en este sitio únicamente cuando hay una autorización de publicidad firmada en el expediente. Si desea que retiremos la imagen de su hijo, comuníquese con nosotros y la quitaremos.",
+    "changesTitle": "Cambios a este aviso",
+    "changesBody": "Si cambiamos la forma en que este sitio web maneja la información, actualizaremos esta página y la fecha que aparece al principio.",
     "contactTitle": "Cómo comunicarse con nosotros",
     "contactBefore": "Escriba a",
     "contactAfter": "o llame a cualquiera de las dos sedes con cualquier pregunta sobre este aviso, o para pedirnos que borremos una consulta que usted haya enviado."
+  },
+  "terms": {
+    "title": "Términos de uso",
+    "description": "Los términos para usar el sitio web de Precious Steps Child Care Center.",
+    "heroTitle": "Términos de uso",
+    "heroLead": "Las reglas básicas para usar este sitio web.",
+    "reviewTodo": "SPANISH LEGAL TEXT MUST BE REVIEWED BY THE CLIENT’S BILINGUAL STAFF, AND IDEALLY BY COUNSEL, BEFORE LAUNCH. Drafted translation of the English terms.",
+    "useTitle": "Uso de este sitio web",
+    "useBody": "Al usar este sitio web, usted acepta estos términos. Si no está de acuerdo, por favor no use el sitio. Estos términos cubren solo el sitio web; la inscripción y el cuidado se rigen por los documentos de inscripción y el Manual para Padres que usted recibe del centro.",
+    "infoTitle": "La información de este sitio",
+    "infoP1": "Procuramos mantener este sitio actualizado, pero los horarios, programas, cupos, costos y políticas pueden cambiar. Por favor confirme directamente con el centro cualquier dato importante antes de basarse en él.",
+    "infoP2": "Nada en este sitio constituye consejo médico, de desarrollo infantil ni legal, y nada en él es una oferta de inscripción ni una garantía de cupo.",
+    "requestsTitle": "Solicitudes de visita",
+    "requestsBody": "Enviar una solicitud de visita no reserva un cupo. Respondemos a las solicitudes según se indica en nuestra página de contacto.",
+    "urgentTitle": "No use este sitio web para asuntos urgentes",
+    "urgentBody": "El formulario de solicitud de visita no se revisa las 24 horas. Para cualquier asunto sobre un niño que ya está bajo nuestro cuidado, llame directamente al centro. En una emergencia, llame al 911.",
+    "contentTitle": "Fotografías y contenido",
+    "contentBody": "Los textos, las fotografías, el logotipo y el diseño de este sitio pertenecen al centro o se usan con licencia. Por favor no los copie ni los reutilice sin nuestro permiso por escrito.",
+    "linksTitle": "Enlaces a otros sitios web",
+    "linksBody": "Este sitio contiene enlaces a otros sitios web, como Google Maps. No controlamos esos sitios y no somos responsables de su contenido ni de cómo manejan su información.",
+    "liabilityTitle": "Límites de nuestra responsabilidad",
+    "liabilityBody": "Este sitio se ofrece tal como está, sin garantía de que siempre esté disponible o libre de errores. En la medida en que la ley lo permita, el centro no es responsable de ninguna pérdida que resulte del uso de este sitio web o de basarse en su información.",
+    "lawTitle": "Ley aplicable",
+    "lawBody": "Estos términos se rigen por las leyes del Estado de Nueva Jersey.",
+    "changesTitle": "Cambios a estos términos",
+    "changesBody": "Podemos actualizar estos términos de vez en cuando. La fecha que aparece al principio de esta página indica cuándo se modificaron por última vez.",
+    "contactTitle": "Cómo comunicarse con nosotros",
+    "contactBefore": "¿Tiene preguntas sobre estos términos? Escriba a",
+    "contactAfter": "o llame a cualquiera de las dos sedes."
   },
   "programContent": {
     "infant": {

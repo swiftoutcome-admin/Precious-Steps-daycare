@@ -22,6 +22,8 @@ eleventyComputed:
 
 <div class="section">
   <article class="doc">
+    <p class="doc__updated">{{ t.common.updated }}: <time datetime="{{ site.legalUpdated }}">{{ site.legalUpdated | longDate(lang.code) }}</time></p>
+
     <div class="todo">
       <strong>Legal review recommended</strong>
       {{ pv.reviewTodo }}
@@ -52,6 +54,9 @@ eleventyComputed:
 
     <h2>{{ pv.photosTitle }}</h2>
     <p>{{ pv.photosBody }}</p>
+
+    <h2>{{ pv.changesTitle }}</h2>
+    <p>{{ pv.changesBody }}</p>
 
     <h2>{{ pv.contactTitle }}</h2>
     <p>
